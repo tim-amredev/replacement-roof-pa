@@ -6,25 +6,42 @@
   <title>{% if page.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
   <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
 
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="{{ site.baseurl }}/assets/images/favicon.png">
+  
   <!-- CSS -->
   <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/styles.css">
-  
+
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Tahoma:wght@400;700&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Tahoma:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- SEO -->
   {% seo title=false %}
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="{% if page.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}">
+  <meta property="og:description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+  <meta property="og:image" content="{{ site.url }}{{ site.baseurl }}/assets/images/og-image.jpg">
+  <meta property="og:url" content="{{ site.url }}{{ site.baseurl }}{{ page.url }}">
+  <meta property="og:type" content="website">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{% if page.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}">
+  <meta name="twitter:description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+  <meta name="twitter:image" content="{{ site.url }}{{ site.baseurl }}/assets/images/og-image.jpg">
 </head>
 <body>
+  <a href="#main-content" class="skip-to-content">Skip to content</a>
+  
   {% include header.html %}
 
-  <main>
+  <main id="main-content">
       {{ content }}
   </main>
 
@@ -32,6 +49,13 @@
 
   <!-- JavaScript -->
   <script src="{{ site.baseurl }}/assets/js/main.js"></script>
+  
+  <!-- Page-specific scripts -->
+  {% if page.custom_js %}
+    {% for js_file in page.custom_js %}
+      <script src="{{ site.baseurl }}/assets/js/{{ js_file }}.js"></script>
+    {% endfor %}
+  {% endif %}
 </body>
 </html>
 
