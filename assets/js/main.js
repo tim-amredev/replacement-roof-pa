@@ -120,4 +120,26 @@ document.addEventListener("DOMContentLoaded", () => {
   fontAwesome.rel = "stylesheet"
   fontAwesome.href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
   document.head.appendChild(fontAwesome)
+
+  // Logo fallback - try to load the logo with JavaScript as a fallback
+  window.addEventListener("load", () => {
+    const logoImg = document.querySelector(".logo-wrapper img")
+    if (logoImg) {
+      // Create a new image element
+      const newImg = new Image()
+      newImg.onload = function () {
+        // If it loads successfully, replace the existing image
+        logoImg.src = this.src
+        logoImg.style.display = "block"
+      }
+      newImg.onerror = () => {
+        // If it fails to load, use the background image fallback
+        logoImg.style.display = "none"
+      }
+      // Try loading the image
+      newImg.src =
+        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Untitled%20design%20%2824%29-CM5D0lI7FMWRManB7DbdGfokTyocQg.png"
+    }
+  })
 })
+
