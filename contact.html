@@ -5,204 +5,449 @@ description: Get in touch with our roofing experts for a free estimate on your r
 ---
 
 <div class="page-header">
-  <div class="container">
-    <h1>Contact Replacement Roof PA</h1>
-    <p>Reach out to our team for expert roofing advice and free estimates</p>
-  </div>
+<div class="container">
+  <h1>Contact Replacement Roof PA</h1>
+  <p>Reach out to our team for expert roofing advice and free estimates</p>
+</div>
 </div>
 
 <section class="contact-section">
-  <div class="container">
-    <div class="contact-grid">
-      <div class="contact-info">
-        <h2>Get In Touch</h2>
-        <p>We're here to answer your questions and provide the information you need about your roof replacement project.</p>
-        
-        <div class="contact-methods">
-          <div class="contact-method">
-            <div class="contact-icon">
-              <i class="fas fa-phone-alt"></i>
-            </div>
-            <div class="contact-details">
-              <h3>Call Us</h3>
-              <p><a href="tel:{{ site.phone }}">{{ site.phone }}</a></p>
-              <p class="text-small">Monday-Friday: 8am-6pm<br>Saturday: 9am-3pm</p>
-            </div>
+<div class="container">
+  <div class="contact-grid">
+    <div class="contact-info">
+      <h2>Get In Touch</h2>
+      <p class="contact-intro">We're here to answer your questions and provide the information you need about your roof replacement project.</p>
+      
+      <div class="contact-methods">
+        <div class="contact-method">
+          <div class="contact-icon">
+            <i class="fas fa-phone-alt"></i>
           </div>
-          
-          <div class="contact-method">
-            <div class="contact-icon">
-              <i class="fas fa-envelope"></i>
-            </div>
-            <div class="contact-details">
-              <h3>Email Us</h3>
-              <p><a href="mailto:{{ site.email }}">{{ site.email }}</a></p>
-              <p class="text-small">We respond to all inquiries within 24 hours</p>
-            </div>
-          </div>
-          
-          <div class="contact-method">
-            <div class="contact-icon">
-              <i class="fas fa-map-marker-alt"></i>
-            </div>
-            <div class="contact-details">
-              <h3>Visit Our Office</h3>
-              <p>{{ site.address }}</p>
-              <p class="text-small">By appointment only</p>
-            </div>
+          <div class="contact-details">
+            <h3>Call Us</h3>
+            <p><a href="tel:{{ site.phone }}">{{ site.phone }}</a></p>
+            <p class="text-small">Monday-Friday: 8am-6pm<br>Saturday: 9am-3pm</p>
           </div>
         </div>
         
-        <div class="service-areas">
-          <h3>Our Service Areas</h3>
-          <p>We provide roof replacement services throughout Pennsylvania, including:</p>
-          <ul class="areas-list">
-            <li>Philadelphia</li>
-            <li>Pittsburgh</li>
-            <li>Harrisburg</li>
-            <li>Allentown</li>
-            <li>Erie</li>
-            <li>Reading</li>
-            <li>Scranton</li>
-            <li>Lancaster</li>
-            <li>Bethlehem</li>
-            <li>York</li>
-            <li>And surrounding areas</li>
-          </ul>
+        <div class="contact-method">
+          <div class="contact-icon">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <div class="contact-details">
+            <h3>Email Us</h3>
+            <p><a href="mailto:info@replacementroofpa.com">info@replacementroofpa.com</a></p>
+            <p class="text-small">We respond to all inquiries within 24 hours</p>
+          </div>
+        </div>
+        
+        <div class="contact-method">
+          <div class="contact-icon">
+            <i class="fas fa-map-marker-alt"></i>
+          </div>
+          <div class="contact-details">
+            <h3>Visit Our Office</h3>
+            <p>{{ site.address }}</p>
+            <p class="text-small">By appointment only</p>
+          </div>
         </div>
       </div>
       
-      <div class="contact-form-container">
-        <h2>Request a Free Estimate</h2>
-        <p>Fill out the form below, and one of our roofing specialists will contact you shortly.</p>
-        
-        <form id="contact-form" action="https://formsubmit.co/tim@americanremodeling.net" method="POST" class="contact-form">
-          <!-- FormSubmit honeypot field to prevent spam -->
-          <input type="text" name="_honey" style="display:none">
-          <!-- Enable captcha -->
-          <input type="hidden" name="_captcha" value="true">
-          <!-- Success page redirect -->
-          <input type="hidden" name="_next" value="{{ site.url }}{{ site.baseurl }}/thank-you">
-          <!-- Form subject -->
-          <input type="hidden" name="_subject" value="New Roof Replacement Inquiry">
-          
-          <div class="form-group">
-            <label for="name">Full Name*</label>
-            <input type="text" id="name" name="name" required>
-          </div>
-          
-          <div class="form-row">
-            <div class="form-group">
-              <label for="email">Email Address*</label>
-              <input type="email" id="email" name="email" required>
-            </div>
-            <div class="form-group">
-              <label for="phone">Phone Number*</label>
-              <input type="tel" id="phone" name="phone" required>
-            </div>
-          </div>
-          
-          <div class="form-group">
-            <label for="address">Property Address</label>
-            <input type="text" id="address" name="address">
-          </div>
-          
-          <div class="form-row">
-            <div class="form-group">
-              <label for="city">City</label>
-              <input type="text" id="city" name="city">
-            </div>
-            <div class="form-group">
-              <label for="zip">ZIP Code</label>
-              <input type="text" id="zip" name="zip">
-            </div>
-          </div>
-          
-          <div class="form-group">
-            <label for="project-type">Project Type*</label>
-            <select id="project-type" name="project-type" required>
-              <option value="" selected disabled>Select a project type</option>
-              <option value="Full Roof Replacement">Full Roof Replacement</option>
-              <option value="Partial Roof Replacement">Partial Roof Replacement</option>
-              <option value="Storm Damage Repair">Storm Damage Repair</option>
-              <option value="Not Sure">Not Sure - Need Assessment</option>
-            </select>
-          </div>
-          
-          <div class="form-group">
-            <label for="message">Additional Details</label>
-            <textarea id="message" name="message" rows="4"></textarea>
-          </div>
-          
-          <div class="form-group privacy-consent">
-            <input type="checkbox" id="privacy-consent" name="privacy-consent" required>
-            <label for="privacy-consent">I agree that my information will be used solely to provide roofing services and will not be shared with third parties.</label>
-          </div>
-          
-          <button type="submit" class="btn btn-primary btn-block">Submit Request</button>
-        </form>
+      <div class="service-areas">
+        <h3>Our Service Areas</h3>
+        <p>We provide roof replacement services throughout Pennsylvania, including:</p>
+        <div class="areas-grid">
+          <div class="area-item"><i class="fas fa-map-pin"></i> Philadelphia</div>
+          <div class="area-item"><i class="fas fa-map-pin"></i> Pittsburgh</div>
+          <div class="area-item"><i class="fas fa-map-pin"></i> Harrisburg</div>
+          <div class="area-item"><i class="fas fa-map-pin"></i> Allentown</div>
+          <div class="area-item"><i class="fas fa-map-pin"></i> Erie</div>
+          <div class="area-item"><i class="fas fa-map-pin"></i> Reading</div>
+          <div class="area-item"><i class="fas fa-map-pin"></i> Scranton</div>
+          <div class="area-item"><i class="fas fa-map-pin"></i> Lancaster</div>
+          <div class="area-item"><i class="fas fa-map-pin"></i> Bethlehem</div>
+          <div class="area-item"><i class="fas fa-map-pin"></i> York</div>
+          <div class="area-item"><i class="fas fa-map-pin"></i> And surrounding areas</div>
+        </div>
       </div>
     </div>
+    
+    <div class="contact-form-container">
+      <h2>Request a Free Estimate</h2>
+      <p>Fill out the form below, and one of our roofing specialists will contact you shortly.</p>
+      
+      <form id="contact-form" action="https://formsubmit.co/tim@americanremodeling.net" method="POST" class="contact-form">
+        <!-- FormSubmit honeypot field to prevent spam -->
+        <input type="text" name="_honey" style="display:none">
+        <!-- Enable captcha -->
+        <input type="hidden" name="_captcha" value="true">
+        <!-- Success page redirect -->
+        <input type="hidden" name="_next" value="{{ site.url }}{{ site.baseurl }}/thank-you">
+        <!-- Form subject -->
+        <input type="hidden" name="_subject" value="New Roof Replacement Inquiry">
+        
+        <div class="form-group">
+          <label for="name">Full Name*</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label for="email">Email Address*</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number*</label>
+            <input type="tel" id="phone" name="phone" required>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="address">Property Address</label>
+          <input type="text" id="address" name="address">
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label for="city">City</label>
+            <input type="text" id="city" name="city">
+          </div>
+          <div class="form-group">
+            <label for="zip">ZIP Code</label>
+            <input type="text" id="zip" name="zip">
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="project-type">Project Type*</label>
+          <select id="project-type" name="project-type" required>
+            <option value="" selected disabled>Select a project type</option>
+            <option value="Full Roof Replacement">Full Roof Replacement</option>
+            <option value="Partial Roof Replacement">Partial Roof Replacement</option>
+            <option value="Storm Damage Repair">Storm Damage Repair</option>
+            <option value="Not Sure">Not Sure - Need Assessment</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="message">Additional Details</label>
+          <textarea id="message" name="message" rows="4"></textarea>
+        </div>
+        
+        <div class="form-group privacy-consent">
+          <input type="checkbox" id="privacy-consent" name="privacy-consent" required>
+          <label for="privacy-consent">I agree that my information will be used solely to provide roofing services and will not be shared with third parties.</label>
+        </div>
+        
+        <button type="submit" class="btn btn-primary btn-block">Submit Request</button>
+      </form>
+    </div>
   </div>
+</div>
 </section>
 
 <section class="map-section">
-  <div class="container">
-    <h2>Our Location</h2>
-    <div class="map-container">
-      <!-- Replace with your Google Maps embed code -->
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d195200.82003599714!2d-75.25811239738761!3d40.00233396325435!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c6b7d8d4b54beb%3A0x89f514d88c3e58c1!2sPhiladelphia%2C%20PA!5e0!3m2!1sen!2sus!4v1647532376018!5m2!1sen!2sus" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-    </div>
+<div class="container">
+  <h2 class="section-title">Our Location</h2>
+  <div class="map-container">
+    <!-- Replace with your Google Maps embed code -->
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d195200.82003599714!2d-75.25811239738761!3d40.00233396325435!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c6b7d8d4b54beb%3A0x89f514d88c3e58c1!2sPhiladelphia%2C%20PA!5e0!3m2!1sen!2sus!4v1647532376018!5m2!1sen!2sus" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
   </div>
+</div>
 </section>
 
 <section class="faq-section">
-  <div class="container">
-    <h2>Frequently Asked Questions</h2>
-    <div class="faq-grid">
-      <div class="faq-item">
-        <h3>How long does a typical roof replacement take?</h3>
-        <p>Most residential roof replacements take 1-3 days, depending on the size and complexity of your roof, as well as weather conditions.</p>
-      </div>
-      <div class="faq-item">
-        <h3>Do you offer financing options?</h3>
-        <p>Yes, we offer several financing options to help make your roof replacement more affordable, including 0% interest plans for qualified homeowners.</p>
-      </div>
-      <div class="faq-item">
-        <h3>Will you work with my insurance company?</h3>
-        <p>Absolutely. Our team has extensive experience working with insurance companies on storm damage claims and can help guide you through the process.</p>
-      </div>
-      <div class="faq-item">
-        <h3>What types of warranties do you offer?</h3>
-        <p>We provide manufacturer warranties on all materials (typically 25-50 years) and our own 10-year workmanship warranty on all installations.</p>
-      </div>
+<div class="container">
+  <h2 class="section-title">Frequently Asked Questions</h2>
+  <div class="faq-grid">
+    <div class="faq-item">
+      <h3>How long does a typical roof replacement take?</h3>
+      <p>Most residential roof replacements take 1-3 days, depending on the size and complexity of your roof, as well as weather conditions.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Do you offer financing options?</h3>
+      <p>Yes, we offer several financing options to help make your roof replacement more affordable, including 0% interest plans for qualified homeowners.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Will you work with my insurance company?</h3>
+      <p>Absolutely. Our team has extensive experience working with insurance companies on storm damage claims and can help guide you through the process.</p>
+    </div>
+    <div class="faq-item">
+      <h3>What types of warranties do you offer?</h3>
+      <p>We provide manufacturer warranties on all materials (typically 25-50 years) and our own 10-year workmanship warranty on all installations.</p>
     </div>
   </div>
+</div>
 </section>
 
 <section class="cta-section">
-  <div class="container">
-    <h2>Ready to Transform Your Home with a New Roof?</h2>
-    <p>Contact us today for a free, no-obligation consultation and estimate</p>
-    <a href="#contact-form" class="btn btn-primary btn-large">Get Started Now</a>
-  </div>
+<div class="container">
+  <h2>Ready to Transform Your Home with a New Roof?</h2>
+  <p>Contact us today for a free, no-obligation consultation and estimate</p>
+  <a href="{{ site.baseurl }}/roof-questionnaire" class="btn btn-primary btn-large">Get Started Now</a>
+</div>
 </section>
 
-<div class="service-card">
-  <div class="service-image">
-    <img src="/assets/images/residential-roofing.jpg" alt="Residential Roofing">
-  </div>
-  <div class="service-content">
-    <h3>Residential Roof Replacement</h3>
-    <p>Complete roof replacement services for homes of all sizes and styles. We work with a variety of roofing materials to match your home's architecture and your personal preferences.</p>
-    <ul class="service-features">
-      <li>Asphalt shingle roofing</li>
-      <li>Metal roofing systems</li>
-      <li>Tile and slate roofing</li>
-      <li>Flat and low-slope roofing</li>
-      <li>Energy-efficient cool roofs</li>
-    </ul>
-    <a href="{{ site.baseurl }}/#roof-calculator" class="btn btn-secondary">Get a Free Estimate</a>
-  </div>
-</div>
+<style>
+/* Contact Page Styles */
+.contact-section {
+  padding: 5rem 0;
+  background-color: white;
+}
 
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+}
+
+@media (min-width: 992px) {
+  .contact-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.contact-info h2 {
+  margin-bottom: 1.5rem;
+  color: var(--teal-medium);
+}
+
+.contact-intro {
+  font-size: 1.1rem;
+  margin-bottom: 2.5rem;
+  color: var(--secondary-color);
+}
+
+.contact-methods {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.contact-method {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  background-color: var(--background-light);
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: var(--card-shadow);
+  transition: transform 0.3s ease;
+}
+
+.contact-method:hover {
+  transform: translateY(-5px);
+}
+
+.contact-icon {
+  background-color: var(--teal-highlight);
+  color: var(--teal-accent);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.contact-details h3 {
+  margin-bottom: 0.5rem;
+  color: var(--teal-medium);
+}
+
+.contact-details p {
+  margin-bottom: 0.5rem;
+  color: var(--secondary-color);
+}
+
+.contact-details a {
+  color: var(--teal-accent);
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.contact-details a:hover {
+  color: var(--teal-accent-light);
+}
+
+.text-small {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.service-areas {
+  background-color: var(--teal-highlight);
+  padding: 2rem;
+  border-radius: 8px;
+  margin-top: 2rem;
+}
+
+.service-areas h3 {
+  margin-bottom: 1rem;
+  color: var(--teal-medium);
+}
+
+.service-areas p {
+  margin-bottom: 1.5rem;
+  color: var(--secondary-color);
+}
+
+.areas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
+.area-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--teal-medium);
+  font-weight: 500;
+}
+
+.area-item i {
+  color: var(--teal-accent);
+  font-size: 0.9rem;
+}
+
+.contact-form-container {
+  background-color: white;
+  padding: 2.5rem;
+  border-radius: 8px;
+  box-shadow: var(--card-shadow);
+}
+
+.contact-form-container h2 {
+  margin-bottom: 1rem;
+  color: var(--teal-medium);
+}
+
+.contact-form-container p {
+  margin-bottom: 2rem;
+  color: var(--secondary-color);
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: var(--teal-medium);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--teal-accent);
+  box-shadow: 0 0 0 3px rgba(50, 160, 168, 0.2);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.privacy-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.privacy-consent input {
+  margin-top: 0.3rem;
+  width: auto;
+  accent-color: var(--teal-accent);
+}
+
+.privacy-consent label {
+  font-size: 0.9rem;
+  font-weight: normal;
+  color: var(--secondary-color);
+}
+
+.btn-block {
+  width: 100%;
+}
+
+/* Map Section */
+.map-section {
+  padding: 5rem 0;
+  background-color: var(--teal-highlight);
+}
+
+.map-container {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: var(--card-shadow);
+}
+
+/* FAQ Grid */
+.faq-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.faq-item {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: var(--card-shadow);
+  transition: transform 0.3s ease;
+}
+
+.faq-item:hover {
+  transform: translateY(-5px);
+}
+
+.faq-item h3 {
+  margin-bottom: 1rem;
+  color: var(--teal-medium);
+  font-size: 1.2rem;
+}
+
+.faq-item p {
+  margin-bottom: 0;
+  color: var(--secondary-color);
+}
+
+@media (max-width: 768px) {
+  .contact-method {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .contact-icon {
+    margin-bottom: 1rem;
+  }
+  
+  .faq-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
