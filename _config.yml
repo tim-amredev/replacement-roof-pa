@@ -10,14 +10,6 @@ permalink: pretty
 
 # Build settings
 markdown: kramdown
-
-# Sass/SCSS settings
-sass:
-  sass_dir: _sass
-  style: compressed
-  sourcemap: never
-
-# Plugins
 plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
@@ -35,13 +27,6 @@ exclude:
   - vendor
   - .gitignore
   - README.md
-
-# SEO settings
-social:
-  name: Replacement Roof PA
-  links:
-    - https://facebook.com/replacementroofpa
-    - https://instagram.com/replacementroofpa
 
 # Custom variables
 phone: "(555) 123-4567"
