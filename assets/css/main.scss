@@ -1,3 +1,6 @@
+---
+---
+
 // Variables
 $primary-color: #1a2b3c;
 $secondary-color: #2c3e50;
@@ -269,7 +272,7 @@ img {
 // Hero Section
 .hero-section {
   background-color: $obsidian-medium;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/assets/images/hero-bg.jpg');
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../images/hero-bg.jpg');
   background-size: cover;
   background-position: center;
   color: $text-light;
@@ -781,8 +784,25 @@ img {
   }
 }
 
-/* Add these styles for the thank-you page */
+/* Page header */
+.page-header {
+  background-color: $obsidian-medium;
+  color: $text-light;
+  padding: 3rem 0;
+  text-align: center;
+  
+  h1 {
+    margin-bottom: 0.5rem;
+  }
+  
+  p {
+    font-size: 1.2rem;
+    margin-bottom: 0;
+    opacity: 0.9;
+  }
+}
 
+/* Thank you page styles */
 .thank-you-section {
   padding: 4rem 0;
   background-color: $background-light;
