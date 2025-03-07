@@ -1,51 +1,142 @@
+---
 layout: default
 title: Thank You - Replacement Roof PA
 description: Thank you for requesting your roof replacement quote. A roofing professional will contact you shortly.
 ---
 
 <div class="page-header">
-  <div class="container">
-    <h1>Thank You for Your Request</h1>
-    <p>Your roof replacement quote request has been submitted successfully</p>
-  </div>
+<div class="container">
+  <h1>Thank You for Your Request</h1>
+  <p>Your roof replacement quote request has been submitted successfully</p>
+</div>
 </div>
 
 <section class="thank-you-section">
-  <div class="container">
-    <div class="thank-you-content">
-      <div class="thank-you-icon">
-        <i class="fas fa-check-circle"></i>
-      </div>
-      <h2>Your Request Has Been Received</h2>
-      <p>Thank you for using our instant roof price calculator. A local roofing professional will contact you within 24 hours to discuss your project and provide a detailed quote.</p>
-      
-      <div class="next-steps">
-        <h3>What Happens Next?</h3>
-        <ol>
-          <li>A roofing specialist will call you to discuss your specific needs</li>
-          <li>They'll schedule a convenient time for a free on-site assessment</li>
-          <li>You'll receive a detailed, no-obligation quote for your roof replacement</li>
-          <li>If you decide to proceed, they'll work with you to schedule your project</li>
-        </ol>
-      </div>
-      
-      <div class="thank-you-cta">
-        <h3>Have Questions While You Wait?</h3>
-        <p>Feel free to explore our website to learn more about our services or contact us directly.</p>
-        <div class="cta-buttons">
-          <a href="{{ site.baseurl }}/" class="btn btn-primary">Return to Homepage</a>
-          <a href="{{ site.baseurl }}/about" class="btn btn-secondary">About Us</a>
-        </div>
+<div class="container">
+  <div class="thank-you-content">
+    <div class="thank-you-icon">
+      <i class="fas fa-check-circle"></i>
+    </div>
+    <h2>Your Request Has Been Received</h2>
+    <p>Thank you for using our instant roof price calculator. A local roofing professional will contact you within 24 hours to discuss your project and provide a detailed quote.</p>
+    
+    <div class="next-steps">
+      <h3>What Happens Next?</h3>
+      <ol>
+        <li>A roofing specialist will call you to discuss your specific needs</li>
+        <li>They'll schedule a convenient time for a free on-site assessment</li>
+        <li>You'll receive a detailed, no-obligation quote for your roof replacement</li>
+        <li>If you decide to proceed, they'll work with you to schedule your project</li>
+      </ol>
+    </div>
+    
+    <div class="thank-you-cta">
+      <h3>Have Questions While You Wait?</h3>
+      <p>Feel free to explore our website to learn more about our services or contact us directly.</p>
+      <div class="cta-buttons">
+        <a href="{{ site.baseurl }}/" class="btn btn-primary">Return to Homepage</a>
+        <a href="{{ site.baseurl }}/about" class="btn btn-secondary">About Us</a>
       </div>
     </div>
   </div>
+</div>
 </section>
 
 <section class="cta-section">
-  <div class="container">
-    <h2>Have More Questions?</h2>
-    <p>Contact us directly at {{ site.phone }} to speak with a roofing specialist</p>
-    <a href="{{ site.baseurl }}/" class="btn btn-primary btn-large">Return to Homepage</a>
-  </div>
+<div class="container">
+  <h2>Have More Questions?</h2>
+  <p>Contact us directly at {{ site.phone }} to speak with a roofing specialist</p>
+  <a href="{{ site.baseurl }}/" class="btn btn-primary btn-large">Return to Homepage</a>
+</div>
 </section>
 
+<style>
+/* Thank You Page Styles */
+.thank-you-section {
+  padding: 5rem 0;
+  background-color: white;
+}
+
+.thank-you-content {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  background-color: var(--background-light);
+  padding: 3rem;
+  border-radius: 12px;
+  box-shadow: var(--card-shadow);
+}
+
+.thank-you-icon {
+  font-size: 5rem;
+  color: var(--teal-accent);
+  margin-bottom: 1.5rem;
+}
+
+.thank-you-content h2 {
+  margin-bottom: 1.5rem;
+  color: var(--teal-medium);
+}
+
+.thank-you-content p {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  color: var(--secondary-color);
+}
+
+.next-steps {
+  margin: 2.5rem 0;
+  text-align: left;
+  background-color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  border-left: 4px solid var(--teal-accent);
+}
+
+.next-steps h3 {
+  margin-bottom: 1.5rem;
+  color: var(--teal-medium);
+  text-align: center;
+}
+
+.next-steps ol {
+  margin-left: 1.5rem;
+  color: var(--secondary-color);
+}
+
+.next-steps li {
+  margin-bottom: 1rem;
+  padding-left: 0.5rem;
+}
+
+.thank-you-cta {
+  margin-top: 2.5rem;
+}
+
+.thank-you-cta h3 {
+  margin-bottom: 1rem;
+  color: var(--teal-medium);
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .thank-you-content {
+    padding: 2rem;
+  }
+  
+  .next-steps {
+    padding: 1.5rem;
+  }
+  
+  .cta-buttons {
+    flex-direction: column;
+  }
+}
+</style>
