@@ -6,7 +6,7 @@
           <img 
             src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Untitled%20design%20%2824%29-CM5D0lI7FMWRManB7DbdGfokTyocQg.png" 
             alt="Replacement Roof PA" 
-            style="display: block; width: auto; height: 50px; max-width: none; transition: all 0.3s ease;"
+            style="display: block; width: auto; height: 65px; max-width: none; transition: all 0.3s ease;"
           >
         </a>
       </div>
@@ -36,23 +36,36 @@
 .logo-container img {
   filter: brightness(1.1);
   transform-origin: left center;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
 }
 
 .logo-container img:hover {
   transform: scale(1.05);
+  filter: brightness(1.2);
 }
 
 .site-header.scrolled .logo-container img {
-  height: 40px;
+  height: 50px;
+}
+
+@media (max-width: 992px) {
+  .logo-container img {
+    height: 55px;
+  }
+  
+  .site-header.scrolled .logo-container img {
+    height: 45px;
+  }
 }
 
 @media (max-width: 768px) {
   .logo-container img {
-    height: 40px;
+    height: 50px;
   }
   
   .site-header.scrolled .logo-container img {
-    height: 35px;
+    height: 40px;
   }
 }
 </style>
