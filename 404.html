@@ -6,16 +6,87 @@ permalink: /404.html
 ---
 
 <section class="error-section">
-  <div class="container">
-    <div class="error-content">
-      <h1>404</h1>
-      <h2>Page Not Found</h2>
-      <p>The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.</p>
-      <div class="error-actions">
-        <a href="{{ '/' | relative_url }}" class="btn btn-primary">Return to Homepage</a>
-        <a href="{{ '/contact' | relative_url }}" class="btn btn-secondary">Contact Us</a>
-      </div>
+<div class="container">
+  <div class="error-content">
+    <div class="error-icon">
+      <i class="fas fa-exclamation-circle"></i>
+    </div>
+    <h1>404</h1>
+    <h2>Page Not Found</h2>
+    <p>The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.</p>
+    <div class="error-actions">
+      <a href="{{ '/' | relative_url }}" class="btn btn-primary">Return to Homepage</a>
+      <a href="{{ '/contact' | relative_url }}" class="btn btn-secondary">Contact Us</a>
     </div>
   </div>
+</div>
 </section>
 
+<style>
+.error-section {
+  padding: 8rem 0;
+  background-color: var(--teal-highlight);
+  background-image: linear-gradient(135deg, rgba(224, 242, 241, 0.8) 0%, rgba(255, 255, 255, 0.8) 100%);
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.error-content {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: white;
+  padding: 3rem;
+  border-radius: 12px;
+  box-shadow: var(--card-shadow);
+}
+
+.error-icon {
+  font-size: 5rem;
+  color: var(--teal-accent);
+  margin-bottom: 1.5rem;
+}
+
+.error-content h1 {
+  font-size: 5rem;
+  margin-bottom: 0.5rem;
+  color: var(--teal-medium);
+}
+
+.error-content h2 {
+  margin-bottom: 1.5rem;
+  color: var(--teal-accent);
+}
+
+.error-content p {
+  margin-bottom: 2rem;
+  color: var(--secondary-color);
+  font-size: 1.1rem;
+}
+
+.error-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .error-section {
+    padding: 5rem 0;
+  }
+  
+  .error-content {
+    padding: 2rem;
+  }
+  
+  .error-content h1 {
+    font-size: 4rem;
+  }
+  
+  .error-actions {
+    flex-direction: column;
+  }
+}
+</style>
