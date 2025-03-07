@@ -9,16 +9,16 @@
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="{{ '/assets/images/favicon.png' | relative_url }}">
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer">
-
     <!-- CSS -->
     <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tahoma:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <!-- SEO -->
     {% seo title=false %}
@@ -34,9 +34,11 @@
 
     <!-- JavaScript -->
     <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
-    {% if page.url == '/calculator' %}
+    {% if page.url == '/' %}
+        <script src="{{ '/assets/js/questionnaire.js' | relative_url }}"></script>
+    {% endif %}
+    {% if page.url == '/calculator/' or page.url == '/calculator' %}
         <script src="{{ '/assets/js/advanced-calculator.js' | relative_url }}"></script>
     {% endif %}
 </body>
 </html>
-
