@@ -1,25 +1,25 @@
 /* Enhanced Color Palette */
 :root {
   /* Core Colors */
-  --primary-color: #1a2b3c;
-  --secondary-color: #2c3e50;
-  --accent-color: #3498db;
+  --primary-color: #0d7377;
+  --secondary-color: #32a0a8;
+  --accent-color: #14b8a6;
   --text-color: #333;
   --text-light: #f8f9fa;
-  --background-dark: #0f1a24;
+  --background-dark: #0f5259;
   --background-light: #f8f9fa;
   --border-color: #e1e4e8;
 
-  /* Obsidian Depths Color Palette */
-  --obsidian-dark: #121212;
-  --obsidian-medium: #1e2a38;
-  --obsidian-light: #2c3e50;
-  --obsidian-accent: #4a6491;
-  --obsidian-highlight: #e0e6ed;
+  /* Teal Palette */
+  --teal-dark: #0f5259;
+  --teal-medium: #0d7377;
+  --teal-light: #14b8a6;
+  --teal-accent: #32a0a8;
+  --teal-highlight: #e0f2f1;
 
   /* Extended Palette */
-  --obsidian-accent-light: #5d7bb3;
-  --obsidian-accent-dark: #3a5075;
+  --teal-accent-light: #4fd1c5;
+  --teal-accent-dark: #0a6c70;
   --success-color: #2ecc71;
   --warning-color: #f39c12;
   --danger-color: #e74c3c;
@@ -62,7 +62,7 @@ h6 {
   font-weight: 700;
   margin-bottom: 1rem;
   line-height: 1.2;
-  color: var(--obsidian-medium);
+  color: var(--teal-medium);
 }
 
 h1 {
@@ -81,7 +81,7 @@ h2:after {
   display: block;
   width: 60px;
   height: 4px;
-  background: var(--obsidian-accent);
+  background: var(--teal-accent);
   margin-top: 0.5rem;
 }
 
@@ -96,13 +96,13 @@ p {
 }
 
 a {
-  color: var(--obsidian-accent);
+  color: var(--teal-accent);
   text-decoration: none;
   transition: color var(--transition-speed) ease;
 }
 
 a:hover {
-  color: var(--obsidian-accent-light);
+  color: var(--teal-accent-light);
 }
 
 /* Layout */
@@ -151,7 +151,7 @@ a:hover {
 
 /* Header */
 .site-header {
-  background-color: var(--obsidian-dark);
+  background-color: var(--teal-dark);
   padding: 1rem 0;
   position: sticky;
   top: 0;
@@ -162,7 +162,7 @@ a:hover {
 
 .site-header.scrolled {
   padding: 0.5rem 0;
-  background-color: rgba(18, 18, 18, 0.95);
+  background-color: rgba(15, 82, 89, 0.95);
   backdrop-filter: blur(10px);
 }
 
@@ -209,7 +209,7 @@ a:hover {
   left: 0;
   width: 0;
   height: 2px;
-  background-color: var(--obsidian-accent);
+  background-color: var(--teal-accent);
   transition: width var(--transition-speed) ease;
 }
 
@@ -219,7 +219,7 @@ a:hover {
 }
 
 .nav-links a:hover {
-  color: var(--obsidian-highlight);
+  color: var(--teal-highlight);
 }
 
 .header-contact {
@@ -237,7 +237,7 @@ a:hover {
 }
 
 .phone-number i {
-  color: var(--obsidian-accent);
+  color: var(--teal-accent);
 }
 
 /* Mobile Menu */
@@ -272,24 +272,24 @@ a:hover {
 }
 
 .btn-primary {
-  background-color: var(--obsidian-accent);
+  background-color: var(--teal-accent);
   color: var(--text-light);
 }
 
 .btn-primary:hover {
-  background-color: var(--obsidian-accent-light);
+  background-color: var(--teal-accent-light);
   transform: translateY(-2px);
   box-shadow: 0 7px 14px rgba(50, 50, 93, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
 }
 
 .btn-secondary {
   background-color: transparent;
-  color: var(--obsidian-accent);
-  border: 2px solid var(--obsidian-accent);
+  color: var(--teal-accent);
+  border: 2px solid var(--teal-accent);
 }
 
 .btn-secondary:hover {
-  background-color: rgba(74, 100, 145, 0.1);
+  background-color: rgba(50, 160, 168, 0.1);
   transform: translateY(-2px);
 }
 
@@ -305,7 +305,7 @@ a:hover {
 
 /* Hero Section */
 .hero-section {
-  background-color: var(--obsidian-medium);
+  background-color: var(--teal-medium);
   background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../images/hero-bg.jpg");
   background-size: cover;
   background-position: center;
@@ -360,7 +360,7 @@ a:hover {
 
 .trust-badge i {
   font-size: 1.5rem;
-  color: var(--obsidian-highlight);
+  color: var(--teal-highlight);
 }
 
 .trust-badge span {
@@ -370,7 +370,7 @@ a:hover {
 /* Benefits Section */
 .benefits-section {
   padding: 5rem 0;
-  background-color: var(--obsidian-highlight);
+  background-color: var(--teal-highlight);
 }
 
 .benefits-grid {
@@ -396,10 +396,10 @@ a:hover {
 
 .benefit-icon {
   font-size: 2.5rem;
-  color: var(--obsidian-accent);
+  color: var(--teal-accent);
   margin-bottom: 1.5rem;
   display: inline-block;
-  background-color: var(--obsidian-highlight);
+  background-color: var(--teal-highlight);
   width: 80px;
   height: 80px;
   line-height: 80px;
@@ -408,7 +408,7 @@ a:hover {
 
 .benefit-card h3 {
   margin-bottom: 1rem;
-  color: var(--obsidian-medium);
+  color: var(--teal-medium);
 }
 
 .benefit-card p {
@@ -445,14 +445,14 @@ a:hover {
   left: 25px;
   width: 2px;
   height: calc(100% + 2rem);
-  background-color: var(--obsidian-accent);
+  background-color: var(--teal-accent);
   z-index: 0;
 }
 
 .step-number {
   width: 50px;
   height: 50px;
-  background-color: var(--obsidian-accent);
+  background-color: var(--teal-accent);
   color: var(--text-light);
   border-radius: 50%;
   display: flex;
@@ -464,7 +464,7 @@ a:hover {
   flex-shrink: 0;
   position: relative;
   z-index: 1;
-  box-shadow: 0 0 0 5px rgba(74, 100, 145, 0.2);
+  box-shadow: 0 0 0 5px rgba(50, 160, 168, 0.2);
 }
 
 .step-content {
@@ -477,7 +477,7 @@ a:hover {
 
 .step-content h3 {
   margin-bottom: 1rem;
-  color: var(--obsidian-medium);
+  color: var(--teal-medium);
 }
 
 .step-content p {
@@ -502,8 +502,8 @@ a:hover {
 }
 
 .calculator-header {
-  background-color: var(--obsidian-medium);
-  background-image: linear-gradient(135deg, var(--obsidian-medium) 0%, var(--obsidian-accent) 100%);
+  background-color: var(--teal-medium);
+  background-image: linear-gradient(135deg, var(--teal-medium) 0%, var(--teal-accent) 100%);
   color: var(--text-light);
   padding: 2.5rem 2rem;
   text-align: center;
@@ -530,7 +530,7 @@ a:hover {
 
 .calculator-section-title {
   margin-bottom: 2rem;
-  color: var(--obsidian-medium);
+  color: var(--teal-medium);
   font-size: 1.5rem;
   border-bottom: 1px solid var(--border-color);
   padding-bottom: 1rem;
@@ -544,7 +544,7 @@ a:hover {
   display: block;
   margin-bottom: 0.5rem;
   font-weight: 600;
-  color: var(--obsidian-medium);
+  color: var(--teal-medium);
 }
 
 .form-group input,
@@ -563,8 +563,8 @@ a:hover {
 .form-group select:focus,
 .form-group textarea:focus {
   outline: none;
-  border-color: var(--obsidian-accent);
-  box-shadow: 0 0 0 3px rgba(74, 100, 145, 0.2);
+  border-color: var(--teal-accent);
+  box-shadow: 0 0 0 3px rgba(50, 160, 168, 0.2);
 }
 
 .form-row {
@@ -582,7 +582,7 @@ a:hover {
   right: 10px;
   top: 50%;
   transform: translateY(-50%);
-  color: var(--obsidian-accent);
+  color: var(--teal-accent);
   cursor: pointer;
 }
 
@@ -591,7 +591,7 @@ a:hover {
   bottom: calc(100% + 10px);
   right: 0;
   width: 250px;
-  background-color: var(--obsidian-dark);
+  background-color: var(--teal-dark);
   color: var(--text-light);
   padding: 1rem;
   border-radius: 4px;
@@ -610,7 +610,7 @@ a:hover {
   right: 15px;
   border-width: 8px;
   border-style: solid;
-  border-color: var(--obsidian-dark) transparent transparent transparent;
+  border-color: var(--teal-dark) transparent transparent transparent;
 }
 
 .tooltip-icon:hover .tooltip {
@@ -632,7 +632,7 @@ a:hover {
 
 .checkbox-item input[type="checkbox"] {
   width: auto;
-  accent-color: var(--obsidian-accent);
+  accent-color: var(--teal-accent);
 }
 
 .calculator-actions {
@@ -645,7 +645,7 @@ a:hover {
 /* Results Section */
 .calculation-results {
   padding: 2.5rem;
-  background-color: var(--obsidian-highlight);
+  background-color: var(--teal-highlight);
   border-top: 1px solid var(--border-color);
 }
 
@@ -655,13 +655,13 @@ a:hover {
 }
 
 .results-header h3 {
-  color: var(--obsidian-medium);
+  color: var(--teal-medium);
   margin-bottom: 0.5rem;
 }
 
 .price-display {
-  background-color: var(--obsidian-medium);
-  background-image: linear-gradient(135deg, var(--obsidian-medium) 0%, var(--obsidian-accent) 100%);
+  background-color: var(--teal-medium);
+  background-image: linear-gradient(135deg, var(--teal-medium) 0%, var(--teal-accent) 100%);
   color: var(--text-light);
   padding: 2.5rem;
   border-radius: 8px;
@@ -693,7 +693,7 @@ a:hover {
 
 .results-breakdown h4 {
   margin-bottom: 1.5rem;
-  color: var(--obsidian-medium);
+  color: var(--teal-medium);
   border-bottom: 1px solid var(--border-color);
   padding-bottom: 0.75rem;
 }
@@ -711,7 +711,7 @@ a:hover {
 
 .breakdown-item span:first-child {
   font-weight: 600;
-  color: var(--obsidian-medium);
+  color: var(--teal-medium);
 }
 
 .results-details {
@@ -733,8 +733,8 @@ a:hover {
 
 .details-item i {
   font-size: 1.5rem;
-  color: var(--obsidian-accent);
-  background-color: var(--obsidian-highlight);
+  color: var(--teal-accent);
+  background-color: var(--teal-highlight);
   width: 40px;
   height: 40px;
   line-height: 40px;
@@ -745,7 +745,7 @@ a:hover {
 
 .details-item h5 {
   margin-bottom: 0.5rem;
-  color: var(--obsidian-medium);
+  color: var(--teal-medium);
 }
 
 .details-item p {
@@ -755,17 +755,17 @@ a:hover {
 }
 
 .results-disclaimer {
-  background-color: rgba(74, 100, 145, 0.1);
+  background-color: rgba(50, 160, 168, 0.1);
   padding: 1.25rem;
   border-radius: 8px;
   margin-bottom: 2.5rem;
-  border-left: 4px solid var(--obsidian-accent);
+  border-left: 4px solid var(--teal-accent);
 }
 
 .results-disclaimer p {
   margin-bottom: 0;
   font-size: 0.9rem;
-  color: var(--obsidian-medium);
+  color: var(--teal-medium);
 }
 
 .results-cta {
@@ -777,7 +777,7 @@ a:hover {
 }
 
 .results-cta h4 {
-  color: var(--obsidian-medium);
+  color: var(--teal-medium);
   margin-bottom: 0.75rem;
 }
 
@@ -800,7 +800,7 @@ a:hover {
 
 .privacy-consent input {
   margin-top: 0.3rem;
-  accent-color: var(--obsidian-accent);
+  accent-color: var(--teal-accent);
 }
 
 .privacy-consent label {
@@ -811,7 +811,7 @@ a:hover {
 /* Testimonials Section */
 .testimonials-section {
   padding: 5rem 0;
-  background-color: var(--obsidian-medium);
+  background-color: var(--teal-medium);
   color: var(--text-light);
 }
 
@@ -926,18 +926,18 @@ a:hover {
 }
 
 .faq-question:hover {
-  background-color: var(--obsidian-highlight);
+  background-color: var(--teal-highlight);
 }
 
 .faq-question h3 {
   margin-bottom: 0;
   font-size: 1.1rem;
-  color: var(--obsidian-medium);
+  color: var(--teal-medium);
 }
 
 .faq-toggle {
   font-size: 1.2rem;
-  color: var(--obsidian-accent);
+  color: var(--teal-accent);
   transition: transform var(--transition-speed) ease;
 }
 
@@ -966,8 +966,8 @@ a:hover {
 /* CTA Section */
 .cta-section {
   padding: 5rem 0;
-  background-color: var(--obsidian-accent);
-  background-image: linear-gradient(135deg, var(--obsidian-accent) 0%, var(--obsidian-accent-dark) 100%);
+  background-color: var(--teal-accent);
+  background-image: linear-gradient(135deg, var(--teal-accent) 0%, var(--teal-accent-dark) 100%);
   color: var(--text-light);
   text-align: center;
   position: relative;
@@ -1011,7 +1011,7 @@ a:hover {
 
 .cta-section .btn-primary {
   background-color: var(--text-light);
-  color: var(--obsidian-accent);
+  color: var(--teal-accent);
 }
 
 .cta-section .btn-primary:hover {
@@ -1020,7 +1020,7 @@ a:hover {
 
 /* Footer */
 .site-footer {
-  background-color: var(--obsidian-dark);
+  background-color: var(--teal-dark);
   color: var(--text-light);
   padding: 5rem 0 2rem;
 }
@@ -1055,7 +1055,7 @@ a:hover {
 }
 
 .footer-contact p i {
-  color: var(--obsidian-accent);
+  color: var(--teal-accent);
 }
 
 .footer-contact a {
@@ -1063,7 +1063,7 @@ a:hover {
 }
 
 .footer-contact a:hover {
-  color: var(--obsidian-highlight);
+  color: var(--teal-highlight);
 }
 
 .footer-links {
@@ -1100,7 +1100,7 @@ a:hover {
 
 .footer-links a i {
   font-size: 0.8rem;
-  color: var(--obsidian-accent);
+  color: var(--teal-accent);
 }
 
 .footer-bottom {
@@ -1131,7 +1131,7 @@ a:hover {
 }
 
 .social-links a:hover {
-  background-color: var(--obsidian-accent);
+  background-color: var(--teal-accent);
   transform: translateY(-3px);
 }
 
@@ -1158,7 +1158,7 @@ a:hover {
 
 /* Page Header */
 .page-header {
-  background-color: var(--obsidian-medium);
+  background-color: var(--teal-medium);
   background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../images/page-header-bg.jpg");
   background-size: cover;
   background-position: center;
@@ -1218,7 +1218,7 @@ a:hover {
     right: -300px;
     width: 300px;
     height: 100vh;
-    background-color: var(--obsidian-dark);
+    background-color: var(--teal-dark);
     padding: 2rem;
     transition: right var(--transition-speed) ease;
     z-index: 1000;
@@ -1366,7 +1366,7 @@ a:hover {
 }
 
 .text-primary {
-  color: var(--obsidian-accent);
+  color: var(--teal-accent);
 }
 .text-secondary {
   color: var(--secondary-color);
@@ -1375,11 +1375,11 @@ a:hover {
   color: var(--text-light);
 }
 .text-dark {
-  color: var(--obsidian-dark);
+  color: var(--teal-dark);
 }
 
 .bg-primary {
-  background-color: var(--obsidian-accent);
+  background-color: var(--teal-accent);
 }
 .bg-secondary {
   background-color: var(--secondary-color);
@@ -1388,7 +1388,7 @@ a:hover {
   background-color: var(--background-light);
 }
 .bg-dark {
-  background-color: var(--obsidian-dark);
+  background-color: var(--teal-dark);
 }
 
 .shadow {
@@ -1440,8 +1440,8 @@ a:hover {
 .progress-fill {
   position: absolute;
   height: 100%;
-  background-color: var(--obsidian-accent);
-  background-image: linear-gradient(90deg, var(--obsidian-accent), var(--obsidian-accent-light));
+  background-color: var(--teal-accent);
+  background-image: linear-gradient(90deg, var(--teal-accent), var(--teal-accent-light));
   width: 25%; /* Start at 25% for first step */
   transition: width 0.5s ease;
   border-radius: 4px;
@@ -1473,7 +1473,7 @@ a:hover {
 }
 
 .progress-step.active:not(:last-child):after {
-  background-color: var(--obsidian-accent);
+  background-color: var(--teal-accent);
 }
 
 .step-number {
@@ -1493,9 +1493,9 @@ a:hover {
 }
 
 .progress-step.active .step-number {
-  background-color: var(--obsidian-accent);
+  background-color: var(--teal-accent);
   color: var(--text-light);
-  box-shadow: 0 0 0 3px rgba(74, 100, 145, 0.2);
+  box-shadow: 0 0 0 3px rgba(50, 160, 168, 0.2);
 }
 
 .progress-step.completed .step-number {
@@ -1511,7 +1511,7 @@ a:hover {
 }
 
 .progress-step.active .step-label {
-  color: var(--obsidian-accent);
+  color: var(--teal-accent);
 }
 
 .wizard-step {
@@ -1527,10 +1527,10 @@ a:hover {
 
 .step-icon {
   font-size: 2rem;
-  color: var(--obsidian-accent);
+  color: var(--teal-accent);
   margin-bottom: 1rem;
   display: inline-block;
-  background-color: var(--obsidian-highlight);
+  background-color: var(--teal-highlight);
   width: 70px;
   height: 70px;
   line-height: 70px;
@@ -1539,7 +1539,7 @@ a:hover {
 
 .step-header h3 {
   margin-bottom: 0.5rem;
-  color: var(--obsidian-medium);
+  color: var(--teal-medium);
 }
 
 .step-header p {
@@ -1571,14 +1571,14 @@ a:hover {
 }
 
 .select-card:hover {
-  border-color: var(--obsidian-accent-light);
+  border-color: var(--teal-accent-light);
   transform: translateY(-5px);
   box-shadow: var(--card-shadow);
 }
 
 .select-card.selected {
-  border-color: var(--obsidian-accent);
-  background-color: rgba(74, 100, 145, 0.05);
+  border-color: var(--teal-accent);
+  background-color: rgba(50, 160, 168, 0.05);
   box-shadow: var(--card-shadow);
 }
 
@@ -1598,7 +1598,7 @@ a:hover {
 .select-card-content h4 {
   margin-bottom: 0.5rem;
   font-size: 1.1rem;
-  color: var(--obsidian-medium);
+  color: var(--teal-medium);
 }
 
 .select-card-content p {
@@ -1625,13 +1625,13 @@ a:hover {
 }
 
 .material-card:hover {
-  border-color: var(--obsidian-accent-light);
+  border-color: var(--teal-accent-light);
   transform: translateY(-5px);
   box-shadow: var(--card-shadow);
 }
 
 .material-card.selected {
-  border-color: var(--obsidian-accent);
+  border-color: var(--teal-accent);
   box-shadow: var(--card-shadow);
 }
 
@@ -1658,7 +1658,7 @@ a:hover {
 .material-content h4 {
   margin-bottom: 0.5rem;
   font-size: 1.1rem;
-  color: var(--obsidian-medium);
+  color: var(--teal-medium);
 }
 
 .material-content p {
@@ -1669,7 +1669,7 @@ a:hover {
 
 .material-price {
   font-weight: 700;
-  color: var(--obsidian-accent);
+  color: var(--teal-accent);
   font-size: 0.9rem;
 }
 
@@ -1701,27 +1701,27 @@ a:hover {
 }
 
 .quality-option:hover {
-  border-color: var(--obsidian-accent-light);
+  border-color: var(--teal-accent-light);
   transform: translateY(-5px);
   box-shadow: var(--card-shadow);
 }
 
 .quality-option.selected {
-  border-color: var(--obsidian-accent);
-  background-color: rgba(74, 100, 145, 0.05);
+  border-color: var(--teal-accent);
+  background-color: rgba(50, 160, 168, 0.05);
   box-shadow: var(--card-shadow);
 }
 
 .quality-icon {
   font-size: 1.5rem;
-  color: var(--obsidian-accent);
+  color: var(--teal-accent);
   margin-bottom: 1rem;
 }
 
 .quality-label {
   font-weight: 700;
   margin-bottom: 0.25rem;
-  color: var(--obsidian-medium);
+  color: var(--teal-medium);
 }
 
 .quality-desc {
@@ -1760,7 +1760,7 @@ a:hover {
 .marker-dot {
   width: 16px;
   height: 16px;
-  background-color: var(--obsidian-accent);
+  background-color: var(--teal-accent);
   border-radius: 50%;
   border: 2px solid white;
   box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
@@ -1770,7 +1770,7 @@ a:hover {
 
 .region-marker:hover .marker-dot,
 .region-marker.selected .marker-dot {
-  background-color: var(--obsidian-accent-light);
+  background-color: var(--teal-accent-light);
   transform: scale(1.2);
 }
 
@@ -1778,7 +1778,7 @@ a:hover {
   white-space: nowrap;
   font-size: 0.85rem;
   font-weight: 600;
-  color: var(--obsidian-dark);
+  color: var(--teal-dark);
   background-color: white;
   padding: 0.25rem 0.5rem;
   border-radius: 4px;
@@ -1823,8 +1823,8 @@ a:hover {
 
 .summary-icon {
   font-size: 1.5rem;
-  color: var(--obsidian-accent);
-  background-color: var(--obsidian-highlight);
+  color: var(--teal-accent);
+  background-color: var(--teal-highlight);
   width: 50px;
   height: 50px;
   line-height: 50px;
@@ -1835,7 +1835,7 @@ a:hover {
 
 .summary-content h4 {
   margin-bottom: 0.5rem;
-  color: var(--obsidian-medium);
+  color: var(--teal-medium);
 }
 
 .summary-content p {
@@ -1881,22 +1881,22 @@ a:hover {
 }
 
 .materials-segment {
-  background-color: var(--obsidian-accent);
+  background-color: var(--teal-accent);
   width: 40%;
 }
 
 .labor-segment {
-  background-color: var(--obsidian-accent-light);
+  background-color: var(--teal-accent-light);
   width: 30%;
 }
 
 .removal-segment {
-  background-color: var(--obsidian-medium);
+  background-color: var(--teal-medium);
   width: 20%;
 }
 
 .components-segment {
-  background-color: var(--obsidian-light);
+  background-color: var(--teal-light);
   width: 10%;
 }
 
@@ -1919,19 +1919,19 @@ a:hover {
 }
 
 .materials-color {
-  background-color: var(--obsidian-accent);
+  background-color: var(--teal-accent);
 }
 
 .labor-color {
-  background-color: var(--obsidian-accent-light);
+  background-color: var(--teal-accent-light);
 }
 
 .removal-color {
-  background-color: var(--obsidian-medium);
+  background-color: var(--teal-medium);
 }
 
 .components-color {
-  background-color: var(--obsidian-light);
+  background-color: var(--teal-light);
 }
 
 .legend-text {
@@ -1978,4 +1978,3 @@ a:hover {
     grid-template-columns: 1fr;
   }
 }
-
