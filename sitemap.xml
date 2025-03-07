@@ -13,14 +13,5 @@ layout: null
     </url>
     {% endif %}
   {% endfor %}
-  
-  {% for service in site.services %}
-    <url>
-      <loc>{{ site.url }}{{ service.url }}</loc>
-      <lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
-      <changefreq>monthly</changefreq>
-      <priority>0.8</priority>
-    </url>
-  {% endfor %}
 </urlset>
 
