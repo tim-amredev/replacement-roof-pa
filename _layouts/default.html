@@ -6,19 +6,16 @@
     <title>{% if page.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
     <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="{{ '/assets/images/favicon.png' | relative_url }}">
-
     <!-- CSS -->
-    <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/styles.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Tahoma:wght@400;700&display=swap" rel="stylesheet">
-
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <!-- SEO -->
     {% seo title=false %}
@@ -29,15 +26,10 @@
             <div class="header-content">
                 <div class="logo">
                     <a href="{{ site.baseurl }}/">
-                        <img src="{{ '/assets/images/logo.svg' | relative_url }}" alt="{{ site.title }}">
+                        <img src="{{ site.baseurl }}/assets/images/logo.svg" alt="{{ site.title }}">
                     </a>
                 </div>
                 <nav class="main-nav">
-                    <button class="mobile-menu-toggle" aria-label="Toggle Menu">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </button>
                     <ul class="nav-links">
                         <li><a href="{{ site.baseurl }}/">Home</a></li>
                         <li><a href="{{ site.baseurl }}/calculator">Roof Calculator</a></li>
@@ -60,13 +52,7 @@
     {% include footer.html %}
 
     <!-- JavaScript -->
-    <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
-    {% if page.url == '/' %}
-        <script src="{{ '/assets/js/questionnaire.js' | relative_url }}"></script>
-    {% endif %}
-    {% if page.url == '/calculator/' or page.url == '/calculator' %}
-        <script src="{{ '/assets/js/advanced-calculator.js' | relative_url }}"></script>
-    {% endif %}
+    <script src="{{ site.baseurl }}/assets/js/main.js"></script>
 </body>
 </html>
 
