@@ -900,6 +900,26 @@ a:hover {
   border: 3px solid rgba(255, 255, 255, 0.1);
 }
 
+.testimonial-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 1rem;
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  background-color: var(--teal-highlight);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.default-avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .testimonial-author h4 {
   margin-bottom: 0.25rem;
   font-size: 1.1rem;
@@ -1064,6 +1084,8 @@ a:hover {
 
 .footer-info p {
   opacity: 0.8;
+  margin-bottom: .footer-info p {
+  opacity: 0.8;
   margin-bottom: 1.5rem;
   color: var(--text-light);
 }
@@ -1090,11 +1112,10 @@ a:hover {
 
 .footer-links {
   display: grid;
-  grid-template-columns: repeat(3,var(--teal-highlight);
+  grid-template-columns: repeat(3, 1fr);
 }
 
 .footer-links h3 {
-  .footer-links h3 {
   font-size: 1.2rem;
   margin-bottom: 1.5rem;
   color: var(--text-light);
