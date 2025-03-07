@@ -1,9 +1,16 @@
 <header class="site-header">
   <div class="container">
     <div class="header-content">
-      <div class="logo">
+      <div class="logo-container">
+        <!-- Direct HTML approach with inline styles -->
         <a href="{{ site.baseurl }}/">
-          <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Untitled%20design%20%2824%29-CM5D0lI7FMWRManB7DbdGfokTyocQg.png" alt="Replacement Roof PA" width="40" height="40" style="display: block; width: auto; height: 40px;">
+          <div class="logo-wrapper">
+            <img 
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Untitled%20design%20%2824%29-CM5D0lI7FMWRManB7DbdGfokTyocQg.png" 
+              alt="Replacement Roof PA" 
+              style="display: block; width: auto; height: 40px; max-width: none;"
+            >
+          </div>
         </a>
       </div>
       <nav class="main-nav">
@@ -21,4 +28,51 @@
     </div>
   </div>
 </header>
+
+<style>
+/* Direct styling in the header file to ensure it takes precedence */
+.logo-container {
+  display: block;
+  width: 150px;
+  height: 50px;
+  position: relative;
+}
+
+.logo-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100%;
+}
+
+/* Alternative background image approach as fallback */
+.logo-wrapper:before {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 40px;
+  background-image: url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Untitled%20design%20%2824%29-CM5D0lI7FMWRManB7DbdGfokTyocQg.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* Hide the actual image if it fails to load */
+.logo-wrapper img {
+  position: relative;
+  z-index: 2;
+}
+
+@media (max-width: 768px) {
+  .logo-container {
+    width: 120px;
+    height: 40px;
+  }
+  
+  .logo-wrapper:before {
+    width: 32px;
+    height: 32px;
+  }
+}
+</style>
 
