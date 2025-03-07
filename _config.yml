@@ -1,11 +1,11 @@
 # Site settings
 title: Replacement Roof PA
-email: tim@americanremodeling.net
+email: info@replacementroofpa.com
 description: >-
   Professional roof replacement services across Pennsylvania. 
   Quality materials, expert installation, and exceptional service for your home.
-baseurl: "" # Remove the subpath since we're serving from root
-url: "https://replacementroofpa.com" # Update to actual domain
+baseurl: "/replacement-roof-pa" # Restore the repository name as baseurl
+url: "https://tim-amredev.github.io" # GitHub Pages URL
 permalink: pretty
 
 # Build settings
@@ -41,4 +41,3 @@ social:
 # Custom variables
 phone: "(555) 123-4567"
 address: "123 Main Street, Philadelphia, PA 19019"
-
