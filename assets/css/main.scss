@@ -1121,22 +1121,6 @@ img {
   overflow: hidden;
 }
 
-.calculator-header {
-  background-color: $obsidian-medium;
-  color: $text-light;
-  padding: 2rem;
-  text-align: center;
-  
-  h2 {
-    margin-bottom: 0.5rem;
-  }
-  
-  p {
-    margin-bottom: 0;
-    opacity: 0.9;
-  }
-}
-
 .calculator-form {
   padding: 2rem;
 }
@@ -1214,17 +1198,6 @@ img {
   gap: 0.75rem;
   
   @media (min-width: $breakpoint-sm) {
-      }
-    }
-  }
-}
-
-.checkbox-group {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 0.75rem;
-  
-  @media (min-width: $breakpoint-sm) {
     grid-template-columns: repeat(2, 1fr);
   }
   
@@ -1238,14 +1211,7 @@ img {
   align-items: center;
   gap: 0.5rem;
   
-  input[type="checkbox"] {
-    width: auto;
-  }
-  
-  label {
-    font-weight: 400;
-    margin-bottom: 0;
-  }
+  input[type="  }
 }
 
 .calculator-actions {
