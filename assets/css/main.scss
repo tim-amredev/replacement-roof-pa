@@ -301,6 +301,7 @@ img {
     flex-direction: column;
     gap: 1rem;
     justify-content: center;
+    margin-bottom: 2rem;
     
     @media (min-width: $breakpoint-sm) {
       flex-direction: row;
@@ -308,74 +309,106 @@ img {
   }
 }
 
-// Services Section
-.services-section {
+.trust-badges {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.trust-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  
+  i {
+    font-size: 1.5rem;
+    color: $obsidian-highlight;
+  }
+  
+  span {
+    font-weight: 600;
+  }
+}
+
+// Calculator Section
+.calculator-section {
   padding: 4rem 0;
+  background-color: $background-light;
+}
+
+.calculator-container {
+  max-width: 900px;
+  margin: 0 auto;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.calculator-header {
+  background-color: $obsidian-medium;
+  color: $text-light;
+  padding: 2rem;
   text-align: center;
   
   h2 {
-    margin-bottom: 3rem;
-  }
-}
-
-.services-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2rem;
-  
-  @media (min-width: $breakpoint-md) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  
-  @media (min-width: $breakpoint-lg) {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-.service-card {
-  background-color: white;
-  border-radius: 8px;
-  padding: 2rem;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-  }
-}
-
-.service-icon {
-  margin-bottom: 1.5rem;
-  
-  img {
-    height: 60px;
-    width: auto;
-  }
-}
-
-// Questionnaire Section
-.questionnaire-section {
-  padding: 4rem 0;
-  background-color: $obsidian-highlight;
-  
-  h2, h3 {
-    text-align: center;
+    margin-bottom: 0.5rem;
   }
   
   p {
-    text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 0;
+    opacity: 0.9;
   }
 }
 
+// Progress Bar
+.progress-container {
+  padding: 2rem 2rem 0;
+}
+
+.progress-bar {
+  height: 8px;
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-fill {
+  position: absolute;
+  height: 100%;
+  background-color: $obsidian-accent;
+  width: 25%; // Start at 25% for first step
+  transition: width 0.3s ease;
+}
+
+.progress-steps {
+  display: flex;
+  justify-content: space-between;
+}
+
+.progress-step {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  
+  &.active {
+    background-color: $obsidian-accent;
+    color: $text-light;
+  }
+}
+
+// Questionnaire Steps
 .questionnaire-step {
-  max-width: 900px;
-  margin: 0 auto;
   padding: 2rem;
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
 }
 
 .option-cards {
@@ -485,12 +518,29 @@ img {
   }
 }
 
+// Estimate Results
+.estimate-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
 .estimate-results {
   background-color: $obsidian-light;
   color: $text-light;
   padding: 2rem;
   border-radius: 8px;
-  margin: 2rem 0;
+  margin-bottom: 2rem;
+}
+
+.estimate-price-display {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  
+  @media (min-width: $breakpoint-md) {
+    font-size: 3rem;
+  }
 }
 
 .estimate-summary {
@@ -508,27 +558,17 @@ img {
   }
 }
 
-.estimate-price {
-  margin-top: 1rem;
-  padding-top: 1rem;
-  border-top: 2px solid rgba(255, 255, 255, 0.2);
-  font-size: 1.2rem;
-  font-weight: 700;
-}
-
 .estimate-notes {
-  font-size: 0.9rem;
-  
-  p {
-    margin-bottom: 0;
-  }
+  text-align: center;
+  margin-bottom: 2rem;
+  font-style: italic;
 }
 
 .lead-form-container {
   background-color: white;
   padding: 2rem;
   border-radius: 8px;
-  margin-top: 2rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
   
   h4 {
     text-align: center;
@@ -552,6 +592,93 @@ img {
   }
 }
 
+// Benefits Section
+.benefits-section {
+  padding: 4rem 0;
+  background-color: $obsidian-highlight;
+  text-align: center;
+}
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-top: 3rem;
+  
+  @media (min-width: $breakpoint-md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  @media (min-width: $breakpoint-lg) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.benefit-card {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-10px);
+  }
+}
+
+.benefit-icon {
+  font-size: 2.5rem;
+  color: $obsidian-accent;
+  margin-bottom: 1.5rem;
+}
+
+// How It Works Section
+.how-it-works-section {
+  padding: 4rem 0;
+  text-align: center;
+}
+
+.steps-container {
+  max-width: 900px;
+  margin: 3rem auto 0;
+}
+
+.step-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 3rem;
+  text-align: left;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.step-number {
+  width: 50px;
+  height: 50px;
+  background-color: $obsidian-accent;
+  color: $text-light;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-right: 1.5rem;
+  flex-shrink: 0;
+}
+
+.step-content {
+  h3 {
+    margin-bottom: 0.5rem;
+  }
+  
+  p {
+    margin-bottom: 0;
+  }
+}
+
 // Testimonials Section
 .testimonials-section {
   padding: 4rem 0;
@@ -562,7 +689,7 @@ img {
 
 .testimonials-slider {
   max-width: 900px;
-  margin: 0 auto;
+  margin: 3rem auto 0;
   display: grid;
   grid-template-columns: 1fr;
   gap: 2rem;
@@ -608,6 +735,59 @@ img {
     margin-bottom: 0;
     font-size: 0.9rem;
     opacity: 0.8;
+  }
+}
+
+// FAQ Section
+.faq-section {
+  padding: 4rem 0;
+  background-color: $background-light;
+}
+
+.faq-container {
+  max-width: 900px;
+  margin: 3rem auto 0;
+}
+
+.faq-item {
+  margin-bottom: 1rem;
+  border: 1px solid $border-color;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.faq-question {
+  padding: 1.5rem;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  
+  h3 {
+    margin-bottom: 0;
+    font-size: 1.2rem;
+  }
+  
+  .faq-toggle {
+    font-size: 1.2rem;
+    color: $obsidian-accent;
+  }
+}
+
+.faq-answer {
+  padding: 0 1.5rem;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+  
+  &.active {
+    padding: 0 1.5rem 1.5rem;
+    max-height: 500px;
+  }
+  
+  p {
+    margin-bottom: 0;
   }
 }
 
