@@ -1,58 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% if page.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
-    <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% if page.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+  <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/styles.css">
+  <!-- CSS -->
+  <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/styles.css">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tahoma:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Inline logo styles to ensure they load before the page renders -->
+  <style>
+    .logo-container {
+      display: block;
+      width: 150px;
+      height: 50px;
+      position: relative;
+    }
     
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    .logo-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      height: 100%;
+    }
+    
+    .logo-wrapper:before {
+      content: "";
+      display: block;
+      width: 40px;
+      height: 40px;
+      background-image: url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Untitled%20design%20%2824%29-CM5D0lI7FMWRManB7DbdGfokTyocQg.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+  </style>
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Tahoma:wght@400;700&display=swap" rel="stylesheet">
-
-    <!-- SEO -->
-    {% seo title=false %}
+  <!-- SEO -->
+  {% seo title=false %}
 </head>
 <body>
-    <header class="site-header">
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <a href="{{ site.baseurl }}/">
-                        <img src="{{ site.baseurl }}/assets/images/logo.svg" alt="{{ site.title }}">
-                    </a>
-                </div>
-                <nav class="main-nav">
-                    <ul class="nav-links">
-                        <li><a href="{{ site.baseurl }}/">Home</a></li>
-                        <li><a href="{{ site.baseurl }}/calculator">Roof Calculator</a></li>
-                        <li><a href="{{ site.baseurl }}/about">About Us</a></li>
-                        <li><a href="{{ site.baseurl }}/contact">Contact</a></li>
-                    </ul>
-                </nav>
-                <div class="header-contact">
-                    <a href="tel:{{ site.phone }}" class="phone-number">{{ site.phone }}</a>
-                    <a href="{{ site.baseurl }}/calculator" class="btn btn-primary">Free Estimate</a>
-                </div>
-            </div>
-        </div>
-    </header>
+  {% include header.html %}
 
-    <main>
-        {{ content }}
-    </main>
+  <main>
+      {{ content }}
+  </main>
 
-    {% include footer.html %}
+  {% include footer.html %}
 
-    <!-- JavaScript -->
-    <script src="{{ site.baseurl }}/assets/js/main.js"></script>
+  <!-- JavaScript -->
+  <script src="{{ site.baseurl }}/assets/js/main.js"></script>
 </body>
 </html>
 
