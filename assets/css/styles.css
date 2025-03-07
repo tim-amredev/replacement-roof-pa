@@ -151,7 +151,7 @@ a:hover {
 
 /* Header */
 .site-header {
-  background-color: var(--teal-dark);
+  background-color: #0b4d4f; /* Updated header background color */
   padding: 1rem 0;
   position: sticky;
   top: 0;
@@ -162,7 +162,7 @@ a:hover {
 
 .site-header.scrolled {
   padding: 0.5rem 0;
-  background-color: rgba(15, 82, 89, 0.95);
+  background-color: rgba(11, 77, 79, 0.95); /* Updated background color for scrolled state */
   backdrop-filter: blur(10px);
 }
 
@@ -174,12 +174,13 @@ a:hover {
 }
 
 .logo img {
-  height: 50px;
+  height: 40px; /* Updated logo height */
+  width: auto; /* Updated logo width */
   transition: height var(--transition-speed) ease;
 }
 
 .scrolled .logo img {
-  height: 40px;
+  height: 30px; /* Updated logo height for scrolled state */
 }
 
 /* Navigation */
@@ -192,12 +193,15 @@ a:hover {
   list-style: none;
   display: flex;
   gap: 2rem;
+  margin: 0; /* Updated margin */
+  padding: 0; /* Updated padding */
 }
 
 .nav-links a {
-  color: var(--text-light);
+  color: white; /* Updated link color */
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 500; /* Updated font weight */
+  font-size: 1.1rem; /* Updated font size */
   position: relative;
   padding: 0.5rem 0;
 }
@@ -229,8 +233,10 @@ a:hover {
 }
 
 .phone-number {
-  color: var(--text-light);
-  font-weight: 700;
+  color: white; /* Updated phone number color */
+  font-weight: 600; /* Updated font weight */
+  font-size: 1.1rem; /* Updated font size */
+  text-decoration: none;
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -272,12 +278,17 @@ a:hover {
 }
 
 .btn-primary {
-  background-color: var(--teal-accent);
-  color: var(--text-light);
+  background-color: #14b8a6; /* Updated primary button background color */
+  color: white; /* Updated primary button text color */
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  font-weight: 600; /* Updated font weight */
+  text-decoration: none;
+  transition: background-color 0.3s ease;
 }
 
 .btn-primary:hover {
-  background-color: var(--teal-accent-light);
+  background-color: #0d9488; /* Updated hover color */
   transform: translateY(-2px);
   box-shadow: 0 7px 14px rgba(50, 50, 93, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
 }
@@ -1978,3 +1989,4 @@ a:hover {
     grid-template-columns: 1fr;
   }
 }
+
