@@ -22,9 +22,13 @@
           <li><a href="{{ site.baseurl }}/calculator"><i class="fas fa-chevron-right"></i> Roof Calculator</a></li>
           <li><a href="{{ site.baseurl }}/about"><i class="fas fa-chevron-right"></i> About Us</a></li>
           <li><a href="{{ site.baseurl }}/contact"><i class="fas fa-chevron-right"></i> Contact</a></li>
+          <li><a href="{{ site.baseurl }}/roof-questionnaire"><i class="fas fa-clipboard-check"></i> Roof Quote</a></li>
         </ul>
       </div>
     </div>
+  </div>
+  <div class="footer-cta">
+    <a href="{{ site.baseurl }}/roof-questionnaire" class="btn btn-primary">Get Your Free Roof Quote <i class="fas fa-arrow-right"></i></a>
   </div>
   <div class="footer-bottom">
     <div class="social-links">
@@ -115,6 +119,39 @@
   .footer-info {
     max-width: 100%;
   }
+}
+
+.footer-cta {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-cta .btn {
+  background-color: var(--teal-accent);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.footer-cta .btn:hover {
+  background-color: var(--teal-accent-light);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.footer-cta .btn i {
+  font-size: 0.9rem;
+  transition: transform 0.3s ease;
+}
+
+.footer-cta .btn:hover i {
+  transform: translateX(3px);
 }
 </style>
 
