@@ -15,8 +15,6 @@ plugins:
 
 # Collections
 collections:
-  services:
-    output: true
   testimonials:
     output: false
 
@@ -39,3 +37,4 @@ social:
 # Custom variables
 phone: "(555) 123-4567"
 address: "123 Main Street, Philadelphia, PA 19019"
+
