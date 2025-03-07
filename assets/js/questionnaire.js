@@ -115,7 +115,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("form-complexity").value = userSelections.complexity
         document.getElementById("form-estimate").value = document.getElementById("result-price-range").textContent
 
-        // Form will submit normally to Formspree
+        // Form will submit to FormSubmit
       })
     }
   }
