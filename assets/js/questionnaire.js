@@ -51,6 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Initialize questionnaire
   initQuestionnaire()
+  initFAQs()
 
   function initQuestionnaire() {
     // Option card selection
@@ -164,11 +165,33 @@ document.addEventListener("DOMContentLoaded", () => {
     // Update current step
     currentStep = step
 
+    // Update progress bar
+    updateProgress(step)
+
     // Scroll to top of questionnaire
     const questionnaire = document.getElementById("roofing-questionnaire")
     if (questionnaire) {
       questionnaire.scrollIntoView({ behavior: "smooth" })
     }
+  }
+
+  function updateProgress(step) {
+    // Update progress fill
+    const progressFill = document.getElementById("progress-fill")
+    if (progressFill) {
+      progressFill.style.width = `${(step / totalSteps) * 100}%`
+    }
+
+    // Update step indicators
+    const progressSteps = document.querySelectorAll(".progress-step")
+    progressSteps.forEach((stepEl) => {
+      const stepNum = Number.parseInt(stepEl.getAttribute("data-step"))
+      if (stepNum <= step) {
+        stepEl.classList.add("active")
+      } else {
+        stepEl.classList.remove("active")
+      }
+    })
   }
 
   function calculateEstimate() {
@@ -234,6 +257,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Go back to step 1
     goToStep(1)
+  }
+
+  function initFAQs() {
+    const faqQuestions = document.querySelectorAll(".faq-question")
+
+    faqQuestions.forEach((question) => {
+      question.addEventListener("click", () => {
+        const answer = question.nextElementSibling
+        const icon = question.querySelector(".faq-toggle i")
+
+        // Toggle active class
+        answer.classList.toggle("active")
+
+        // Toggle icon
+        if (answer.classList.contains("active")) {
+          icon.classList.remove("fa-plus")
+          icon.classList.add("fa-minus")
+        } else {
+          icon.classList.remove("fa-minus")
+          icon.classList.add("fa-plus")
+        }
+      })
+    })
   }
 })
 
