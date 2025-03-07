@@ -173,14 +173,24 @@ a:hover {
   flex-wrap: wrap;
 }
 
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo a {
+  display: block;
+}
+
 .logo img {
-  height: 40px; /* Updated logo height */
-  width: auto; /* Updated logo width */
-  transition: height var(--transition-speed) ease;
+  height: 40px;
+  width: auto;
+  display: block;
+  max-width: none;
 }
 
 .scrolled .logo img {
-  height: 30px; /* Updated logo height for scrolled state */
+  height: 30px;
 }
 
 /* Navigation */
@@ -1084,6 +1094,7 @@ a:hover {
 }
 
 .footer-links h3 {
+  .footer-links h3 {
   font-size: 1.2rem;
   margin-bottom: 1.5rem;
   color: var(--text-light);
