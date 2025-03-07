@@ -16,30 +16,30 @@
         <div class="footer-nav">
           <h3>Quick Links</h3>
           <ul>
-            <li><a href="{{ '/' | relative_url }}">Home</a></li>
-            <li><a href="{{ '/services' | relative_url }}">Services</a></li>
-            <li><a href="{{ '/about' | relative_url }}">About Us</a></li>
-            <li><a href="{{ '/gallery' | relative_url }}">Project Gallery</a></li>
-            <li><a href="{{ '/contact' | relative_url }}">Contact</a></li>
+            <li><a href="{{ site.baseurl }}/">Home</a></li>
+            <li><a href="{{ site.baseurl }}/services">Services</a></li>
+            <li><a href="{{ site.baseurl }}/about">About Us</a></li>
+            <li><a href="{{ site.baseurl }}/gallery">Project Gallery</a></li>
+            <li><a href="{{ site.baseurl }}/contact">Contact</a></li>
           </ul>
         </div>
         <div class="footer-services">
           <h3>Our Services</h3>
           <ul>
-            <li><a href="{{ '/services/residential-roofing' | relative_url }}">Residential Roofing</a></li>
-            <li><a href="{{ '/services/emergency-repairs' | relative_url }}">Emergency Repairs</a></li>
-            <li><a href="{{ '/services/roof-inspections' | relative_url }}">Roof Inspections</a></li>
-            <li><a href="{{ '/services/gutter-installation' | relative_url }}">Gutter Installation</a></li>
+            <li><a href="{{ site.baseurl }}/services/residential-roofing">Residential Roofing</a></li>
+            <li><a href="{{ site.baseurl }}/services/emergency-repairs">Emergency Repairs</a></li>
+            <li><a href="{{ site.baseurl }}/services/roof-inspections">Roof Inspections</a></li>
+            <li><a href="{{ site.baseurl }}/services/gutter-installation">Gutter Installation</a></li>
           </ul>
         </div>
         <div class="footer-areas">
           <h3>Service Areas</h3>
           <ul>
-            <li><a href="{{ '/areas/philadelphia' | relative_url }}">Philadelphia</a></li>
-            <li><a href="{{ '/areas/pittsburgh' | relative_url }}">Pittsburgh</a></li>
-            <li><a href="{{ '/areas/harrisburg' | relative_url }}">Harrisburg</a></li>
-            <li><a href="{{ '/areas/allentown' | relative_url }}">Allentown</a></li>
-            <li><a href="{{ '/areas/erie' | relative_url }}">Erie</a></li>
+            <li><a href="{{ site.baseurl }}/areas/philadelphia">Philadelphia</a></li>
+            <li><a href="{{ site.baseurl }}/areas/pittsburgh">Pittsburgh</a></li>
+            <li><a href="{{ site.baseurl }}/areas/harrisburg">Harrisburg</a></li>
+            <li><a href="{{ site.baseurl }}/areas/allentown">Allentown</a></li>
+            <li><a href="{{ site.baseurl }}/areas/erie">Erie</a></li>
           </ul>
         </div>
       </div>
@@ -55,10 +55,9 @@
         <p>&copy; {{ 'now' | date: "%Y" }} {{ site.title }}. All rights reserved.</p>
       </div>
       <div class="footer-legal">
-        <a href="{{ '/privacy-policy' | relative_url }}">Privacy Policy</a>
-        <a href="{{ '/terms-of-service' | relative_url }}">Terms of Service</a>
+        <a href="{{ site.baseurl }}/privacy-policy">Privacy Policy</a>
+        <a href="{{ site.baseurl }}/terms-of-service">Terms of Service</a>
       </div>
     </div>
   </div>
 </footer>
-
