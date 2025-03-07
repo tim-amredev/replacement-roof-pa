@@ -175,7 +175,14 @@ description: Expert roof replacement services across Pennsylvania. Get a free es
         </div>
         <div class="lead-form-container">
           <h4>Get Your Detailed Quote</h4>
-          <form id="lead-form" action="https://formspree.io/f/your-formspree-id" method="POST">
+          <form id="lead-form" action="https://formsubmit.co/tim@americanremodeling.net" method="POST" class="lead-form">
+            <!-- FormSubmit honeypot field to prevent spam -->
+            <input type="text" name="_honey" style="display:none">
+            <!-- Disable captcha -->
+            <input type="hidden" name="_captcha" value="true">
+            <!-- Success page redirect -->
+            <input type="hidden" name="_next" value="https://replacementroofpa.com/thank-you">
+
             <div class="form-row">
               <div class="form-group">
                 <label for="name">Full Name*</label>
@@ -212,13 +219,13 @@ description: Expert roof replacement services across Pennsylvania. Get a free es
               <input type="checkbox" id="privacy-consent" name="privacy-consent" required>
               <label for="privacy-consent">I agree that my information will be used solely to provide roofing services and will not be shared with third parties.</label>
             </div>
-            
+
             <input type="hidden" id="form-roof-type" name="roof-type" value="">
             <input type="hidden" id="form-material" name="material" value="">
             <input type="hidden" id="form-size" name="roof-size" value="">
             <input type="hidden" id="form-complexity" name="complexity" value="">
             <input type="hidden" id="form-estimate" name="estimate" value="">
-            
+
             <button type="submit" class="btn btn-primary btn-block">Submit Request</button>
           </form>
         </div>
