@@ -1,118 +1,119 @@
 <footer class="site-footer">
-  <div class="container">
-    <div class="footer-content">
-      <div class="footer-info">
-        <div class="footer-logo">
-          <a href="{{ site.baseurl }}/" class="footer-text-logo">
-            <span class="footer-logo-text">RRP</span>
-            <span class="footer-logo-icon"><i class="fas fa-home"></i></span>
-          </a>
-        </div>
-        <p>Professional roof replacement services across Pennsylvania. We provide quality materials, expert installation, and exceptional service for your home.</p>
-        <div class="footer-contact">
-          <p><strong>Phone:</strong> <a href="tel:{{ site.phone }}">{{ site.phone }}</a></p>
-          <p><strong>Email:</strong> <a href="mailto:{{ site.email }}">{{ site.email }}</a></p>
-          <p><strong>Address:</strong> {{ site.address }}</p>
-        </div>
+<div class="container">
+  <div class="footer-content">
+    <div class="footer-info">
+      <div class="footer-logo">
+        <a href="{{ site.baseurl }}/" class="footer-text-logo">
+          <span class="footer-logo-text">RRP</span>
+          <span class="footer-logo-icon"><i class="fas fa-home"></i></span>
+        </a>
       </div>
-      <div class="footer-links">
-        <div class="footer-nav">
-          <h3>Quick Links</h3>
-          <ul>
-            <li><a href="{{ site.baseurl }}/">Home</a></li>
-            <li><a href="{{ site.baseurl }}/about">About Us</a></li>
-            <li><a href="{{ site.baseurl }}/contact">Contact</a></li>
-          </ul>
-        </div>
-        <div class="footer-areas">
-          <h3>Service Areas</h3>
-          <ul>
-            <li><a href="{{ site.baseurl }}/">Philadelphia</a></li>
-            <li><a href="{{ site.baseurl }}/">Pittsburgh</a></li>
-            <li><a href="{{ site.baseurl }}/">Harrisburg</a></li>
-            <li><a href="{{ site.baseurl }}/">Allentown</a></li>
-            <li><a href="{{ site.baseurl }}/">Erie</a></li>
-          </ul>
-        </div>
+      <p>Professional roof replacement services across Pennsylvania. We provide quality materials, expert installation, and exceptional service for your home.</p>
+      <div class="footer-contact">
+        <p><i class="fas fa-phone"></i> <a href="tel:{{ site.phone }}">{{ site.phone }}</a></p>
+        <p><i class="fas fa-envelope"></i> <a href="mailto:info@replacementroofpa.com">info@replacementroofpa.com</a></p>
       </div>
     </div>
-    <div class="footer-bottom">
-      <div class="social-links">
-        <a href="https://facebook.com/replacementroofpa" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://instagram.com/replacementroofpa" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="https://twitter.com/replacementroofpa" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-        <a href="https://linkedin.com/company/replacementroofpa" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-      </div>
-      <div class="copyright">
-        <p>&copy; {{ 'now' | date: "%Y" }} {{ site.title }}. All rights reserved.</p>
-      </div>
-      <div class="footer-legal">
-        <a href="{{ site.baseurl }}/privacy-policy">Privacy Policy</a>
-        <a href="{{ site.baseurl }}/terms-of-service">Terms of Service</a>
+    <div class="footer-links">
+      <div class="footer-nav">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="{{ site.baseurl }}/"><i class="fas fa-chevron-right"></i> Home</a></li>
+          <li><a href="{{ site.baseurl }}/calculator"><i class="fas fa-chevron-right"></i> Roof Calculator</a></li>
+          <li><a href="{{ site.baseurl }}/about"><i class="fas fa-chevron-right"></i> About Us</a></li>
+          <li><a href="{{ site.baseurl }}/contact"><i class="fas fa-chevron-right"></i> Contact</a></li>
+        </ul>
       </div>
     </div>
   </div>
+  <div class="footer-bottom">
+    <div class="social-links">
+      <a href="https://facebook.com/replacementroofpa" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://instagram.com/replacementroofpa" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://twitter.com/replacementroofpa" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+      <a href="https://linkedin.com/company/replacementroofpa" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+    </div>
+    <div class="copyright">
+      <p>&copy; {{ 'now' | date: "%Y" }} {{ site.title }}. All rights reserved.</p>
+    </div>
+    <div class="footer-legal">
+      <a href="{{ site.baseurl }}/privacy-policy">Privacy Policy</a>
+      <a href="{{ site.baseurl }}/terms-of-service">Terms of Service</a>
+    </div>
+  </div>
+</div>
 </footer>
 
 <style>
-.footer-logo-img {
-  height: 50px;
-  width: auto;
-  display: block;
+.footer-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  margin-bottom: 3rem;
+}
+
+.footer-info {
+  max-width: 400px;
+}
+
+.footer-contact {
+  margin-top: 2rem;
+}
+
+.footer-contact p {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.footer-contact i {
+  color: var(--teal-accent);
+  font-size: 1.2rem;
+}
+
+.footer-nav h3 {
+  color: var(--text-light);
   margin-bottom: 1.5rem;
-  filter: brightness(0) invert(1); /* Makes the logo white for dark footer background */
+  font-size: 1.2rem;
+}
+
+.footer-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-nav li {
+  margin-bottom: 1rem;
+}
+
+.footer-nav a {
+  color: rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.footer-nav a:hover {
+  color: var(--text-light);
+  transform: translateX(5px);
+}
+
+.footer-nav i {
+  font-size: 0.8rem;
+  color: var(--teal-accent);
 }
 
 @media (max-width: 768px) {
-  .footer-logo-img {
-    height: 40px;
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
   }
-}
 
-.footer-text-logo {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  margin-bottom: 1.5rem;
-}
-
-.footer-logo-text {
-  font-size: 2.2rem;
-  font-weight: 800;
-  letter-spacing: -1px;
-  color: white;
-  position: relative;
-  padding-right: 10px;
-  text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-.footer-logo-text::after {
-  content: "";
-  position: absolute;
-  bottom: 5px;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background: linear-gradient(90deg, #14b8a6, transparent);
-  border-radius: 2px;
-}
-
-.footer-logo-icon {
-  font-size: 1rem;
-  color: #14b8a6;
-  background-color: rgba(255, 255, 255, 0.1);
-  width: 28px;
-  height: 28px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  margin-left: 5px;
-}
-
-@media (max-width: 768px) {
-  .footer-logo-text {
-    font-size: 2rem;
+  .footer-info {
+    max-width: 100%;
   }
 }
 </style>
