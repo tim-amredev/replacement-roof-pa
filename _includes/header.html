@@ -2,14 +2,11 @@
   <div class="container">
     <div class="header-content">
       <div class="logo-container">
-        <a href="{{ site.baseurl }}/">
-          <img 
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Untitled%20design%20%2824%29-CM5D0lI7FMWRManB7DbdGfokTyocQg.png" 
-            alt="Replacement Roof PA" 
-            style="display: block; width: auto; height: 65px; max-width: none; transition: all 0.3s ease;"
-          >
-        </a>
-      </div>
+  <a href="{{ site.baseurl }}/" class="text-logo">
+    <span class="logo-text">RRP</span>
+    <span class="logo-icon"><i class="fas fa-home"></i></span>
+  </a>
+</div>
       <nav class="main-nav">
         <ul class="nav-links">
           <li><a href="{{ site.baseurl }}/">Home</a></li>
@@ -33,39 +30,100 @@
   padding: 0.5rem 0;
 }
 
-.logo-container img {
-  filter: brightness(1.1);
-  transform-origin: left center;
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
-  border-radius: 4px;
+.text-logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  position: relative;
 }
 
-.logo-container img:hover {
-  transform: scale(1.05);
-  filter: brightness(1.2);
+.logo-text {
+  font-size: 2.5rem;
+  font-weight: 800;
+  letter-spacing: -1px;
+  background: linear-gradient(135deg, #14b8a6 0%, #0d7377 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+  padding-right: 10px;
+  transition: all 0.3s ease;
 }
 
-.site-header.scrolled .logo-container img {
-  height: 50px;
+.logo-text::after {
+  content: "";
+  position: absolute;
+  bottom: 5px;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #14b8a6, transparent);
+  border-radius: 2px;
+}
+
+.logo-icon {
+  font-size: 1.2rem;
+  color: #14b8a6;
+  background-color: rgba(20, 184, 166, 0.1);
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  margin-left: 5px;
+  box-shadow: 0 2px 10px rgba(20, 184, 166, 0.2);
+  transition: all 0.3s ease;
+}
+
+.text-logo:hover .logo-text {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #4fd1c5 0%, #14b8a6 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.text-logo:hover .logo-icon {
+  transform: translateY(-2px) rotate(10deg);
+  background-color: rgba(20, 184, 166, 0.2);
+  box-shadow: 0 4px 12px rgba(20, 184, 166, 0.3);
+}
+
+.site-header.scrolled .logo-text {
+  font-size: 2.2rem;
+}
+
+.site-header.scrolled .logo-icon {
+  width: 26px;
+  height: 26px;
+  font-size: 1rem;
 }
 
 @media (max-width: 992px) {
-  .logo-container img {
-    height: 55px;
+  .logo-text {
+    font-size: 2.2rem;
   }
   
-  .site-header.scrolled .logo-container img {
-    height: 45px;
+  .site-header.scrolled .logo-text {
+    font-size: 2rem;
   }
 }
 
 @media (max-width: 768px) {
-  .logo-container img {
-    height: 50px;
+  .logo-text {
+    font-size: 2rem;
   }
   
-  .site-header.scrolled .logo-container img {
-    height: 40px;
+  .site-header.scrolled .logo-text {
+    font-size: 1.8rem;
+  }
+  
+  .logo-icon {
+    width: 26px;
+    height: 26px;
+    font-size: 1rem;
   }
 }
 </style>
