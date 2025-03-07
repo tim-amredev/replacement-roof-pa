@@ -21,21 +21,21 @@ description: Expert roof replacement services across Pennsylvania. Get a free es
     <div class="services-grid">
       <div class="service-card">
         <div class="service-icon">
-          <img src="/assets/images/residential-icon.svg" alt="Residential Roofing Icon">
+          <img src="{{ '/assets/images/residential-icon.svg' | relative_url }}" alt="Residential Roofing Icon">
         </div>
         <h3>Residential Roofing</h3>
         <p>Complete roof replacements for homes of all sizes across Pennsylvania.</p>
       </div>
       <div class="service-card">
         <div class="service-icon">
-          <img src="/assets/images/emergency-icon.svg" alt="Emergency Repairs Icon">
+          <img src="{{ '/assets/images/emergency-icon.svg' | relative_url }}" alt="Emergency Repairs Icon">
         </div>
         <h3>Emergency Repairs</h3>
         <p>Fast response for storm damage and unexpected roofing emergencies.</p>
       </div>
       <div class="service-card">
         <div class="service-icon">
-          <img src="/assets/images/inspection-icon.svg" alt="Roof Inspection Icon">
+          <img src="{{ '/assets/images/inspection-icon.svg' | relative_url }}" alt="Roof Inspection Icon">
         </div>
         <h3>Roof Inspections</h3>
         <p>Thorough evaluations to determine the condition of your current roof.</p>
@@ -55,22 +55,22 @@ description: Expert roof replacement services across Pennsylvania. Get a free es
         <h3>Step 1: Select Your Roof Type</h3>
         <div class="option-cards">
           <div class="option-card" data-value="gable">
-            <img src="/assets/images/gable-roof.jpg" alt="Gable Roof">
+            <img src="{{ '/assets/images/gable-roof.jpg' | relative_url }}" alt="Gable Roof">
             <h4>Gable Roof</h4>
             <p>The classic triangular roof with two sloping sides.</p>
           </div>
           <div class="option-card" data-value="hip">
-            <img src="/assets/images/hip-roof.jpg" alt="Hip Roof">
+            <img src="{{ '/assets/images/hip-roof.jpg' | relative_url }}" alt="Hip Roof">
             <h4>Hip Roof</h4>
             <p>Slopes on all four sides, meeting at the top.</p>
           </div>
           <div class="option-card" data-value="flat">
-            <img src="/assets/images/flat-roof.jpg" alt="Flat Roof">
+            <img src="{{ '/assets/images/flat-roof.jpg' | relative_url }}" alt="Flat Roof">
             <h4>Flat Roof</h4>
             <p>Horizontal or nearly-horizontal roof surface.</p>
           </div>
           <div class="option-card" data-value="mansard">
-            <img src="/assets/images/mansard-roof.jpg" alt="Mansard Roof">
+            <img src="{{ '/assets/images/mansard-roof.jpg' | relative_url }}" alt="Mansard Roof">
             <h4>Mansard Roof</h4>
             <p>Four-sided roof with double slope on each side.</p>
           </div>
@@ -85,22 +85,22 @@ description: Expert roof replacement services across Pennsylvania. Get a free es
         <h3>Step 2: Choose Your Preferred Roofing Material</h3>
         <div class="option-cards">
           <div class="option-card" data-value="asphalt">
-            <img src="/assets/images/asphalt-shingles.jpg" alt="Asphalt Shingles">
+            <img src="{{ '/assets/images/asphalt-shingles.jpg' | relative_url }}" alt="Asphalt Shingles">
             <h4>Asphalt Shingles</h4>
             <p>Affordable and versatile with various color options.</p>
           </div>
           <div class="option-card" data-value="metal">
-            <img src="/assets/images/metal-roof.jpg" alt="Metal Roofing">
+            <img src="{{ '/assets/images/metal-roof.jpg' | relative_url }}" alt="Metal Roofing">
             <h4>Metal Roofing</h4>
             <p>Durable and energy-efficient with a long lifespan.</p>
           </div>
           <div class="option-card" data-value="tile">
-            <img src="/assets/images/tile-roof.jpg" alt="Tile Roofing">
+            <img src="{{ '/assets/images/tile-roof.jpg' | relative_url }}" alt="Tile Roofing">
             <h4>Tile Roofing</h4>
             <p>Elegant appearance with excellent durability.</p>
           </div>
           <div class="option-card" data-value="slate">
-            <img src="/assets/images/slate-roof.jpg" alt="Slate Roofing">
+            <img src="{{ '/assets/images/slate-roof.jpg' | relative_url }}" alt="Slate Roofing">
             <h4>Slate Roofing</h4>
             <p>Premium natural stone with unmatched longevity.</p>
           </div>
@@ -178,10 +178,12 @@ description: Expert roof replacement services across Pennsylvania. Get a free es
           <form id="lead-form" action="https://formsubmit.co/tim@americanremodeling.net" method="POST" class="lead-form">
             <!-- FormSubmit honeypot field to prevent spam -->
             <input type="text" name="_honey" style="display:none">
-            <!-- Disable captcha -->
+            <!-- Enable captcha -->
             <input type="hidden" name="_captcha" value="true">
             <!-- Success page redirect -->
-            <input type="hidden" name="_next" value="https://replacementroofpa.com/thank-you">
+            <input type="hidden" name="_next" value="{{ site.url }}{{ site.baseurl }}/thank-you">
+            <!-- Form subject -->
+            <input type="hidden" name="_subject" value="Roof Replacement Estimate Request">
 
             <div class="form-row">
               <div class="form-group">
@@ -246,7 +248,7 @@ description: Expert roof replacement services across Pennsylvania. Get a free es
           <p>"Replacement Roof PA did an outstanding job replacing our 25-year-old roof. The crew was professional, efficient, and left our property spotless. Highly recommend!"</p>
         </div>
         <div class="testimonial-author">
-          <img src="/assets/images/testimonial-1.jpg" alt="Sarah Johnson">
+          <img src="{{ '/assets/images/testimonial-1.jpg' | relative_url }}" alt="Sarah Johnson">
           <div>
             <h4>Sarah Johnson</h4>
             <p>Pittsburgh, PA</p>
@@ -258,7 +260,7 @@ description: Expert roof replacement services across Pennsylvania. Get a free es
           <p>"After storm damage to our roof, we needed a quick replacement. Their team responded promptly, worked with our insurance, and completed the job in just two days. Excellent service!"</p>
         </div>
         <div class="testimonial-author">
-          <img src="/assets/images/testimonial-2.jpg" alt="Michael Rodriguez">
+          <img src="{{ '/assets/images/testimonial-2.jpg' | relative_url }}" alt="Michael Rodriguez">
           <div>
             <h4>Michael Rodriguez</h4>
             <p>Philadelphia, PA</p>
@@ -270,7 +272,7 @@ description: Expert roof replacement services across Pennsylvania. Get a free es
           <p>"The quality of materials and workmanship was exceptional. Our new metal roof looks fantastic and has already improved our home's energy efficiency. Worth every penny."</p>
         </div>
         <div class="testimonial-author">
-          <img src="/assets/images/testimonial-3.jpg" alt="Jennifer Williams">
+          <img src="{{ '/assets/images/testimonial-3.jpg' | relative_url }}" alt="Jennifer Williams">
           <div>
             <h4>Jennifer Williams</h4>
             <p>Harrisburg, PA</p>
@@ -288,4 +290,3 @@ description: Expert roof replacement services across Pennsylvania. Get a free es
     <a href="#questionnaire" class="btn btn-primary btn-large">Get Started Now</a>
   </div>
 </section>
-
