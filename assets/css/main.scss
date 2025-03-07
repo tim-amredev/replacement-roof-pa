@@ -1,0 +1,786 @@
+---
+---
+
+// Variables
+$primary-color: #1a2b3c;
+$secondary-color: #2c3e50;
+$accent-color: #3498db;
+$text-color: #333;
+$text-light: #f8f9fa;
+$background-dark: #0f1a24;
+$background-light: #f8f9fa;
+$border-color: #e1e4e8;
+
+// Obsidian Depths Color Palette
+$obsidian-dark: #121212;
+$obsidian-medium: #1e2a38;
+$obsidian-light: #2c3e50;
+$obsidian-accent: #4a6491;
+$obsidian-highlight: #e0e6ed;
+
+// Breakpoints
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+
+// Reset & Base Styles
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Tahoma', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: $text-color;
+  background-color: $background-light;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Tahoma', sans-serif;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: 2.5rem;
+  
+  @media (min-width: $breakpoint-md) {
+    font-size: 3rem;
+  }
+  
+  @media (min-width: $breakpoint-lg) {
+    font-size: 3.5rem;
+  }
+}
+
+h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  
+  @media (min-width: $breakpoint-md) {
+    font-size: 2.5rem;
+  }
+}
+
+h3 {
+  font-size: 1.5rem;
+  
+  @media (min-width: $breakpoint-md) {
+    font-size: 1.75rem;
+  }
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+a {
+  color: $accent-color;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  
+  &:hover {
+    color: darken($accent-color, 15%);
+  }
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  
+  @media (min-width: $breakpoint-md) {
+    padding: 0 2rem;
+  }
+}
+
+// Buttons
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  font-weight: 700;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  
+  &:hover {
+    transform: translateY(-2px);
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.btn-primary {
+  background-color: $obsidian-accent;
+  color: $text-light;
+  
+  &:hover {
+    background-color: darken($obsidian-accent, 10%);
+    color: $text-light;
+  }
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: $obsidian-accent;
+  border: 2px solid $obsidian-accent;
+  
+  &:hover {
+    background-color: rgba($obsidian-accent, 0.1);
+    color: darken($obsidian-accent, 10%);
+  }
+}
+
+.btn-large {
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+}
+
+.btn-block {
+  display: block;
+  width: 100%;
+}
+
+// Header
+.site-header {
+  background-color: $obsidian-dark;
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.logo {
+  img {
+    height: 50px;
+  }
+}
+
+.main-nav {
+  @media (max-width: $breakpoint-lg - 1) {
+    order: 3;
+    width: 100%;
+    margin-top: 1rem;
+    display: none;
+    
+    &.active {
+      display: block;
+    }
+  }
+}
+
+.mobile-menu-toggle {
+  display: block;
+  background: none;
+  border: none;
+  cursor: pointer;
+  
+  @media (min-width: $breakpoint-lg) {
+    display: none;
+  }
+  
+  span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px 0;
+    background-color: $text-light;
+    transition: all 0.3s ease;
+  }
+  
+  &.active {
+    span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    
+    span:nth-child(2) {
+      opacity: 0;
+    }
+    
+    span:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -7px);
+    }
+  }
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  
+  @media (min-width: $breakpoint-lg) {
+    flex-direction: row;
+  }
+  
+  li {
+    margin: 0.5rem 0;
+    
+    @media (min-width: $breakpoint-lg) {
+      margin: 0 1rem;
+    }
+    
+    a {
+      color: $text-light;
+      font-weight: 700;
+      
+      &:hover {
+        color: $obsidian-highlight;
+      }
+    }
+  }
+}
+
+.header-contact {
+  display: flex;
+  align-items: center;
+  
+  .phone-number {
+    color: $text-light;
+    font-weight: 700;
+    margin-right: 1rem;
+    display: none;
+    
+    @media (min-width: $breakpoint-md) {
+      display: block;
+    }
+  }
+}
+
+// Hero Section
+.hero-section {
+  background-color: $obsidian-medium;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/assets/images/hero-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  color: $text-light;
+  padding: 5rem 0;
+  text-align: center;
+  
+  @media (min-width: $breakpoint-md) {
+    padding: 8rem 0;
+  }
+  
+  h1 {
+    margin-bottom: 1.5rem;
+  }
+  
+  .lead {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    
+    @media (min-width: $breakpoint-md) {
+      font-size: 1.5rem;
+    }
+  }
+  
+  .cta-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: center;
+    
+    @media (min-width: $breakpoint-sm) {
+      flex-direction: row;
+    }
+  }
+}
+
+// Services Section
+.services-section {
+  padding: 4rem 0;
+  text-align: center;
+  
+  h2 {
+    margin-bottom: 3rem;
+  }
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  
+  @media (min-width: $breakpoint-md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  @media (min-width: $breakpoint-lg) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.service-card {
+  background-color: white;
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.service-icon {
+  margin-bottom: 1.5rem;
+  
+  img {
+    height: 60px;
+    width: auto;
+  }
+}
+
+// Questionnaire Section
+.questionnaire-section {
+  padding: 4rem 0;
+  background-color: $obsidian-highlight;
+  
+  h2, h3 {
+    text-align: center;
+  }
+  
+  p {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+}
+
+.questionnaire-step {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.option-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin: 2rem 0;
+  
+  @media (min-width: $breakpoint-sm) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  @media (min-width: $breakpoint-lg) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.option-card {
+  border: 2px solid $border-color;
+  border-radius: 8px;
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    border-color: $obsidian-accent;
+    transform: translateY(-5px);
+  }
+  
+  &.selected {
+    border-color: $obsidian-accent;
+    background-color: rgba($obsidian-accent, 0.05);
+  }
+  
+  img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+  }
+  
+  h4 {
+    margin-bottom: 0.5rem;
+  }
+  
+  p {
+    font-size: 0.9rem;
+    text-align: left;
+    margin-bottom: 0;
+  }
+}
+
+.step-navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  
+  button {
+    min-width: 120px;
+  }
+}
+
+.roof-size-calculator {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+  
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+  }
+  
+  input, select, textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid $border-color;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 1rem;
+    
+    &:focus {
+      outline: none;
+      border-color: $obsidian-accent;
+    }
+  }
+  
+  .helper-text {
+    font-size: 0.85rem;
+    color: #666;
+    margin-top: 0.25rem;
+    text-align: left;
+  }
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  
+  @media (min-width: $breakpoint-sm) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.estimate-results {
+  background-color: $obsidian-light;
+  color: $text-light;
+  padding: 2rem;
+  border-radius: 8px;
+  margin: 2rem 0;
+}
+
+.estimate-summary {
+  margin-bottom: 1.5rem;
+}
+
+.estimate-detail {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.estimate-price {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 2px solid rgba(255, 255, 255, 0.2);
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.estimate-notes {
+  font-size: 0.9rem;
+  
+  p {
+    margin-bottom: 0;
+  }
+}
+
+.lead-form-container {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  margin-top: 2rem;
+  
+  h4 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+}
+
+.privacy-consent {
+  display: flex;
+  align-items: flex-start;
+  
+  input {
+    width: auto;
+    margin-right: 0.5rem;
+    margin-top: 0.3rem;
+  }
+  
+  label {
+    font-size: 0.9rem;
+    font-weight: 400;
+  }
+}
+
+// Testimonials Section
+.testimonials-section {
+  padding: 4rem 0;
+  background-color: $obsidian-medium;
+  color: $text-light;
+  text-align: center;
+}
+
+.testimonials-slider {
+  max-width: 900px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  
+  @media (min-width: $breakpoint-lg) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.testimonial {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  padding: 2rem;
+}
+
+.testimonial-content {
+  margin-bottom: 1.5rem;
+  
+  p {
+    font-style: italic;
+  }
+}
+
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 1rem;
+  }
+  
+  h4 {
+    margin-bottom: 0.25rem;
+    font-size: 1.1rem;
+  }
+  
+  p {
+    margin-bottom: 0;
+    font-size: 0.9rem;
+    opacity: 0.8;
+  }
+}
+
+// CTA Section
+.cta-section {
+  padding: 4rem 0;
+  background-color: $obsidian-accent;
+  color: $text-light;
+  text-align: center;
+  
+  h2 {
+    margin-bottom: 1rem;
+  }
+  
+  p {
+    margin-bottom: 2rem;
+    font-size: 1.2rem;
+  }
+  
+  .btn-primary {
+    background-color: $text-light;
+    color: $obsidian-accent;
+    
+    &:hover {
+      background-color: darken($text-light, 10%);
+    }
+  }
+}
+
+// Footer
+.site-footer {
+  background-color: $obsidian-dark;
+  color: $text-light;
+  padding: 4rem 0 2rem;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  margin-bottom: 3rem;
+  
+  @media (min-width: $breakpoint-lg) {
+    grid-template-columns: 1fr 2fr;
+  }
+}
+
+.footer-info {
+  .footer-logo {
+    margin-bottom: 1.5rem;
+    
+    img {
+      height: 50px;
+    }
+  }
+  
+  p {
+    opacity: 0.8;
+    margin-bottom: 1.5rem;
+  }
+}
+
+.footer-contact {
+  p {
+    margin-bottom: 0.5rem;
+  }
+  
+  a {
+    color: $text-light;
+    
+    &:hover {
+      color: $obsidian-highlight;
+    }
+  }
+}
+
+.footer-links {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  
+  @media (min-width: $breakpoint-md) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  h3 {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  ul {
+    list-style: none;
+    
+    li {
+      margin-bottom: 0.75rem;
+      
+      a {
+        color: rgba(255, 255, 255, 0.8);
+        
+        &:hover {
+          color: $text-light;
+        }
+      }
+    }
+  }
+}
+
+.footer-bottom {
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  @media (min-width: $breakpoint-md) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.social-links {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  
+  @media (min-width: $breakpoint-md) {
+    margin-bottom: 0;
+  }
+  
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: $text-light;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      background-color: $obsidian-accent;
+      transform: translateY(-3px);
+    }
+  }
+}
+
+.copyright {
+  margin-bottom: 1rem;
+  text-align: center;
+  
+  @media (min-width: $breakpoint-md) {
+    margin-bottom: 0;
+  }
+  
+  p {
+    margin-bottom: 0;
+    font-size: 0.9rem;
+    opacity: 0.8;
+  }
+}
+
+.footer-legal {
+  display: flex;
+  gap: 1.5rem;
+  
+  a {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+    
+    &:hover {
+      color: $text-light;
+    }
+  }
+}
+

@@ -1,0 +1,6 @@
+# robots.txt for replacementroofpa.com
+User-agent: *
+Allow: /
+
+Sitemap: https://replacementroofpa.com/sitemap.xml
+
