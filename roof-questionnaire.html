@@ -1,3 +1,4 @@
+---
 layout: default
 title: Roof Remodeling Questionnaire - Get Your Custom Roof Project Plan
 description: Complete our detailed roof remodeling questionnaire to receive a personalized project plan and estimate for your Pennsylvania home's roof replacement needs.
@@ -80,6 +81,9 @@ description: Complete our detailed roof remodeling questionnaire to receive a pe
         <!-- Form subject -->
         <input type="hidden" name="_subject" value="Roof Remodeling Questionnaire Submission">
         
+        <!-- Add this hidden field to the form to store the estimate -->
+        <input type="hidden" id="estimated-price-range" name="estimated_price_range" value="">
+
         <!-- Step 1: Basic Information -->
         <div class="questionnaire-step" id="step-1">
           <div class="step-header">
@@ -956,6 +960,13 @@ description: Complete our detailed roof remodeling questionnaire to receive a pe
             <label for="privacy-consent">I agree that my information will be used solely to provide roofing services and will not be shared with third parties.</label>
           </div>
           
+          <!-- Add this to the end of the form, just before the submit button -->
+          <div class="form-group estimated-price-container" style="margin-top: 2rem; padding: 1.5rem; background-color: var(--teal-highlight); border-radius: 8px; text-align: center;">
+            <h4 style="margin-bottom: 1rem; color: var(--teal-medium);">Your Estimated Price Range</h4>
+            <p class="estimated-price" id="displayed-estimate-range">Based on your selections, we'll provide a personalized estimate when you submit the form.</p>
+            <p style="font-size: 0.9rem; margin-top: 0.5rem; color: var(--secondary-color);">This estimate is based on industry averages and your specific selections. A detailed quote will be provided after submission.</p>
+          </div>
+          
           <div class="step-navigation">
             <button type="button" class="btn btn-secondary prev-step"><i class="fas fa-arrow-left"></i> Back to Project Specifics</button>
             <button type="submit" class="btn btn-primary btn-large">Submit Questionnaire <i class="fas fa-paper-plane"></i></button>
@@ -1250,6 +1261,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 </script>
+
+<script src="{{ '/assets/js/questionnaire.js' | relative_url }}"></script>
 
 <style>
 /* Roof Questionnaire Specific Styles */
@@ -2200,4 +2213,3 @@ textarea:focus {
   font-size: 1.1rem;
 }
 </style>
-
