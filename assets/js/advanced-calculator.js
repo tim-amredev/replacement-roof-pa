@@ -1,28 +1,31 @@
 document.addEventListener("DOMContentLoaded", () => {
   // Initialize the calculator wizard
-  initCalculatorWizard()
-  initFAQs()
-  initTooltips()
+  // initCalculatorWizard()
+  // initFAQs()
+  // initTooltips()
 
-  function initCalculatorWizard() {
-    // Step navigation
-    const nextButtons = document.querySelectorAll(".next-step")
-    const prevButtons = document.querySelectorAll(".prev-step")
+  initCalculator()
+
+  function initCalculator() {
+    const form = document.getElementById("calculator-form")
     const calculateButton = document.getElementById("calculate-button")
-    const resetButton = document.getElementById("reset-calculator")
-    const progressFill = document.getElementById("progress-fill")
-    const progressSteps = document.querySelectorAll(".progress-step")
+    const resultsContainer = document.getElementById("results-container")
 
-    // Select cards
-    const selectCards = document.querySelectorAll(".select-card")
-    const materialCards = document.querySelectorAll(".material-card")
-    const qualityOptions = document.querySelectorAll(".quality-option")
+    // Add event listeners to all form inputs
+    form.querySelectorAll("input, select").forEach((input) => {
+      input.addEventListener("change", calculateRoofCost)
+    })
 
-    // Current step
-    let currentStep = 1
-    const totalSteps = 4
+    // Calculate button click event
+    calculateButton.addEventListener("click", () => {
+      if (validateForm()) {
+        calculateRoofCost()
+        resultsContainer.style.display = "block"
+        resultsContainer.scrollIntoView({ behavior: "smooth" })
+      }
+    })
 
-    // Material base prices per square foot (2025 PA market rates - updated for accuracy)
+    // Material base prices per square foot (2025 PA market rates)
     const materialBasePrices = {
       asphalt: { min: 3.75, max: 5.75 },
       metal: { min: 9.5, max: 15.75 },
@@ -30,14 +33,13 @@ document.addEventListener("DOMContentLoaded", () => {
       slate: { min: 16.0, max: 32.0 },
     }
 
-    // Quality multipliers
+    // Other calculation factors (quality multipliers, complexity multipliers, etc.)
     const qualityMultipliers = {
       economy: { min: 0.85, max: 0.9 },
       standard: { min: 1.0, max: 1.0 },
       premium: { min: 1.15, max: 1.25 },
     }
 
-    // Complexity multipliers
     const complexityMultipliers = {
       simple: { min: 0.9, max: 0.95 },
       moderate: { min: 1.0, max: 1.0 },
@@ -45,7 +47,6 @@ document.addEventListener("DOMContentLoaded", () => {
       "very-complex": { min: 1.35, max: 1.55 },
     }
 
-    // Pitch multipliers
     const pitchMultipliers = {
       flat: { min: 0.9, max: 0.95 },
       low: { min: 0.95, max: 1.0 },
@@ -54,30 +55,12 @@ document.addEventListener("DOMContentLoaded", () => {
       "very-steep": { min: 1.35, max: 1.6 },
     }
 
-    // Story multipliers
-    const storyMultipliers = {
-      1: { min: 1.0, max: 1.0 },
-      2: { min: 1.1, max: 1.2 },
-      3: { min: 1.25, max: 1.4 },
-    }
-
-    // Roof type multipliers (for estimating roof square footage from home square footage)
-    const roofTypeMultipliers = {
-      gable: 1.3,
-      hip: 1.4,
-      flat: 1.1,
-      mansard: 1.7,
-      gambrel: 1.6,
-    }
-
-    // Removal costs per square foot
     const removalCosts = {
       "single-layer": { min: 0.75, max: 1.25 },
       "multiple-layers": { min: 1.25, max: 2.0 },
       "no-removal": { min: 0, max: 0 },
     }
 
-    // Deck repair costs per square foot (percentage of roof area)
     const deckRepairCosts = {
       none: { min: 0, max: 0, percentage: 0 },
       minimal: { min: 0.5, max: 1.0, percentage: 0.05 },
@@ -85,21 +68,6 @@ document.addEventListener("DOMContentLoaded", () => {
       extensive: { min: 1.0, max: 2.0, percentage: 0.3 },
     }
 
-    // Regional price adjustments
-    const regionMultipliers = {
-      philadelphia: { min: 1.1, max: 1.15 },
-      pittsburgh: { min: 1.05, max: 1.1 },
-      harrisburg: { min: 1.0, max: 1.0 },
-      allentown: { min: 1.03, max: 1.08 },
-      erie: { min: 0.9, max: 0.95 },
-      scranton: { min: 0.95, max: 1.0 },
-      reading: { min: 0.98, max: 1.03 },
-      lancaster: { min: 0.95, max: 1.0 },
-      "state-college": { min: 0.9, max: 0.95 },
-      rural: { min: 0.85, max: 0.9 },
-    }
-
-    // Additional component costs
     const componentCosts = {
       "new-underlayment": { min: 0.3, max: 0.5 },
       "ice-water-shield": { min: 0.5, max: 0.8 },
@@ -109,220 +77,28 @@ document.addEventListener("DOMContentLoaded", () => {
       "new-gutters": { min: 6.0, max: 12.0, perLinearFoot: true },
     }
 
-    // Initialize select cards
-    selectCards.forEach((card) => {
-      card.addEventListener("click", () => {
-        // Remove selected class from siblings
-        selectCards.forEach((c) => c.classList.remove("selected"))
-        // Add selected class to clicked card
-        card.classList.add("selected")
-        // Update hidden input
-        document.getElementById("roof-type").value = card.getAttribute("data-value")
-      })
-    })
-
-    // Initialize material cards
-    materialCards.forEach((card) => {
-      card.addEventListener("click", () => {
-        // Remove selected class from siblings
-        materialCards.forEach((c) => c.classList.remove("selected"))
-        // Add selected class to clicked card
-        card.classList.add("selected")
-        // Update hidden input
-        document.getElementById("roofing-material").value = card.getAttribute("data-value")
-      })
-    })
-
-    // Initialize quality options
-    qualityOptions.forEach((option) => {
-      option.addEventListener("click", () => {
-        // Remove selected class from siblings
-        qualityOptions.forEach((o) => o.classList.remove("selected"))
-        // Add selected class to clicked option
-        option.classList.add("selected")
-        // Update hidden input
-        document.getElementById("material-quality").value = option.getAttribute("data-value")
-      })
-    })
-
-    // Remove the regionMarkers initialization and event listeners
-    const regionMarkers = document.querySelectorAll(".region-marker")
-
-    // Initialize region markers
-    regionMarkers.forEach((marker) => {
-      marker.addEventListener("click", () => {
-        // Remove selected class from siblings
-        regionMarkers.forEach((m) => m.classList.remove("selected"))
-        // Add selected class to clicked marker
-        marker.classList.add("selected")
-        // Update hidden input
-        document.getElementById("location").value = marker.getAttribute("data-region")
-      })
-    })
-
-    // Next step buttons
-    nextButtons.forEach((button) => {
-      button.addEventListener("click", () => {
-        if (validateStep(currentStep)) {
-          goToStep(currentStep + 1)
-        }
-      })
-    })
-
-    // Previous step buttons
-    prevButtons.forEach((button) => {
-      button.addEventListener("click", () => {
-        goToStep(currentStep - 1)
-      })
-    })
-
-    // Calculate button
-    if (calculateButton) {
-      calculateButton.addEventListener("click", () => {
-        if (validateStep(currentStep)) {
-          calculateRoofCost()
-          goToStep(4)
-        }
-      })
-    }
-
-    // Reset button
-    if (resetButton) {
-      resetButton.addEventListener("click", () => {
-        resetCalculator()
-      })
-    }
-
-    // Validate current step
-    function validateStep(step) {
+    function validateForm() {
       let isValid = true
-
-      switch (step) {
-        case 1:
-          // Validate roof type
-          if (!document.getElementById("roof-type").value) {
-            alert("Please select a roof type to continue.")
-            isValid = false
-          }
-
-          // Validate roof square footage
-          const roofSqFt = document.getElementById("roof-square-footage").value
-          if (!roofSqFt || roofSqFt < 500) {
-            alert("Please enter a valid roof square footage (minimum 500 sq ft).")
-            isValid = false
-          }
-
-          // Validate roof pitch
-          if (!document.getElementById("roof-pitch").value) {
-            alert("Please select a roof pitch to continue.")
-            isValid = false
-          }
-
-          // Validate roof complexity
-          if (!document.getElementById("roof-complexity").value) {
-            alert("Please select a roof complexity to continue.")
-            isValid = false
-          }
-
-          // Validate number of stories
-          if (!document.getElementById("number-stories").value) {
-            alert("Please select the number of stories to continue.")
-            isValid = false
-          }
-          break
-
-        case 2:
-          // Validate roofing material
-          if (!document.getElementById("roofing-material").value) {
-            alert("Please select a roofing material to continue.")
-            isValid = false
-          }
-
-          // Validate material quality
-          if (!document.getElementById("material-quality").value) {
-            alert("Please select a material quality to continue.")
-            isValid = false
-          }
-          break
-
-        case 3:
-          // Validate old roof removal
-          if (!document.getElementById("old-roof-removal").value) {
-            alert("Please select an old roof removal option to continue.")
-            isValid = false
-          }
-
-          // Validate roof deck repair
-          if (!document.getElementById("roof-deck-repair").value) {
-            alert("Please select a roof deck repair option to continue.")
-            isValid = false
-          }
-
-          // Set a default location for Pennsylvania
-          document.getElementById("location").value = "pennsylvania"
-          break
-      }
-
+      form.querySelectorAll("select, input[type='number']").forEach((input) => {
+        if (!input.value) {
+          alert(`Please fill in all required fields.`)
+          isValid = false
+          return false
+        }
+      })
       return isValid
     }
 
-    // Go to step
-    function goToStep(step) {
-      // Hide all steps
-      document.querySelectorAll(".wizard-step").forEach((s) => {
-        s.style.display = "none"
-      })
-
-      // Show requested step
-      document.getElementById(`step-${step}`).style.display = "block"
-
-      // Update current step
-      currentStep = step
-
-      // Update progress bar
-      updateProgress(step)
-
-      // Scroll to top of calculator
-      document.querySelector(".calculator-wizard-container").scrollIntoView({ behavior: "smooth" })
-    }
-
-    // Update progress
-    function updateProgress(step) {
-      // Update progress fill
-      if (progressFill) {
-        progressFill.style.width = `${(step / totalSteps) * 100}%`
-      }
-
-      // Update step indicators
-      progressSteps.forEach((stepEl) => {
-        const stepNum = Number.parseInt(stepEl.getAttribute("data-step"))
-        if (stepNum < step) {
-          stepEl.classList.add("completed")
-          stepEl.classList.remove("active")
-        } else if (stepNum === step) {
-          stepEl.classList.add("active")
-          stepEl.classList.remove("completed")
-        } else {
-          stepEl.classList.remove("active", "completed")
-        }
-      })
-    }
-
-    // Calculate roof cost
     function calculateRoofCost() {
       // Get form values
       const roofType = document.getElementById("roof-type").value
       const roofSqFt = Number.parseInt(document.getElementById("roof-square-footage").value)
       const roofPitch = document.getElementById("roof-pitch").value
       const roofComplexity = document.getElementById("roof-complexity").value
-      const stories = document.getElementById("number-stories").value
       const material = document.getElementById("roofing-material").value
       const materialQuality = document.getElementById("material-quality").value
       const removalType = document.getElementById("old-roof-removal").value
       const deckRepair = document.getElementById("roof-deck-repair").value
-
-      // Set a standard location for all of PA
-      const location = "pennsylvania"
 
       // Get additional components
       const additionalComponents = {
@@ -335,43 +111,23 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       // Calculate base material cost
-      const baseMaterialCost = materialBasePrices[material] || { min: 4.5, max: 7.5 } // Default to architectural if not found
+      const baseMaterialCost = materialBasePrices[material] || { min: 4.5, max: 7.5 }
 
-      // Apply quality multiplier
+      // Apply multipliers
       const qualityMultiplier = qualityMultipliers[materialQuality] || { min: 1.0, max: 1.0 }
-
-      // Apply complexity multiplier
       const complexityMultiplier = complexityMultipliers[roofComplexity] || { min: 1.0, max: 1.0 }
-
-      // Apply pitch multiplier
       const pitchMultiplier = pitchMultipliers[roofPitch] || { min: 1.0, max: 1.05 }
-
-      // Apply story multiplier
-      const storyMultiplier = storyMultipliers[stories] || { min: 1.0, max: 1.0 }
-
-      // Use a standard regional multiplier for all of PA
-      const regionMultiplier = { min: 1.0, max: 1.0 }
 
       // Calculate material cost per square foot with all multipliers
       const materialCostPerSqFt = {
-        min:
-          baseMaterialCost.min *
-          qualityMultiplier.min *
-          complexityMultiplier.min *
-          pitchMultiplier.min *
-          regionMultiplier.min,
-        max:
-          baseMaterialCost.max *
-          qualityMultiplier.max *
-          complexityMultiplier.max *
-          pitchMultiplier.max *
-          regionMultiplier.max,
+        min: baseMaterialCost.min * qualityMultiplier.min * complexityMultiplier.min * pitchMultiplier.min,
+        max: baseMaterialCost.max * qualityMultiplier.max * complexityMultiplier.max * pitchMultiplier.max,
       }
 
       // Calculate labor cost (typically 60% of material cost for standard installations)
       const laborCostPerSqFt = {
-        min: materialCostPerSqFt.min * 0.6 * storyMultiplier.min,
-        max: materialCostPerSqFt.max * 0.6 * storyMultiplier.max,
+        min: materialCostPerSqFt.min * 0.6,
+        max: materialCostPerSqFt.max * 0.6,
       }
 
       // Calculate removal cost
@@ -438,127 +194,25 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("price-high").textContent = `$${roundedTotalCost.max.toLocaleString()}`
 
       // Update breakdown details
-      const materialsElement = document.getElementById("materials-cost")
-      const laborElement = document.getElementById("labor-cost")
-      const removalElement = document.getElementById("removal-cost")
-      const componentsElement = document.getElementById("components-cost")
-
-      if (materialsElement) {
-        materialsElement.textContent = `$${Math.round(materialsCost.min).toLocaleString()} - $${Math.round(materialsCost.max).toLocaleString()}`
-      }
-
-      if (laborElement) {
-        laborElement.textContent = `$${Math.round(laborCost.min).toLocaleString()} - $${Math.round(laborCost.max).toLocaleString()}`
-      }
-
-      if (removalElement) {
-        removalElement.textContent = `$${Math.round(removalCost.min + deckRepairCost.min).toLocaleString()} - $${Math.round(removalCost.max + deckRepairCost.max).toLocaleString()}`
-      }
-
-      if (componentsElement) {
-        componentsElement.textContent = `$${Math.round(componentsTotal.min).toLocaleString()} - $${Math.round(componentsTotal.max).toLocaleString()}`
-      }
-
-      // Update chart segments if they exist
-      const totalMin = materialsCost.min + laborCost.min + removalCost.min + deckRepairCost.min + componentsTotal.min
-
-      const materialsSegment = document.getElementById("materials-segment")
-      const laborSegment = document.getElementById("labor-segment")
-      const removalSegment = document.getElementById("removal-segment")
-      const componentsSegment = document.getElementById("components-segment")
-
-      if (materialsSegment) {
-        materialsSegment.style.width = `${(materialsCost.min / totalMin) * 100}%`
-      }
-
-      if (laborSegment) {
-        laborSegment.style.width = `${(laborCost.min / totalMin) * 100}%`
-      }
-
-      if (removalSegment) {
-        removalSegment.style.width = `${((removalCost.min + deckRepairCost.min) / totalMin) * 100}%`
-      }
-
-      if (componentsSegment) {
-        componentsSegment.style.width = `${(componentsTotal.min / totalMin) * 100}%`
-      }
+      document.getElementById("materials-cost").textContent =
+        `$${Math.round(materialsCost.min).toLocaleString()} - $${Math.round(materialsCost.max).toLocaleString()}`
+      document.getElementById("labor-cost").textContent =
+        `$${Math.round(laborCost.min).toLocaleString()} - $${Math.round(laborCost.max).toLocaleString()}`
+      document.getElementById("removal-cost").textContent =
+        `$${Math.round(removalCost.min + deckRepairCost.min).toLocaleString()} - $${Math.round(removalCost.max + deckRepairCost.max).toLocaleString()}`
+      document.getElementById("components-cost").textContent =
+        `$${Math.round(componentsTotal.min).toLocaleString()} - $${Math.round(componentsTotal.max).toLocaleString()}`
 
       // Update summary details
-      let roofTypeText = ""
-      selectCards.forEach((card) => {
-        if (card.getAttribute("data-value") === roofType) {
-          roofTypeText = card.querySelector("h4").textContent
-        }
-      })
-
+      const roofTypeText = document.querySelector(`#roof-type option[value="${roofType}"]`).textContent
       const roofPitchText = document.querySelector(`#roof-pitch option[value="${roofPitch}"]`).textContent
       const complexityText = document.querySelector(`#roof-complexity option[value="${roofComplexity}"]`).textContent
-      const storiesText = document.querySelector(`#number-stories option[value="${stories}"]`).textContent
+      const materialText = document.querySelector(`#roofing-material option[value="${material}"]`).textContent
+      const qualityText = document.querySelector(`#material-quality option[value="${materialQuality}"]`).textContent
 
-      const roofDetailsSummary = document.getElementById("roof-details-summary")
-      if (roofDetailsSummary) {
-        roofDetailsSummary.textContent = `${roofTypeText}, ${roofSqFt} sq ft, ${roofPitchText} pitch, ${complexityText} complexity, ${storiesText}`
-      }
-
-      let materialText = ""
-      materialCards.forEach((card) => {
-        if (card.getAttribute("data-value") === material) {
-          materialText = card.querySelector("h4").textContent
-        }
-      })
-
-      let qualityText = ""
-      qualityOptions.forEach((option) => {
-        if (option.getAttribute("data-value") === materialQuality) {
-          qualityText = option.querySelector(".quality-label").textContent
-        }
-      })
-
-      const materialsSummary = document.getElementById("materials-summary")
-      if (materialsSummary) {
-        materialsSummary.textContent = `${materialText}, ${qualityText} quality`
-      }
-
-      // Set location summary to Pennsylvania
-      const locationSummary = document.getElementById("location-summary")
-      if (locationSummary) {
-        locationSummary.textContent = "Pennsylvania"
-      }
-
-      // Update hidden form fields for lead form
-      const formRoofType = document.getElementById("form-roof-type")
-      const formRoofSize = document.getElementById("form-roof-size")
-      const formMaterial = document.getElementById("form-material")
-      const formEstimate = document.getElementById("form-estimate")
-
-      if (formRoofType) formRoofType.value = roofTypeText
-      if (formRoofSize) formRoofSize.value = roofSqFt
-      if (formMaterial) formMaterial.value = materialText
-      if (formEstimate)
-        formEstimate.value = `$${roundedTotalCost.min.toLocaleString()} - $${roundedTotalCost.max.toLocaleString()}`
-
-      console.log("Calculation complete. Total cost:", roundedTotalCost)
-    }
-
-    // Reset calculator
-    function resetCalculator() {
-      // Reset form
-      document.getElementById("calculator-form").reset()
-
-      // Reset select cards
-      selectCards.forEach((card) => card.classList.remove("selected"))
-      materialCards.forEach((card) => card.classList.remove("selected"))
-      qualityOptions.forEach((option) => option.classList.remove("selected"))
-      regionMarkers.forEach((marker) => marker.classList.remove("selected"))
-
-      // Reset hidden inputs
-      document.getElementById("roof-type").value = ""
-      document.getElementById("roofing-material").value = ""
-      document.getElementById("material-quality").value = ""
-      document.getElementById("location").value = ""
-
-      // Go back to step 1
-      goToStep(1)
+      document.getElementById("roof-details-summary").textContent =
+        `${roofTypeText}, ${roofSqFt} sq ft, ${roofPitchText} pitch, ${complexityText} complexity`
+      document.getElementById("materials-summary").textContent = `${materialText}, ${qualityText} quality`
     }
   }
 
