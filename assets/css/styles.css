@@ -2319,3 +2319,22 @@ textarea:focus {
   }
 }
 
+/* Questionnaire intro image */
+.questionnaire-intro-content .intro-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: var(--card-shadow);
+  transition: transform 0.3s ease;
+}
+
+.questionnaire-intro-content .intro-image img:hover {
+  transform: scale(1.02);
+}
+
+@media (max-width: 768px) {
+  .questionnaire-intro-content .intro-image {
+    margin-top: 2rem;
+  }
+}
+
