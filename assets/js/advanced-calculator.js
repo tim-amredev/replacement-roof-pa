@@ -444,23 +444,51 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("price-low").textContent = `$${roundedTotalCost.min.toLocaleString()}`
       document.getElementById("price-high").textContent = `$${roundedTotalCost.max.toLocaleString()}`
 
-      document.getElementById("materials-cost").textContent =
-        `$${Math.round(materialsCost.min).toLocaleString()} - $${Math.round(materialsCost.max).toLocaleString()}`
-      document.getElementById("labor-cost").textContent =
-        `$${Math.round(laborCost.min).toLocaleString()} - $${Math.round(laborCost.max).toLocaleString()}`
-      document.getElementById("removal-cost").textContent =
-        `$${Math.round(removalCost.min + deckRepairCost.min).toLocaleString()} - $${Math.round(removalCost.max + deckRepairCost.max).toLocaleString()}`
-      document.getElementById("components-cost").textContent =
-        `$${Math.round(componentsTotal.min).toLocaleString()} - $${Math.round(componentsTotal.max).toLocaleString()}`
+      // Update breakdown details
+      const materialsElement = document.getElementById("materials-cost")
+      const laborElement = document.getElementById("labor-cost")
+      const removalElement = document.getElementById("removal-cost")
+      const componentsElement = document.getElementById("components-cost")
 
-      // Update chart segments
+      if (materialsElement) {
+        materialsElement.textContent = `$${Math.round(materialsCost.min).toLocaleString()} - $${Math.round(materialsCost.max).toLocaleString()}`
+      }
+      
+      if (laborElement) {
+        laborElement.textContent = `$${Math.round(laborCost.min).toLocaleString()} - $${Math.round(laborCost.max).toLocaleString()}`
+      }
+      
+      if (removalElement) {
+        removalElement.textContent = `$${Math.round(removalCost.min + deckRepairCost.min).toLocaleString()} - $${Math.round(removalCost.max + deckRepairCost.max).toLocaleString()}`
+      }
+      
+      if (componentsElement) {
+        componentsElement.textContent = `$${Math.round(componentsTotal.min).toLocaleString()} - $${Math.round(componentsTotal.max).toLocaleString()}`
+      }
+
+      // Update chart segments if they exist
       const totalMin = materialsCost.min + laborCost.min + removalCost.min + deckRepairCost.min + componentsTotal.min
-
-      document.getElementById("materials-segment").style.width = `${(materialsCost.min / totalMin) * 100}%`
-      document.getElementById("labor-segment").style.width = `${(laborCost.min / totalMin) * 100}%`
-      document.getElementById("removal-segment").style.width =
-        `${((removalCost.min + deckRepairCost.min) / totalMin) * 100}%`
-      document.getElementById("components-segment").style.width = `${(componentsTotal.min / totalMin) * 100}%`
+      
+      const materialsSegment = document.getElementById("materials-segment")
+      const laborSegment = document.getElementById("labor-segment")
+      const removalSegment = document.getElementById("removal-segment")
+      const componentsSegment = document.getElementById("components-segment")
+      
+      if (materialsSegment) {
+        materialsSegment.style.width = `${(materialsCost.min / totalMin) * 100}%`
+      }
+      
+      if (laborSegment) {
+        laborSegment.style.width = `${(laborCost.min / totalMin) * 100}%`
+      }
+      
+      if (removalSegment) {
+        removalSegment.style.width = `${((removalCost.min + deckRepairCost.min) / totalMin) * 100}%`
+      }
+      
+      if (componentsSegment) {
+        componentsSegment.style.width = `${(componentsTotal.min / totalMin) * 100}%`
+      }
 
       // Update summary details
       let roofTypeText = ""
@@ -474,8 +502,10 @@ document.addEventListener("DOMContentLoaded", () => {
       const complexityText = document.querySelector(`#roof-complexity option[value="${roofComplexity}"]`).textContent
       const storiesText = document.querySelector(`#number-stories option[value="${stories}"]`).textContent
 
-      document.getElementById("roof-details-summary").textContent =
-        `${roofTypeText}, ${roofSqFt} sq ft, ${roofPitchText} pitch, ${complexityText} complexity, ${storiesText}`
+      const roofDetailsSummary = document.getElementById("roof-details-summary")
+      if (roofDetailsSummary) {
+        roofDetailsSummary.textContent = `${roofTypeText}, ${roofSqFt} sq ft, ${roofPitchText} pitch, ${complexityText} complexity, ${storiesText}`
+      }
 
       let materialText = ""
       materialCards.forEach((card) => {
@@ -491,7 +521,10 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       })
 
-      document.getElementById("materials-summary").textContent = `${materialText}, ${qualityText} quality`
+      const materialsSummary = document.getElementById("materials-summary")
+      if (materialsSummary) {
+        materialsSummary.textContent = `${materialText}, ${qualityText} quality`
+      }
 
       let locationText = ""
       regionMarkers.forEach((marker) => {
@@ -499,25 +532,24 @@ document.addEventListener("DOMContentLoaded", () => {
           locationText = marker.querySelector(".marker-label").textContent
         }
       })
-      document.getElementById("location-summary").textContent = locationText
+      
+      const locationSummary = document.getElementById("location-summary")
+      if (locationSummary) {
+        locationSummary.textContent = locationText
+      }
 
       // Update hidden form fields for lead form
-      document.getElementById("form-roof-type").value = roofTypeText
-      document.getElementById("form-roof-size").value = roofSqFt
-      document.getElementById("form-material").value = materialText
-      document.getElementById("form-estimate").value =
-        `$${roundedTotalCost.min.toLocaleString()} - $${roundedTotalCost.max.toLocaleString()}`
+      const formRoofType = document.getElementById("form-roof-type")
+      const formRoofSize = document.getElementById("form-roof-size")
+      const formMaterial = document.getElementById("form-material")
+      const formEstimate = document.getElementById("form-estimate")
+      
+      if (formRoofType) formRoofType.value = roofTypeText
+      if (formRoofSize) formRoofSize.value = roofSqFt
+      if (formMaterial) formMaterial.value = materialText
+      if (formEstimate) formEstimate.value = `$${roundedTotalCost.min.toLocaleString()} - $${roundedTotalCost.max.toLocaleString()}`
 
-      // Hide detailed breakdown until final step
-      document.querySelectorAll(".chart-segment").forEach((segment) => {
-        segment.style.width = "0%"
-      })
-
-      // Only show the final price range
-      document.getElementById("materials-cost").textContent = "Details provided in final quote"
-      document.getElementById("labor-cost").textContent = "Details provided in final quote"
-      document.getElementById("removal-cost").textContent = "Details provided in final quote"
-      document.getElementById("components-cost").textContent = "Details provided in final quote"
+      console.log("Calculation complete. Total cost:", roundedTotalCost);
     }
 
     // Reset calculator
@@ -595,4 +627,3 @@ document.addEventListener("DOMContentLoaded", () => {
   // Call this function when the page loads
   hideMaterialPrices()
 })
-
