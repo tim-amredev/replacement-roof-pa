@@ -1,285 +1,410 @@
 document.addEventListener("DOMContentLoaded", () => {
   // Questionnaire variables
-  let currentStep = 1
-  const totalSteps = 4
+  let currentStep = 1;
+  const totalSteps = 4;
   let userSelections = {
     roofType: "",
     material: "",
     size: 0,
     complexity: "",
     stories: "",
-  }
+  };
 
-  // Price ranges per square foot (in USD) - updated for 2025 accuracy
-  const pricingData = {
-    asphalt: {
-      simple: { min: 3.75, max: 5.75 },
-      moderate: { min: 4.75, max: 6.75 },
-      complex: { min: 5.75, max: 7.75 },
-    },
-    metal: {
-      simple: { min: 8.5, max: 12.5 },
-      moderate: { min: 10.5, max: 14.5 },
-      complex: { min: 12.5, max: 16.5 },
-    },
-    tile: {
-      simple: { min: 10.5, max: 15.5 },
-      moderate: { min: 12.5, max: 18.5 },
-      complex: { min: 15.5, max: 22.5 },
-    },
-    slate: {
-      simple: { min: 16.0, max: 26.0 },
-      moderate: { min: 19.0, max: 31.0 },
-      complex: { min: 23.0, max: 36.0 },
-    },
-  }
+  // Material base prices per square foot (2025 PA market rates - updated for accuracy)
+  const materialBasePrices = {
+    "asphalt": { min: 3.75, max: 5.75 },
+    "architectural": { min: 4.75, max: 7.75 },
+    "metal": { min: 9.5, max: 15.75 },
+    "slate": { min: 16.0, max: 32.0 },
+    "wood": { min: 8.5, max: 14.5 },
+    "tile": { min: 12.5, max: 26.0 },
+  };
+
+  // Quality multipliers
+  const qualityMultipliers = {
+    economy: { min: 0.85, max: 0.9 },
+    standard: { min: 1.0, max: 1.0 },
+    premium: { min: 1.15, max: 1.25 },
+  };
+
+  // Complexity multipliers
+  const complexityMultipliers = {
+    simple: { min: 0.9, max: 0.95 },
+    moderate: { min: 1.0, max: 1.0 },
+    complex: { min: 1.2, max: 1.3 },
+  };
 
   // Story multipliers
-  const storyMultiplier = {
-    1: 1,
-    2: 1.25,
-    3: 1.45,
-  }
+  const storyMultipliers = {
+    "1": { min: 1.0, max: 1.0 },
+    "2": { min: 1.1, max: 1.2 },
+    "3": { min: 1.25, max: 1.4 },
+  };
 
-  // Roof type to pitch mapping
-  const roofTypeToPitch = {
-    gable: "Medium Pitch",
-    hip: "Medium to Steep Pitch",
-    flat: "Low Pitch",
-    mansard: "Steep Pitch",
-  }
+  // Roof type multipliers (for estimating roof square footage from home square footage)
+  const roofTypeMultipliers = {
+    "Gabled": 1.3,
+    "Hip": 1.4,
+    "Flat/low slope": 1.1,
+    "Mansard": 1.7,
+    "Gambrel": 1.6,
+  };
+
+  // Regional price adjustments (simplified for questionnaire)
+  const regionMultipliers = {
+    "Philadelphia": { min: 1.1, max: 1.15 },
+    "Pittsburgh": { min: 1.05, max: 1.1 },
+    "Central PA": { min: 1.0, max: 1.0 },
+    "Northeast PA": { min: 0.95, max: 1.0 },
+    "Northwest PA": { min: 0.9, max: 0.95 },
+  };
 
   // Initialize questionnaire
-  initQuestionnaire()
-  initFAQs()
+  initQuestionnaire();
+  initFAQs();
 
   function initQuestionnaire() {
-    // Option card selection
-    const optionCards = document.querySelectorAll(".option-card")
-    optionCards.forEach((card) => {
-      card.addEventListener("click", function () {
-        // Remove selected class from siblings
-        const siblings = this.parentElement.querySelectorAll(".option-card")
-        siblings.forEach((sibling) => sibling.classList.remove("selected"))
-
-        // Add selected class to clicked card
-        this.classList.add("selected")
-
-        // Store selection based on current step
-        const value = this.getAttribute("data-value")
-        if (currentStep === 1) {
-          userSelections.roofType = value
-        } else if (currentStep === 2) {
-          userSelections.material = value
+    // Option card selection for roof type
+    const roofTypeCards = document.querySelectorAll(".roof-type-card input[type='radio']");
+    roofTypeCards.forEach((input) => {
+      input.addEventListener("change", function() {
+        if (this.checked) {
+          userSelections.roofType = this.value;
         }
-      })
-    })
+      });
+    });
 
-    // Next step buttons
-    const nextButtons = document.querySelectorAll(".next-step")
-    nextButtons.forEach((button) => {
-      button.addEventListener("click", () => {
-        if (validateStep(currentStep)) {
-          if (currentStep < totalSteps) {
-            goToStep(currentStep + 1)
+    // Material selection
+    const materialInputs = document.querySelectorAll("input[name='new_material']");
+    materialInputs.forEach((input) => {
+      input.addEventListener("change", function() {
+        if (this.checked) {
+          // Map the selected material to our pricing categories
+          const materialValue = this.value.toLowerCase();
+          if (materialValue.includes("asphalt")) {
+            userSelections.material = "asphalt";
+          } else if (materialValue.includes("architectural")) {
+            userSelections.material = "architectural";
+          } else if (materialValue.includes("metal")) {
+            userSelections.material = "metal";
+          } else if (materialValue.includes("slate")) {
+            userSelections.material = "slate";
+          } else if (materialValue.includes("wood")) {
+            userSelections.material = "wood";
+          } else if (materialValue.includes("tile")) {
+            userSelections.material = "tile";
+          } else {
+            userSelections.material = "architectural"; // Default to architectural if not matched
           }
         }
-      })
-    })
+      });
+    });
 
-    // Previous step buttons
-    const prevButtons = document.querySelectorAll(".prev-step")
-    prevButtons.forEach((button) => {
-      button.addEventListener("click", () => {
-        if (currentStep > 1) {
-          goToStep(currentStep - 1)
+    // Next step buttons
+    const nextButtons = document.querySelectorAll('.next-step');
+    nextButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        if (validateStep(currentStep)) {
+          goToStep(currentStep + 1);
         }
-      })
-    })
-
-    // Restart questionnaire
-    const restartButton = document.querySelector(".restart-questionnaire")
-    if (restartButton) {
-      restartButton.addEventListener("click", () => {
-        resetQuestionnaire()
-      })
+      });
+    });
+    
+    // Previous step buttons
+    const prevButtons = document.querySelectorAll('.prev-step');
+    prevButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        goToStep(currentStep - 1);
+      });
+    });
+    
+    // Show/hide "Other" input fields
+    document.getElementById('reason-other').addEventListener('change', function() {
+      document.querySelector('.other-reason-container').style.display = this.checked ? 'block' : 'none';
+    });
+    
+    document.getElementById('current-other').addEventListener('change', function() {
+      document.querySelector('.other-current-material-container').style.display = this.checked ? 'block' : 'none';
+    });
+    
+    document.getElementById('new-other').addEventListener('change', function() {
+      document.querySelector('.other-new-material-container').style.display = this.checked ? 'block' : 'none';
+    });
+    
+    document.getElementById('issue-other').addEventListener('change', function() {
+      document.querySelector('.other-issue-container').style.display = this.checked ? 'block' : 'none';
+    });
+    
+    document.getElementById('feature-other').addEventListener('change', function() {
+      document.querySelector('.other-feature-container').style.display = this.checked ? 'block' : 'none';
+    });
+    
+    // Handle referral source "Other" option
+    const referralSelect = document.querySelector('select[name="referral_source"]');
+    if (referralSelect) {
+      referralSelect.addEventListener('change', function() {
+        const otherContainer = document.querySelector('.other-referral-container');
+        if (otherContainer) {
+          otherContainer.style.display = this.value === 'Other' ? 'block' : 'none';
+        }
+      });
     }
-
+    
+    // Validate current step
+    function validateStep(step) {
+      let isValid = true;
+      const currentStepElement = document.getElementById(`step-${step}`);
+      
+      if (step === 2) {
+        // Validate roof type selection
+        if (!userSelections.roofType) {
+          alert("Please select a roof structure type to continue.");
+          isValid = false;
+        }
+      } else if (step === 3) {
+        // Capture roof size and complexity from step 2
+        const selectedMaterial = document.querySelector('input[name="new_material"]:checked');
+        if (!selectedMaterial) {
+          alert("Please select a roofing material to continue.");
+          isValid = false;
+        } else {
+          // Material is already captured in the change event
+        }
+      }
+      
+      // Check required fields in current step
+      const requiredFields = currentStepElement.querySelectorAll('[required]');
+      requiredFields.forEach(field => {
+        if (field.type === 'radio') {
+          // For radio buttons, check if any in the group is checked
+          const name = field.name;
+          const checked = currentStepElement.querySelector(`input[name="${name}"]:checked`);
+          if (!checked) {
+            isValid = false;
+            // Find the label for this radio group
+            const label = currentStepElement.querySelector(`label[for="${field.id}"]`).closest('.form-group').querySelector('label');
+            alert(`Please select an option for: ${label.textContent}`);
+            return;
+          }
+        } else if (!field.value.trim()) {
+          isValid = false;
+          field.classList.add('invalid');
+          alert(`Please fill in the field: ${field.previousElementSibling.textContent}`);
+          return;
+        } else {
+          field.classList.remove('invalid');
+        }
+      });
+      
+      // Check ranking selections for duplicates in step 4
+      if (step === 4) {
+        // Capture home square footage and complexity for calculation
+        const homeSqFt = document.getElementById('address').value; // Using address as a proxy for home size
+        const complexity = "moderate"; // Default to moderate complexity
+        const stories = "2"; // Default to 2 stories
+        
+        userSelections.size = 1800; // Default size if not specified
+        userSelections.complexity = complexity;
+        userSelections.stories = stories;
+        
+        // Calculate estimate before form submission
+        calculateEstimate();
+        
+        const rankSelects = currentStepElement.querySelectorAll('select[name^="rank_"]');
+        const selectedRanks = [];
+        
+        rankSelects.forEach(select => {
+          if (select.value) {
+            selectedRanks.push(select.value);
+          }
+        });
+        
+        // Check for duplicates
+        const uniqueRanks = [...new Set(selectedRanks)];
+        if (selectedRanks.length !== uniqueRanks.length) {
+          isValid = false;
+          alert('Please assign a unique rank (1-5) to each factor. No duplicate rankings allowed.');
+        }
+      }
+      
+      return isValid;
+    }
+    
+    // Go to step
+    function goToStep(step) {
+      // Validate step boundaries
+      if (step < 1 || step > totalSteps) return;
+      
+      // Hide all steps
+      document.querySelectorAll('.questionnaire-step').forEach(s => {
+        s.style.display = 'none';
+      });
+      
+      // Show requested step
+      document.getElementById(`step-${step}`).style.display = 'block';
+      
+      // Update current step
+      currentStep = step;
+      
+      // Update progress bar
+      updateProgress(step);
+      
+      // Scroll to top of questionnaire
+      document.querySelector('.questionnaire-container').scrollIntoView({ behavior: 'smooth' });
+    }
+    
+    // Update progress
+    function updateProgress(step) {
+      // Update progress fill
+      const progressFill = document.getElementById('progress-fill');
+      if (progressFill) {
+        progressFill.style.width = `${(step / totalSteps) * 100}%`;
+      }
+      
+      // Update step indicators
+      const progressSteps = document.querySelectorAll('.progress-step');
+      progressSteps.forEach(stepEl => {
+        const stepNum = parseInt(stepEl.getAttribute('data-step'));
+        if (stepNum < step) {
+          stepEl.classList.add('completed');
+          stepEl.classList.remove('active');
+        } else if (stepNum === step) {
+          stepEl.classList.add('active');
+          stepEl.classList.remove('completed');
+        } else {
+          stepEl.classList.remove('active', 'completed');
+        }
+      });
+    }
+    
     // Form submission
-    const leadForm = document.getElementById("lead-form")
-    if (leadForm) {
-      leadForm.addEventListener("submit", (e) => {
-        // Update hidden fields with user selections
-        document.getElementById("form-roof-type").value = userSelections.roofType
-        document.getElementById("form-material").value = userSelections.material
-        document.getElementById("form-size").value = userSelections.size
-        document.getElementById("form-complexity").value = userSelections.complexity
-        document.getElementById("form-estimate").value = document.getElementById("result-price-range").textContent
-
-        // Form will submit to FormSubmit
-      })
+    const form = document.getElementById('roof-questionnaire-form');
+    if (form) {
+      form.addEventListener('submit', function(e) {
+        // Final validation before submission
+        if (!validateStep(currentStep)) {
+          e.preventDefault();
+          return false;
+        }
+        
+        // Calculate estimate one more time to ensure it's up to date
+        calculateEstimate();
+        
+        // Add hidden field with estimate
+        const estimateField = document.createElement('input');
+        estimateField.type = 'hidden';
+        estimateField.name = 'estimated_price_range';
+        estimateField.value = document.getElementById('estimated-price-range').value || 'Not calculated';
+        form.appendChild(estimateField);
+        
+        // FormSubmit will handle the rest
+        return true;
+      });
     }
-  }
-
-  function validateStep(step) {
-    if (step === 1) {
-      if (!userSelections.roofType) {
-        alert("Please select a roof type to continue.")
-        return false
-      }
-    } else if (step === 2) {
-      if (!userSelections.material) {
-        alert("Please select a roofing material to continue.")
-        return false
-      }
-    } else if (step === 3) {
-      const homeSqFt = document.getElementById("home-sqft").value
-      const complexity = document.getElementById("roof-complexity").value
-      const stories = document.getElementById("number-stories").value
-
-      if (!homeSqFt || homeSqFt < 500) {
-        alert("Please enter a valid home square footage (minimum 500 sq ft).")
-        return false
-      }
-
-      // Store values
-      userSelections.size = Number.parseInt(homeSqFt)
-      userSelections.complexity = complexity
-      userSelections.stories = stories
-
-      // Calculate and display results
-      calculateEstimate()
-    }
-
-    return true
-  }
-
-  function goToStep(step) {
-    // Hide all steps
-    const steps = document.querySelectorAll(".questionnaire-step")
-    steps.forEach((s) => (s.style.display = "none"))
-
-    // Show requested step
-    document.getElementById(`step-${step}`).style.display = "block"
-
-    // Update current step
-    currentStep = step
-
-    // Update progress bar
-    updateProgress(step)
-
-    // Scroll to top of questionnaire
-    const questionnaire = document.getElementById("roofing-questionnaire")
-    if (questionnaire) {
-      questionnaire.scrollIntoView({ behavior: "smooth" })
-    }
-  }
-
-  function updateProgress(step) {
-    // Update progress fill
-    const progressFill = document.getElementById("progress-fill")
-    if (progressFill) {
-      progressFill.style.width = `${(step / totalSteps) * 100}%`
-    }
-
-    // Update step indicators
-    const progressSteps = document.querySelectorAll(".progress-step")
-    progressSteps.forEach((stepEl) => {
-      const stepNum = Number.parseInt(stepEl.getAttribute("data-step"))
-      if (stepNum <= step) {
-        stepEl.classList.add("active")
-      } else {
-        stepEl.classList.remove("active")
-      }
-    })
   }
 
   function calculateEstimate() {
-    // Calculate roof square footage (typically 1.5x the home's footprint for pitched roofs)
-    let roofMultiplier = 1.5
-    if (userSelections.roofType === "flat") {
-      roofMultiplier = 1.1
-    } else if (userSelections.roofType === "mansard") {
-      roofMultiplier = 1.8
-    }
-
-    const roofSqFt = userSelections.size * roofMultiplier
-
-    // Get price range based on material and complexity
-    const priceRange = pricingData[userSelections.material][userSelections.complexity]
-
+    // Use the same calculation logic as the advanced calculator
+    
+    // Default values if not specified
+    if (!userSelections.size) userSelections.size = 1800;
+    if (!userSelections.complexity) userSelections.complexity = "moderate";
+    if (!userSelections.stories) userSelections.stories = "2";
+    if (!userSelections.material) userSelections.material = "architectural";
+    
+    // Calculate roof square footage based on roof type
+    const roofMultiplier = roofTypeMultipliers[userSelections.roofType] || 1.4; // Default to hip roof multiplier
+    const roofSqFt = userSelections.size * roofMultiplier;
+    
+    // Get base material cost
+    const baseMaterialCost = materialBasePrices[userSelections.material] || materialBasePrices.architectural;
+    
+    // Apply complexity multiplier
+    const complexityMultiplier = complexityMultipliers[userSelections.complexity] || complexityMultipliers.moderate;
+    
     // Apply story multiplier
-    const storyFactor = storyMultiplier[userSelections.stories]
-
-    // Calculate total price range
-    const minPrice = Math.round(roofSqFt * priceRange.min * storyFactor)
-    const maxPrice = Math.round(roofSqFt * priceRange.max * storyFactor)
-
-    // Update results in the DOM
-    document.getElementById("result-roof-type").textContent =
-      userSelections.roofType.charAt(0).toUpperCase() +
-      userSelections.roofType.slice(1) +
-      ` (${roofTypeToPitch[userSelections.roofType]})`
-
-    document.getElementById("result-material").textContent =
-      userSelections.material.charAt(0).toUpperCase() + userSelections.material.slice(1)
-
-    document.getElementById("result-size").textContent =
-      `${roofSqFt.toLocaleString()} sq ft (based on ${userSelections.size.toLocaleString()} sq ft home)`
-
-    document.getElementById("result-complexity").textContent =
-      userSelections.complexity.charAt(0).toUpperCase() +
-      userSelections.complexity.slice(1) +
-      ` (${userSelections.stories} ${userSelections.stories === "1" ? "story" : "stories"})`
-
-    document.getElementById("result-price-range").textContent =
-      `$${minPrice.toLocaleString()} - $${maxPrice.toLocaleString()}`
-  }
-
-  function resetQuestionnaire() {
-    // Reset user selections
-    userSelections = {
-      roofType: "",
-      material: "",
-      size: 0,
-      complexity: "",
-      stories: "",
+    const storyMultiplier = storyMultipliers[userSelections.stories] || storyMultipliers["2"];
+    
+    // Apply regional multiplier (default to Central PA)
+    const regionMultiplier = regionMultipliers["Central PA"];
+    
+    // Calculate material cost per square foot with all multipliers
+    const materialCostPerSqFt = {
+      min: baseMaterialCost.min * complexityMultiplier.min * regionMultiplier.min,
+      max: baseMaterialCost.max * complexityMultiplier.max * regionMultiplier.max,
+    };
+    
+    // Calculate labor cost
+    const laborCostPerSqFt = {
+      min: materialCostPerSqFt.min * 0.6 * storyMultiplier.min,
+      max: materialCostPerSqFt.max * 0.6 * storyMultiplier.max,
+    };
+    
+    // Calculate total costs
+    const materialsCost = {
+      min: materialCostPerSqFt.min * roofSqFt,
+      max: materialCostPerSqFt.max * roofSqFt,
+    };
+    
+    const laborCost = {
+      min: laborCostPerSqFt.min * roofSqFt,
+      max: laborCostPerSqFt.max * roofSqFt,
+    };
+    
+    // Add removal and other costs (simplified)
+    const otherCosts = {
+      min: roofSqFt * 1.5, // Simplified estimate for removal and additional components
+      max: roofSqFt * 2.5,
+    };
+    
+    // Calculate total project cost
+    const totalCost = {
+      min: materialsCost.min + laborCost.min + otherCosts.min,
+      max: materialsCost.max + laborCost.max + otherCosts.max,
+    };
+    
+    // Round costs to nearest hundred
+    const roundedTotalCost = {
+      min: Math.round(totalCost.min / 100) * 100,
+      max: Math.round(totalCost.max / 100) * 100,
+    };
+    
+    // Store the estimate in a hidden field for form submission
+    let estimatedPriceField = document.getElementById('estimated-price-range');
+    if (!estimatedPriceField) {
+      estimatedPriceField = document.createElement('input');
+      estimatedPriceField.type = 'hidden';
+      estimatedPriceField.id = 'estimated-price-range';
+      document.getElementById('roof-questionnaire-form').appendChild(estimatedPriceField);
     }
-
-    // Reset form fields
-    document.getElementById("home-sqft").value = ""
-    document.getElementById("roof-complexity").selectedIndex = 0
-    document.getElementById("number-stories").selectedIndex = 0
-
-    // Reset selected cards
-    const selectedCards = document.querySelectorAll(".option-card.selected")
-    selectedCards.forEach((card) => card.classList.remove("selected"))
-
-    // Go back to step 1
-    goToStep(1)
+    
+    estimatedPriceField.value = `$${roundedTotalCost.min.toLocaleString()} - $${roundedTotalCost.max.toLocaleString()}`;
+    
+    console.log("Questionnaire estimate calculated:", estimatedPriceField.value);
+    
+    return roundedTotalCost;
   }
 
   function initFAQs() {
-    const faqQuestions = document.querySelectorAll(".faq-question")
+    const faqQuestions = document.querySelectorAll(".faq-question");
 
     faqQuestions.forEach((question) => {
       question.addEventListener("click", () => {
-        const answer = question.nextElementSibling
-        const icon = question.querySelector(".faq-toggle i")
+        const answer = question.nextElementSibling;
+        const icon = question.querySelector(".faq-toggle i");
 
         // Toggle active class
-        answer.classList.toggle("active")
+        answer.classList.toggle("active");
 
         // Toggle icon
         if (answer.classList.contains("active")) {
-          icon.classList.remove("fa-plus")
-          icon.classList.add("fa-minus")
+          icon.classList.remove("fa-plus");
+          icon.classList.add("fa-minus");
         } else {
-          icon.classList.remove("fa-minus")
-          icon.classList.add("fa-plus")
+          icon.classList.remove("fa-minus");
+          icon.classList.add("fa-plus");
         }
-      })
-    })
+      });
+    });
   }
-})
-
+});
