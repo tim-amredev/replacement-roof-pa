@@ -4,8 +4,8 @@ email: tim@americanremodeling.net
 description: >-
   Professional roof replacement services across Pennsylvania. 
   Quality materials, expert installation, and exceptional service for your home.
-baseurl: "/replacement-roof-pa"
-url: "https://tim-amredev.github.io"
+baseurl: ""
+url: "http://replacementroofpa.com/"
 permalink: pretty
 
 # Build settings
