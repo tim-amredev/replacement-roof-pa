@@ -181,66 +181,49 @@ description: Use our interactive roof replacement calculator to get accurate, up
             <p>Choose your preferred roofing materials</p>
           </div>
           
-          <div class="form-group">
-            <label>Primary Roofing Material</label>
-            <div class="material-cards">
-              <div class="material-card" data-value="3-tab">
-                <div class="material-image">
-                  <img src="{{ '/assets/images/material-3tab.jpg' | relative_url }}" alt="3-Tab Shingles">
-                </div>
-                <div class="material-content">
-                  <h4>3-Tab Asphalt Shingles</h4>
-                  <p>Budget-friendly option</p>
-                </div>
-              </div>
-              <div class="material-card" data-value="architectural">
-                <div class="material-image">
-                  <img src="{{ '/assets/images/material-architectural.jpg' | relative_url }}" alt="Architectural Shingles">
-                </div>
-                <div class="material-content">
-                  <h4>Architectural Shingles</h4>
-                  <p>Standard quality option</p>
-                </div>
-              </div>
-              <div class="material-card" data-value="premium-architectural">
-                <div class="material-image">
-                  <img src="{{ '/assets/images/material-premium.jpg' | relative_url }}" alt="Premium Architectural Shingles">
-                </div>
-                <div class="material-content">
-                  <h4>Premium Architectural</h4>
-                  <p>High-end asphalt option</p>
-                </div>
-              </div>
-              <div class="material-card" data-value="metal-shingles">
-                <div class="material-image">
-                  <img src="{{ '/assets/images/material-metal.jpg' | relative_url }}" alt="Metal Shingles">
-                </div>
-                <div class="material-content">
-                  <h4>Metal Shingles</h4>
-                  <p>Durable metal option</p>
-                </div>
-              </div>
-              <div class="material-card" data-value="standing-seam">
-                <div class="material-image">
-                  <img src="{{ '/assets/images/material-standing-seam.jpg' | relative_url }}" alt="Standing Seam Metal">
-                </div>
-                <div class="material-content">
-                  <h4>Standing Seam Metal</h4>
-                  <p>Premium metal option</p>
-                </div>
-              </div>
-              <div class="material-card" data-value="cedar-shake">
-                <div class="material-image">
-                  <img src="{{ '/assets/images/material-cedar.jpg' | relative_url }}" alt="Cedar Shake">
-                </div>
-                <div class="material-content">
-                  <h4>Cedar Shake</h4>
-                  <p>Natural wood option</p>
-                </div>
-              </div>
-            </div>
-            <input type="hidden" id="roofing-material" name="roofing-material" required>
-          </div>
+          <!-- Replace the material cards section with the limited options -->
+<div class="form-group">
+  <label>Primary Roofing Material</label>
+  <div class="material-cards">
+    <div class="material-card" data-value="asphalt">
+      <div class="material-image">
+        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/asphalt.jpg-Cxswa5bT2cdjlGb8K59lxHupaRAZtr.jpeg" alt="Asphalt Shingles">
+      </div>
+      <div class="material-content">
+        <h4>Asphalt Shingles</h4>
+        <p>Affordable, versatile, and easy to install</p>
+      </div>
+    </div>
+    <div class="material-card" data-value="metal">
+      <div class="material-image">
+        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/metal.jpg-ZKqyANws0RcXueIMWWAn5VwQAG8UaK.jpeg" alt="Metal Roofing">
+      </div>
+      <div class="material-content">
+        <h4>Metal Roofing</h4>
+        <p>Durable with excellent longevity</p>
+      </div>
+    </div>
+    <div class="material-card" data-value="cedar-shake">
+      <div class="material-image">
+        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/wood.jpg-GpNaqkBCASl7gKKgl7Fq0ItAu8PLBB.jpeg" alt="Cedar/Wood">
+      </div>
+      <div class="material-content">
+        <h4>Cedar/Wood</h4>
+        <p>Natural beauty with rustic charm</p>
+      </div>
+    </div>
+    <div class="material-card" data-value="slate">
+      <div class="material-image">
+        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/slate.jpg-QSha914hybf8CW4YYtwBA8lR2MDGpq.jpeg" alt="Slate">
+      </div>
+      <div class="material-content">
+        <h4>Slate</h4>
+        <p>Premium natural stone with century-long lifespan</p>
+      </div>
+    </div>
+  </div>
+  <input type="hidden" id="roofing-material" name="roofing-material" required>
+</div>
           
           <div class="form-group">
             <label for="material-quality">Material Quality</label>
@@ -341,39 +324,7 @@ description: Use our interactive roof replacement calculator to get accurate, up
             </div>
           </div>
           
-          <div class="form-group">
-            <label>Pennsylvania Region</label>
-            <div class="region-map">
-              <img src="{{ '/assets/images/pa-regions-map.svg' | relative_url }}" alt="Pennsylvania Regions Map" class="region-map-image">
-              <div class="region-markers">
-                <div class="region-marker" data-region="philadelphia" style="top: 75%; left: 85%;">
-                  <div class="marker-dot"></div>
-                  <div class="marker-label">Philadelphia</div>
-                </div>
-                <div class="region-marker" data-region="pittsburgh" style="top: 60%; left: 15%;">
-                  <div class="marker-dot"></div>
-                  <div class="marker-label">Pittsburgh</div>
-                </div>
-                <div class="region-marker" data-region="harrisburg" style="top: 60%; left: 55%;">
-                  <div class="marker-dot"></div>
-                  <div class="marker-label">Harrisburg</div>
-                </div>
-                <div class="region-marker" data-region="allentown" style="top: 45%; left: 75%;">
-                  <div class="marker-dot"></div>
-                  <div class="marker-label">Allentown</div>
-                </div>
-                <div class="region-marker" data-region="erie" style="top: 15%; left: 15%;">
-                  <div class="marker-dot"></div>
-                  <div class="marker-label">Erie</div>
-                </div>
-                <div class="region-marker" data-region="scranton" style="top: 25%; left: 75%;">
-                  <div class="marker-dot"></div>
-                  <div class="marker-label">Scranton</div>
-                </div>
-              </div>
-            </div>
-            <input type="hidden" id="location" name="location" required>
-          </div>
+          
           
           <div class="wizard-buttons">
             <button type="button" class="btn btn-secondary prev-step"><i class="fas fa-arrow-left"></i> Back to Materials</button>
@@ -424,7 +375,7 @@ description: Use our interactive roof replacement calculator to get accurate, up
                 </div>
                 <div class="summary-content">
                   <h4>Location</h4>
-                  <p id="location-summary">-</p>
+                  <p id="location-summary">Pennsylvania</p>
                 </div>
               </div>
             </div>
@@ -608,3 +559,4 @@ description: Use our interactive roof replacement calculator to get accurate, up
 </section>
 
 <script src="{{ '/assets/js/advanced-calculator.js' | relative_url }}"></script>
+
