@@ -23,11 +23,7 @@ description: Get in touch with our roofing experts for a free estimate on your r
           <div class="contact-icon">
             <i class="fas fa-phone-alt"></i>
           </div>
-          <div class="contact-details">
-            <h3>Call Us</h3>
-            <p><a href="tel:{{ site.phone }}">{{ site.phone }}</a></p>
-            <p class="text-small">Monday-Friday: 8am-6pm<br>Saturday: 9am-3pm</p>
-          </div>
+         
         </div>
         
         <div class="contact-method">
@@ -40,37 +36,6 @@ description: Get in touch with our roofing experts for a free estimate on your r
             <p class="text-small">We respond to all inquiries within 24 hours</p>
           </div>
         </div>
-        
-        <div class="contact-method">
-          <div class="contact-icon">
-            <i class="fas fa-map-marker-alt"></i>
-          </div>
-          <div class="contact-details">
-            <h3>Visit Our Office</h3>
-            <p>{{ site.address }}</p>
-            <p class="text-small">By appointment only</p>
-          </div>
-        </div>
-      </div>
-      
-      <div class="service-areas">
-        <h3>Our Service Areas</h3>
-        <p>We provide roof replacement services throughout Pennsylvania, including:</p>
-        <div class="areas-grid">
-          <div class="area-item"><i class="fas fa-map-pin"></i> Philadelphia</div>
-          <div class="area-item"><i class="fas fa-map-pin"></i> Pittsburgh</div>
-          <div class="area-item"><i class="fas fa-map-pin"></i> Harrisburg</div>
-          <div class="area-item"><i class="fas fa-map-pin"></i> Allentown</div>
-          <div class="area-item"><i class="fas fa-map-pin"></i> Erie</div>
-          <div class="area-item"><i class="fas fa-map-pin"></i> Reading</div>
-          <div class="area-item"><i class="fas fa-map-pin"></i> Scranton</div>
-          <div class="area-item"><i class="fas fa-map-pin"></i> Lancaster</div>
-          <div class="area-item"><i class="fas fa-map-pin"></i> Bethlehem</div>
-          <div class="area-item"><i class="fas fa-map-pin"></i> York</div>
-          <div class="area-item"><i class="fas fa-map-pin"></i> And surrounding areas</div>
-        </div>
-      </div>
-    </div>
     
     <div class="contact-form-container">
       <h2>Request a Free Estimate</h2>
@@ -191,263 +156,179 @@ description: Get in touch with our roofing experts for a free estimate on your r
 <style>
 /* Contact Page Styles */
 .contact-section {
-  padding: 5rem 0;
-  background-color: white;
+padding: 5rem 0;
+background-color: white;
 }
 
 .contact-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 3rem;
-}
-
-@media (min-width: 992px) {
-  .contact-grid {
-    grid-template-columns: 1fr 1fr;
-  }
+max-width: 800px;
+margin: 0 auto;
 }
 
 .contact-info h2 {
-  margin-bottom: 1.5rem;
-  color: var(--teal-medium);
+margin-bottom: 1.5rem;
+color: var(--teal-medium);
 }
 
 .contact-intro {
-  font-size: 1.1rem;
-  margin-bottom: 2.5rem;
-  color: var(--secondary-color);
+font-size: 1.1rem;
+margin-bottom: 2.5rem;
+color: var(--secondary-color);
 }
 
 .contact-methods {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  margin-bottom: 3rem;
+display: flex;
+flex-direction: column;
+gap: 2rem;
+margin-bottom: 3rem;
 }
 
 .contact-method {
-  display: flex;
-  align-items: flex-start;
-  gap: 1.5rem;
-  background-color: var(--background-light);
-  padding: 1.5rem;
-  border-radius: 8px;
-  box-shadow: var(--card-shadow);
-  transition: transform 0.3s ease;
+display: flex;
+align-items: flex-start;
+gap: 1.5rem;
+background-color: var(--background-light);
+padding: 1.5rem;
+border-radius: 8px;
+box-shadow: var(--card-shadow);
+transition: transform 0.3s ease;
 }
 
 .contact-method:hover {
-  transform: translateY(-5px);
+transform: translateY(-5px);
 }
 
 .contact-icon {
-  background-color: var(--teal-highlight);
-  color: var(--teal-accent);
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-  flex-shrink: 0;
+background-color: var(--teal-highlight);
+color: var(--teal-accent);
+width: 50px;
+height: 50px;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 1.5rem;
+flex-shrink: 0;
 }
 
 .contact-details h3 {
-  margin-bottom: 0.5rem;
-  color: var(--teal-medium);
+margin-bottom: 0.5rem;
+color: var(--teal-medium);
 }
 
 .contact-details p {
-  margin-bottom: 0.5rem;
-  color: var(--secondary-color);
+margin-bottom: 0.5rem;
+color: var(--secondary-color);
 }
 
 .contact-details a {
-  color: var(--teal-accent);
-  font-weight: 600;
-  transition: color 0.3s ease;
+color: var(--teal-accent);
+font-weight: 600;
+transition: color 0.3s ease;
 }
 
 .contact-details a:hover {
-  color: var(--teal-accent-light);
+color: var(--teal-accent-light);
 }
 
 .text-small {
-  font-size: 0.9rem;
-  opacity: 0.8;
+font-size: 0.9rem;
+opacity: 0.8;
 }
 
 .service-areas {
-  background-color: var(--teal-highlight);
-  padding: 2rem;
-  border-radius: 8px;
-  margin-top: 2rem;
+background-color: var(--teal-highlight);
+padding: 2rem;
+border-radius: 8px;
+margin-top: 2rem;
 }
 
 .service-areas h3 {
-  margin-bottom: 1rem;
-  color: var(--teal-medium);
+margin-bottom: 1rem;
+color: var(--teal-medium);
 }
 
 .service-areas p {
-  margin-bottom: 1.5rem;
-  color: var(--secondary-color);
+margin-bottom: 1.5rem;
+color: var(--secondary-color);
 }
 
 .areas-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 1rem;
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+gap: 1rem;
 }
 
 .area-item {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: var(--teal-medium);
-  font-weight: 500;
+display: flex;
+align-items: center;
+gap: 0.5rem;
+color: var(--teal-medium);
+font-weight: 500;
 }
 
 .area-item i {
-  color: var(--teal-accent);
-  font-size: 0.9rem;
-}
-
-.contact-form-container {
-  background-color: white;
-  padding: 2.5rem;
-  border-radius: 8px;
-  box-shadow: var(--card-shadow);
-}
-
-.contact-form-container h2 {
-  margin-bottom: 1rem;
-  color: var(--teal-medium);
-}
-
-.contact-form-container p {
-  margin-bottom: 2rem;
-  color: var(--secondary-color);
-}
-
-.contact-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-.form-group label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: 600;
-  color: var(--teal-medium);
-}
-
-.form-group input,
-.form-group select,
-.form-group textarea {
-  width: 100%;
-  padding: 0.75rem 1rem;
-  border: 1px solid var(--border-color);
-  border-radius: 4px;
-  font-family: inherit;
-  font-size: 1rem;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-  outline: none;
-  border-color: var(--teal-accent);
-  box-shadow: 0 0 0 3px rgba(50, 160, 168, 0.2);
-}
-
-.form-row {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1.5rem;
-}
-
-.privacy-consent {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.75rem;
-}
-
-.privacy-consent input {
-  margin-top: 0.3rem;
-  width: auto;
-  accent-color: var(--teal-accent);
-}
-
-.privacy-consent label {
-  font-size: 0.9rem;
-  font-weight: normal;
-  color: var(--secondary-color);
-}
-
-.btn-block {
-  width: 100%;
+color: var(--teal-accent);
+font-size: 0.9rem;
 }
 
 /* Map Section */
 .map-section {
-  padding: 5rem 0;
-  background-color: var(--teal-highlight);
+padding: 5rem 0;
+background-color: var(--teal-highlight);
 }
 
 .map-container {
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: var(--card-shadow);
+border-radius: 8px;
+overflow: hidden;
+box-shadow: var(--card-shadow);
 }
 
 /* FAQ Grid */
 .faq-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 2rem;
-  margin-top: 3rem;
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+gap: 2rem;
+margin-top: 3rem;
 }
 
 .faq-item {
-  background-color: white;
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: var(--card-shadow);
-  transition: transform 0.3s ease;
+background-color: white;
+padding: 2rem;
+border-radius: 8px;
+box-shadow: var(--card-shadow);
+transition: transform 0.3s ease;
 }
 
 .faq-item:hover {
-  transform: translateY(-5px);
+transform: translateY(-5px);
 }
 
 .faq-item h3 {
-  margin-bottom: 1rem;
-  color: var(--teal-medium);
-  font-size: 1.2rem;
+margin-bottom: 1rem;
+color: var(--teal-medium);
+font-size: 1.2rem;
 }
 
 .faq-item p {
-  margin-bottom: 0;
-  color: var(--secondary-color);
+margin-bottom: 0;
+color: var(--secondary-color);
 }
 
 @media (max-width: 768px) {
-  .contact-method {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-  
-  .contact-icon {
-    margin-bottom: 1rem;
-  }
-  
-  .faq-grid {
-    grid-template-columns: 1fr;
-  }
+.contact-method {
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.contact-icon {
+  margin-bottom: 1rem;
+}
+
+.faq-grid {
+  grid-template-columns: 1fr;
+}
 }
 </style>
+
