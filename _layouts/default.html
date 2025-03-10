@@ -11,6 +11,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com">
 
+  <!-- Critical CSS - inlined for performance -->
+  <style>
+    {% include critical.css %}
+  </style>
+  
   <!-- Preload critical assets -->
   <link rel="preload" href="{{ site.baseurl }}/assets/css/styles.css" as="style">
   <link rel="preload" href="{{ site.baseurl }}/assets/js/main.js" as="script">
@@ -18,8 +23,9 @@
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="{{ site.baseurl }}/assets/images/favicon.png">
   
-  <!-- CSS -->
-  <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/styles.css">
+  <!-- CSS - loaded asynchronously -->
+  <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/styles.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="{{ site.baseurl }}/assets/css/styles.css"></noscript>
 
   <!-- Font Awesome - load asynchronously -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" media="print" onload="this.media='all'">
