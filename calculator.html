@@ -429,9 +429,56 @@ description: Use our interactive roof replacement calculator to get accurate, up
               </div>
             </div>
             
+            
             <div class="results-breakdown">
               <h4>Cost Breakdown</h4>
               <p>Your estimate includes materials, labor, removal & disposal, and additional components. A detailed breakdown will be provided in your professional quote.</p>
+              
+              <div class="breakdown-details">
+                <div class="breakdown-item">
+                  <span>Materials:</span>
+                  <span id="materials-cost">-</span>
+                </div>
+                <div class="breakdown-item">
+                  <span>Labor:</span>
+                  <span id="labor-cost">-</span>
+                </div>
+                <div class="breakdown-item">
+                  <span>Removal & Disposal:</span>
+                  <span id="removal-cost">-</span>
+                </div>
+                <div class="breakdown-item">
+                  <span>Additional Components:</span>
+                  <span id="components-cost">-</span>
+                </div>
+              </div>
+              
+              <div class="breakdown-chart">
+                <div class="chart-bar">
+                  <div class="chart-segment materials-segment" id="materials-segment"></div>
+                  <div class="chart-segment labor-segment" id="labor-segment"></div>
+                  <div class="chart-segment removal-segment" id="removal-segment"></div>
+                  <div class="chart-segment components-segment" id="components-segment"></div>
+                </div>
+                <div class="chart-legend">
+                  <div class="legend-item">
+                    <div class="legend-color materials-color"></div>
+                    <div class="legend-text">Materials</div>
+                  </div>
+                  <div class="legend-item">
+                    <div class="legend-color labor-color"></div>
+                    <div class="legend-text">Labor</div>
+                  </div>
+                  <div class="legend-item">
+                    <div class="legend-color removal-color"></div>
+                    <div class="legend-text">Removal & Disposal</div>
+                  </div>
+                  <div class="legend-item">
+                    <div class="legend-color components-color"></div>
+                    <div class="legend-text">Components</div>
+                  </div>
+                </div>
+              </div>
             </div>
             
             <div class="results-disclaimer">
@@ -561,4 +608,3 @@ description: Use our interactive roof replacement calculator to get accurate, up
 </section>
 
 <script src="{{ '/assets/js/advanced-calculator.js' | relative_url }}"></script>
-
