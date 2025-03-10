@@ -23,20 +23,20 @@ document.addEventListener("DOMContentLoaded", () => {
     let currentStep = 1
     const totalSteps = 4
 
-    // Material base prices per square foot (2025 PA market rates)
+    // Material base prices per square foot (2025 PA market rates - updated for accuracy)
     const materialBasePrices = {
-      "3-tab": { min: 3.5, max: 5.5 },
-      architectural: { min: 4.5, max: 7.5 },
-      "premium-architectural": { min: 6.0, max: 10.0 },
-      "metal-shingles": { min: 7.0, max: 12.0 },
-      "standing-seam": { min: 9.0, max: 15.0 },
-      "cedar-shake": { min: 8.0, max: 14.0 },
-      "synthetic-slate": { min: 10.0, max: 18.0 },
-      "natural-slate": { min: 15.0, max: 30.0 },
-      "clay-tile": { min: 12.0, max: 25.0 },
-      "concrete-tile": { min: 10.0, max: 20.0 },
-      "tpo-membrane": { min: 5.5, max: 8.5 },
-      "epdm-rubber": { min: 5.0, max: 9.5 },
+      "3-tab": { min: 3.75, max: 5.75 },
+      architectural: { min: 4.75, max: 7.75 },
+      "premium-architectural": { min: 6.25, max: 10.5 },
+      "metal-shingles": { min: 7.5, max: 12.5 },
+      "standing-seam": { min: 9.5, max: 15.75 },
+      "cedar-shake": { min: 8.5, max: 14.5 },
+      "synthetic-slate": { min: 10.5, max: 18.5 },
+      "natural-slate": { min: 16.0, max: 32.0 },
+      "clay-tile": { min: 12.5, max: 26.0 },
+      "concrete-tile": { min: 10.5, max: 21.0 },
+      "tpo-membrane": { min: 5.75, max: 8.75 },
+      "epdm-rubber": { min: 5.25, max: 9.75 },
     }
 
     // Quality multipliers
@@ -50,8 +50,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const complexityMultipliers = {
       simple: { min: 0.9, max: 0.95 },
       moderate: { min: 1.0, max: 1.0 },
-      complex: { min: 1.15, max: 1.25 },
-      "very-complex": { min: 1.3, max: 1.5 },
+      complex: { min: 1.2, max: 1.3 },
+      "very-complex": { min: 1.35, max: 1.55 },
     }
 
     // Pitch multipliers
@@ -59,8 +59,8 @@ document.addEventListener("DOMContentLoaded", () => {
       flat: { min: 0.9, max: 0.95 },
       low: { min: 0.95, max: 1.0 },
       medium: { min: 1.0, max: 1.05 },
-      steep: { min: 1.15, max: 1.25 },
-      "very-steep": { min: 1.3, max: 1.5 },
+      steep: { min: 1.2, max: 1.3 },
+      "very-steep": { min: 1.35, max: 1.6 },
     }
 
     // Story multipliers
@@ -507,6 +507,17 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("form-material").value = materialText
       document.getElementById("form-estimate").value =
         `$${roundedTotalCost.min.toLocaleString()} - $${roundedTotalCost.max.toLocaleString()}`
+
+      // Hide detailed breakdown until final step
+      document.querySelectorAll(".chart-segment").forEach((segment) => {
+        segment.style.width = "0%"
+      })
+
+      // Only show the final price range
+      document.getElementById("materials-cost").textContent = "Details provided in final quote"
+      document.getElementById("labor-cost").textContent = "Details provided in final quote"
+      document.getElementById("removal-cost").textContent = "Details provided in final quote"
+      document.getElementById("components-cost").textContent = "Details provided in final quote"
     }
 
     // Reset calculator
@@ -529,6 +540,14 @@ document.addEventListener("DOMContentLoaded", () => {
       // Go back to step 1
       goToStep(1)
     }
+  }
+
+  // Hide material prices in the UI
+  function hideMaterialPrices() {
+    const materialPrices = document.querySelectorAll(".material-price")
+    materialPrices.forEach((price) => {
+      price.style.display = "none"
+    })
   }
 
   function initFAQs() {
@@ -572,5 +591,8 @@ document.addEventListener("DOMContentLoaded", () => {
       })
     })
   }
+
+  // Call this function when the page loads
+  hideMaterialPrices()
 })
 
