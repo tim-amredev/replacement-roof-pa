@@ -1,79 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{% if page.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
-  <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>{% if page.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+ <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
 
-  <!-- Preconnect to external domains -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+ <!-- Preconnect to external domains -->
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link rel="preconnect" href="https://cdnjs.cloudflare.com">
 
-  <!-- Critical CSS - inlined for performance -->
-  <style>
-    {% include critical.css %}
-  </style>
-  
-  <!-- Preload critical assets -->
-  <link rel="preload" href="{{ site.baseurl }}/assets/css/styles.css" as="style">
-  <link rel="preload" href="{{ site.baseurl }}/assets/js/main.js" as="script">
+ <!-- Favicon -->
+ <link rel="icon" type="image/png" href="{{ site.baseurl }}/assets/images/favicon.png">
+ 
+ <!-- Main CSS -->
+ <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/styles.css">
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="{{ site.baseurl }}/assets/images/favicon.png">
-  
-  <!-- CSS - loaded asynchronously -->
-  <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/styles.css" media="print" onload="this.media='all'">
-  <noscript><link rel="stylesheet" href="{{ site.baseurl }}/assets/css/styles.css"></noscript>
+ <!-- Font Awesome -->
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
-  <!-- Font Awesome - load asynchronously -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" media="print" onload="this.media='all'">
-  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"></noscript>
+ <!-- Fonts -->
+ <link href="https://fonts.googleapis.com/css2?family=Tahoma:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Fonts - load asynchronously -->
-  <link href="https://fonts.googleapis.com/css2?family=Tahoma:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'" rel="stylesheet">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Tahoma:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
+ <!-- SEO -->
+ {% seo title=false %}
+ 
+ <!-- Open Graph -->
+ <meta property="og:title" content="{% if page.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}">
+ <meta property="og:description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+ <meta property="og:image" content="{{ site.url }}{{ site.baseurl }}/assets/images/og-image.jpg">
+ <meta property="og:url" content="{{ site.url }}{{ site.baseurl }}{{ page.url }}">
+ <meta property="og:type" content="website">
+ 
+ <!-- Twitter Card -->
+ <meta name="twitter:card" content="summary_large_image">
+ <meta name="twitter:title" content="{% if page.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}">
+ <meta name="twitter:description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+ <meta name="twitter:image" content="{{ site.url }}{{ site.baseurl }}/assets/images/og-image.jpg">
 
-  <!-- SEO -->
-  {% seo title=false %}
-  
-  <!-- Open Graph -->
-  <meta property="og:title" content="{% if page.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}">
-  <meta property="og:description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
-  <meta property="og:image" content="{{ site.url }}{{ site.baseurl }}/assets/images/og-image.jpg">
-  <meta property="og:url" content="{{ site.url }}{{ site.baseurl }}{{ page.url }}">
-  <meta property="og:type" content="website">
-  
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="{% if page.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}">
-  <meta name="twitter:description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
-  <meta name="twitter:image" content="{{ site.url }}{{ site.baseurl }}/assets/images/og-image.jpg">
-
-  <!-- Cache control -->
-  <meta http-equiv="Cache-Control" content="max-age=86400">
+ <!-- Cache control -->
+ <meta http-equiv="Cache-Control" content="max-age=86400">
 </head>
 <body>
-  <a href="#main-content" class="skip-to-content">Skip to content</a>
-  
-  {% include header.html %}
+ <a href="#main-content" class="skip-to-content">Skip to content</a>
+ 
+ {% include header.html %}
 
-  <main id="main-content">
-      {{ content }}
-  </main>
+ <main id="main-content">
+     {{ content }}
+ </main>
 
-  {% include footer.html %}
+ {% include footer.html %}
 
-  <!-- JavaScript - load with defer attribute -->
-  <script src="{{ site.baseurl }}/assets/js/main.js" defer></script>
-  
-  <!-- Page-specific scripts - load with defer attribute -->
-  {% if page.custom_js %}
-    {% for js_file in page.custom_js %}
-      <script src="{{ site.baseurl }}/assets/js/{{ js_file }}.js" defer></script>
-    {% endfor %}
-  {% endif %}
+ <!-- JavaScript -->
+ <script src="{{ site.baseurl }}/assets/js/main.js"></script>
+ 
+ <!-- Page-specific scripts -->
+ {% if page.custom_js %}
+   {% for js_file in page.custom_js %}
+     <script src="{{ site.baseurl }}/assets/js/{{ js_file }}.js"></script>
+   {% endfor %}
+ {% endif %}
 </body>
 </html>
 
