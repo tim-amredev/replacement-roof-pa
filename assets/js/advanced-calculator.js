@@ -1,4 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // Performance optimization: Store DOM references to avoid repeated queries
+  const DOM = {}
+
   // Initialize the calculator
   initRoofCalculator()
 
@@ -7,6 +10,9 @@ document.addEventListener("DOMContentLoaded", () => {
    * Separates concerns and sets up event handlers
    */
   function initRoofCalculator() {
+    // Cache DOM elements for better performance
+    cacheDOMElements()
+
     // Initialize smooth scrolling
     initSmoothScrolling()
 
@@ -18,17 +24,62 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /**
+   * Cache DOM elements to avoid repeated querySelector calls
+   * This improves performance by reducing DOM queries
+   */
+  function cacheDOMElements() {
+    // Calculator form elements
+    DOM.form = document.getElementById("calculator-form")
+    DOM.calculateButton = document.getElementById("calculate-button")
+    DOM.resultsContainer = document.getElementById("results-container")
+
+    // Form input elements
+    DOM.roofType = document.getElementById("roof-type")
+    DOM.roofSqFt = document.getElementById("roof-square-footage")
+    DOM.roofPitch = document.getElementById("roof-pitch")
+    DOM.roofComplexity = document.getElementById("roof-complexity")
+    DOM.material = document.getElementById("roofing-material")
+    DOM.materialQuality = document.getElementById("material-quality")
+    DOM.removalType = document.getElementById("old-roof-removal")
+    DOM.deckRepair = document.getElementById("roof-deck-repair")
+
+    // Additional components
+    DOM.newUnderlayment = document.getElementById("new-underlayment")
+    DOM.iceWaterShield = document.getElementById("ice-water-shield")
+    DOM.ridgeVent = document.getElementById("ridge-vent")
+    DOM.newFlashing = document.getElementById("new-flashing")
+    DOM.dripEdge = document.getElementById("drip-edge")
+    DOM.newGutters = document.getElementById("new-gutters")
+
+    // Result elements
+    DOM.priceLow = document.getElementById("price-low")
+    DOM.priceHigh = document.getElementById("price-high")
+    DOM.materialsCost = document.getElementById("materials-cost")
+    DOM.laborCost = document.getElementById("labor-cost")
+    DOM.removalCost = document.getElementById("removal-cost")
+    DOM.componentsCost = document.getElementById("components-cost")
+    DOM.roofDetailsSummary = document.getElementById("roof-details-summary")
+    DOM.materialsSummary = document.getElementById("materials-summary")
+
+    // UI elements
+    DOM.scrollToCalculatorBtn = document.querySelector(".scroll-to-calculator")
+    DOM.calculatorSection = document.querySelector(".calculator-section")
+    DOM.faqQuestions = document.querySelectorAll(".faq-question")
+    DOM.tooltipIcons = document.querySelectorAll(".tooltip-icon")
+    DOM.materialPrices = document.querySelectorAll(".material-price")
+    DOM.selectCards = document.querySelectorAll(".select-card")
+    DOM.materialCards = document.querySelectorAll(".material-card")
+    DOM.qualityOptions = document.querySelectorAll(".quality-option")
+  }
+
+  /**
    * Sets up smooth scrolling to the calculator section
    */
   function initSmoothScrolling() {
-    const scrollToCalculatorBtn = document.querySelector(".scroll-to-calculator")
-    if (scrollToCalculatorBtn) {
-      scrollToCalculatorBtn.addEventListener("click", (e) => {
+    if (DOM.scrollToCalculatorBtn && DOM.calculatorSection) {
+      DOM.scrollToCalculatorBtn.addEventListener("click", (e) => {
         e.preventDefault()
-        const calculatorSection = document.querySelector(".calculator-section")
-        if (calculatorSection) {
-          calculatorSection.scrollIntoView({ behavior: "smooth" })
-        }
+        DOM.calculatorSection.scrollIntoView({ behavior: "smooth" })
       })
     }
   }
@@ -37,38 +88,65 @@ document.addEventListener("DOMContentLoaded", () => {
    * Initializes the main calculator functionality
    */
   function initCalculator() {
-    const form = document.getElementById("calculator-form")
-    const calculateButton = document.getElementById("calculate-button")
-    const resultsContainer = document.getElementById("results-container")
-
-    if (!form || !calculateButton || !resultsContainer) {
+    if (!DOM.form || !DOM.calculateButton || !DOM.resultsContainer) {
       console.error("Required calculator elements not found")
       return
     }
 
-    // Add event listeners to all form inputs
-    form.querySelectorAll("input, select").forEach((input) => {
-      input.addEventListener("change", () => calculateRoofCost(form, resultsContainer))
-    })
+    // Performance optimization: Use event delegation instead of multiple listeners
+    DOM.form.addEventListener("change", debounce(handleFormChange, 300))
 
     // Calculate button click event
-    calculateButton.addEventListener("click", () => {
-      if (validateForm(form)) {
-        calculateRoofCost(form, resultsContainer)
-        resultsContainer.style.display = "block"
-        resultsContainer.scrollIntoView({ behavior: "smooth" })
-      }
-    })
+    DOM.calculateButton.addEventListener("click", handleCalculateButtonClick)
+
+    // Pre-calculate pricing data once to avoid recalculation
+    window.pricingData = getPricingData()
+  }
+
+  /**
+   * Debounce function to limit how often a function can be called
+   * @param {Function} func - The function to debounce
+   * @param {number} wait - The debounce delay in milliseconds
+   * @returns {Function} - The debounced function
+   */
+  function debounce(func, wait) {
+    let timeout
+    return function (...args) {
+      
+      clearTimeout(timeout)
+      timeout = setTimeout(() => func.apply(this, args), wait)
+    }
+  }
+
+  /**
+   * Handles form input changes
+   * @param {Event} event - The change event
+   */
+  function handleFormChange(event) {
+    // Only recalculate if the changed element is part of the calculator form
+    if (event.target && event.target.form === DOM.form) {
+      calculateRoofCost()
+    }
+  }
+
+  /**
+   * Handles calculate button click
+   */
+  function handleCalculateButtonClick() {
+    if (validateForm()) {
+      calculateRoofCost()
+      DOM.resultsContainer.style.display = "block"
+      DOM.resultsContainer.scrollIntoView({ behavior: "smooth" })
+    }
   }
 
   /**
    * Validates the calculator form
-   * @param {HTMLFormElement} form - The calculator form element
    * @returns {boolean} - Whether the form is valid
    */
-  function validateForm(form) {
+  function validateForm() {
     let isValid = true
-    const requiredFields = form.querySelectorAll("select, input[type='number']")
+    const requiredFields = DOM.form.querySelectorAll("select, input[type='number']")
 
     // Reset previous validation states
     requiredFields.forEach((field) => {
@@ -99,7 +177,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!isValid) {
       // Focus the first invalid field
-      form.querySelector(".invalid")?.focus()
+      DOM.form.querySelector(".invalid")?.focus()
     }
 
     return isValid
@@ -107,12 +185,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /**
    * Calculates the roof cost based on form inputs
-   * @param {HTMLFormElement} form - The calculator form element
-   * @param {HTMLElement} resultsContainer - The container for displaying results
    */
-  function calculateRoofCost(form, resultsContainer) {
+  function calculateRoofCost() {
     // Get form values
-    const formValues = getFormValues(form)
+    const formValues = getFormValues()
 
     // Calculate costs
     const costs = calculateCosts(formValues)
@@ -123,26 +199,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /**
    * Extracts values from the calculator form
-   * @param {HTMLFormElement} form - The calculator form element
    * @returns {Object} - The extracted form values
    */
-  function getFormValues(form) {
+  function getFormValues() {
     return {
-      roofType: document.getElementById("roof-type").value,
-      roofSqFt: Number.parseInt(document.getElementById("roof-square-footage").value),
-      roofPitch: document.getElementById("roof-pitch").value,
-      roofComplexity: document.getElementById("roof-complexity").value,
-      material: document.getElementById("roofing-material").value,
-      materialQuality: document.getElementById("material-quality").value,
-      removalType: document.getElementById("old-roof-removal").value,
-      deckRepair: document.getElementById("roof-deck-repair").value,
+      roofType: DOM.roofType?.value || "",
+      roofSqFt: Number.parseInt(DOM.roofSqFt?.value || "0"),
+      roofPitch: DOM.roofPitch?.value || "",
+      roofComplexity: DOM.roofComplexity?.value || "",
+      material: DOM.material?.value || "",
+      materialQuality: DOM.materialQuality?.value || "",
+      removalType: DOM.removalType?.value || "",
+      deckRepair: DOM.deckRepair?.value || "",
       additionalComponents: {
-        "new-underlayment": document.getElementById("new-underlayment").checked,
-        "ice-water-shield": document.getElementById("ice-water-shield").checked,
-        "ridge-vent": document.getElementById("ridge-vent").checked,
-        "new-flashing": document.getElementById("new-flashing").checked,
-        "drip-edge": document.getElementById("drip-edge").checked,
-        "new-gutters": document.getElementById("new-gutters").checked,
+        "new-underlayment": DOM.newUnderlayment?.checked || false,
+        "ice-water-shield": DOM.iceWaterShield?.checked || false,
+        "ridge-vent": DOM.ridgeVent?.checked || false,
+        "new-flashing": DOM.newFlashing?.checked || false,
+        "drip-edge": DOM.dripEdge?.checked || false,
+        "new-gutters": DOM.newGutters?.checked || false,
       },
     }
   }
@@ -154,7 +229,7 @@ document.addEventListener("DOMContentLoaded", () => {
    */
   function calculateCosts(formValues) {
     // Get pricing data
-    const pricingData = getPricingData()
+    const pricingData = window.pricingData
 
     // Calculate material costs
     const materialCosts = calculateMaterialCosts(formValues, pricingData)
@@ -422,26 +497,22 @@ document.addEventListener("DOMContentLoaded", () => {
     window.calculationResults = costs
 
     // Update price display
-    document.getElementById("price-low").textContent = `$${costs.totalCosts.rounded.min.toLocaleString()}`
-    document.getElementById("price-high").textContent = `$${costs.totalCosts.rounded.max.toLocaleString()}`
+    DOM.priceLow.textContent = `$${costs.totalCosts.rounded.min.toLocaleString()}`
+    DOM.priceHigh.textContent = `$${costs.totalCosts.rounded.max.toLocaleString()}`
 
     // Update breakdown details
-    document.getElementById("materials-cost").textContent =
-      `$${Math.round(costs.materialCosts.total.min).toLocaleString()} - $${Math.round(costs.materialCosts.total.max).toLocaleString()}`
+    DOM.materialsCost.textContent = `$${Math.round(costs.materialCosts.total.min).toLocaleString()} - $${Math.round(costs.materialCosts.total.max).toLocaleString()}`
 
-    document.getElementById("labor-cost").textContent =
-      `$${Math.round(costs.laborCosts.total.min).toLocaleString()} - $${Math.round(costs.laborCosts.total.max).toLocaleString()}`
+    DOM.laborCost.textContent = `$${Math.round(costs.laborCosts.total.min).toLocaleString()} - $${Math.round(costs.laborCosts.total.max).toLocaleString()}`
 
     const removalAndDeckTotal = {
       min: costs.removalCosts.total.min + costs.deckRepairCosts.total.min,
       max: costs.removalCosts.total.max + costs.deckRepairCosts.total.max,
     }
 
-    document.getElementById("removal-cost").textContent =
-      `$${Math.round(removalAndDeckTotal.min).toLocaleString()} - $${Math.round(removalAndDeckTotal.max).toLocaleString()}`
+    DOM.removalCost.textContent = `$${Math.round(removalAndDeckTotal.min).toLocaleString()} - $${Math.round(removalAndDeckTotal.max).toLocaleString()}`
 
-    document.getElementById("components-cost").textContent =
-      `$${Math.round(costs.componentCosts.total.min).toLocaleString()} - $${Math.round(costs.componentCosts.total.max).toLocaleString()}`
+    DOM.componentsCost.textContent = `$${Math.round(costs.componentCosts.total.min).toLocaleString()} - $${Math.round(costs.componentCosts.total.max).toLocaleString()}`
 
     // Update summary details
     updateSummaryDetails(formValues)
@@ -466,10 +537,9 @@ document.addEventListener("DOMContentLoaded", () => {
       document.querySelector(`#material-quality option[value="${formValues.materialQuality}"]`)?.textContent ||
       formValues.materialQuality
 
-    document.getElementById("roof-details-summary").textContent =
-      `${roofTypeText}, ${formValues.roofSqFt} sq ft, ${roofPitchText} pitch, ${complexityText} complexity`
+    DOM.roofDetailsSummary.textContent = `${roofTypeText}, ${formValues.roofSqFt} sq ft, ${roofPitchText} pitch, ${complexityText} complexity`
 
-    document.getElementById("materials-summary").textContent = `${materialText}, ${qualityText} quality`
+    DOM.materialsSummary.textContent = `${materialText}, ${qualityText} quality`
   }
 
   /**
