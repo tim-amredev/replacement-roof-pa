@@ -1,63 +1,186 @@
-document.addEventListener("DOMContentLoaded", () => {
-  // Header scroll effect
+// Add these performance optimizations to the main.js file
+
+// Optimize image loading with lazy loading
+function initResponsiveImages() {
+  // Use native lazy loading if supported
+  if ("loading" in HTMLImageElement.prototype) {
+    const lazyImages = document.querySelectorAll("img[data-src]")
+    lazyImages.forEach((img) => {
+      img.src = img.dataset.src
+      if (img.dataset.srcset) {
+        img.srcset = img.dataset.srcset
+      }
+      img.removeAttribute("data-src")
+      img.removeAttribute("data-srcset")
+    })
+  } else {
+    // Fallback for browsers that don't support lazy loading
+    const lazyImageObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const lazyImage = entry.target
+          lazyImage.src = lazyImage.dataset.src
+          if (lazyImage.dataset.srcset) {
+            lazyImage.srcset = lazyImage.dataset.srcset
+          }
+          lazyImage.removeAttribute("data-src")
+          lazyImage.removeAttribute("data-srcset")
+          lazyImage.classList.add("loaded")
+          observer.unobserve(lazyImage)
+        }
+      })
+    })
+
+    const lazyImages = document.querySelectorAll("img[data-src]")
+    lazyImages.forEach((lazyImage) => {
+      lazyImageObserver.observe(lazyImage)
+    })
+  }
+}
+
+// Optimize animation on scroll with IntersectionObserver
+function initAnimateOnScroll() {
+  const animatedElements = document.querySelectorAll(".animate-on-scroll")
+
+  if (animatedElements.length === 0) return
+
+  const animateObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("fade-in")
+          // Once the animation is applied, we don't need to observe it anymore
+          animateObserver.unobserve(entry.target)
+        }
+      })
+    },
+    {
+      root: null,
+      rootMargin: "0px",
+      threshold: 0.1,
+    },
+  )
+
+  // Add animate-on-scroll class to common elements if not already present
+  const elementsToAnimate = document.querySelectorAll(
+    "section > .container > h2, .benefit-card, .team-member, .value-card, .certification, .faq-item",
+  )
+
+  elementsToAnimate.forEach((element) => {
+    if (!element.classList.contains("animate-on-scroll")) {
+      element.classList.add("animate-on-scroll")
+    }
+    animateObserver.observe(element)
+  })
+}
+
+// Optimize event listeners with debouncing
+function debounce(func, wait) {
+  let timeout
+  return function (...args) {
+    
+    clearTimeout(timeout)
+    timeout = setTimeout(() => func.apply(this, args), wait)
+  }
+}
+
+// Optimize scroll event handling
+function initScrollHandlers() {
   const header = document.querySelector(".site-header")
 
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 50) {
-      header.classList.add("scrolled")
-    } else {
-      header.classList.remove("scrolled")
-    }
-  })
+  if (header) {
+    // Use requestAnimationFrame for smoother scrolling effects
+    let lastScrollPosition = window.scrollY
+    let ticking = false
 
-  // Mobile menu toggle
-  const menuToggle = document.querySelector(".mobile-menu-toggle")
-  const mainNav = document.querySelector(".main-nav")
+    window.addEventListener("scroll", () => {
+      lastScrollPosition = window.scrollY
 
-  if (menuToggle && mainNav) {
-    menuToggle.addEventListener("click", () => {
-      menuToggle.classList.toggle("active")
-      mainNav.classList.toggle("active")
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          if (lastScrollPosition > 50) {
+            header.classList.add("scrolled")
+          } else {
+            header.classList.remove("scrolled")
+          }
+          ticking = false
+        })
+
+        ticking = true
+      }
+    })
+  }
+}
+
+// Optimize FAQ accordion for performance
+function initFAQs() {
+  const faqContainer = document.querySelector(".faq-container")
+
+  if (faqContainer) {
+    // Use event delegation instead of multiple event listeners
+    faqContainer.addEventListener("click", (e) => {
+      const question = e.target.closest(".faq-question")
+
+      if (question) {
+        const answer = question.nextElementSibling
+        const icon = question.querySelector(".faq-toggle i")
+
+        // Toggle active class
+        question.classList.toggle("active")
+        answer.classList.toggle("active")
+
+        // Toggle icon
+        if (answer.classList.contains("active")) {
+          icon.classList.remove("fa-plus")
+          icon.classList.add("fa-minus")
+        } else {
+          icon.classList.remove("fa-minus")
+          icon.classList.add("fa-plus")
+        }
+      }
+    })
+  }
+}
+
+// Initialize performance optimizations
+document.addEventListener("DOMContentLoaded", () => {
+  // Cache frequently accessed DOM elements
+  const DOM = {}
+  DOM.header = document.querySelector(".site-header")
+  DOM.menuToggle = document.querySelector(".mobile-menu-toggle")
+  DOM.mainNav = document.querySelector(".main-nav")
+  DOM.faqContainer = document.querySelector(".faq-container")
+
+  // Initialize scroll handlers with performance optimization
+  initScrollHandlers()
+
+  // Initialize mobile menu with event delegation
+  if (DOM.menuToggle && DOM.mainNav) {
+    DOM.menuToggle.addEventListener("click", () => {
+      DOM.menuToggle.classList.toggle("active")
+      DOM.mainNav.classList.toggle("active")
     })
   }
 
-  // FAQ accordion
-  const faqQuestions = document.querySelectorAll(".faq-question")
+  // Initialize FAQ accordions with event delegation
+  initFAQs()
 
-  faqQuestions.forEach((question) => {
-    question.addEventListener("click", () => {
-      const answer = question.nextElementSibling
-      const icon = question.querySelector(".faq-toggle i")
+  // Initialize smooth scrolling with performance optimization
+  document.body.addEventListener("click", (e) => {
+    const anchor = e.target.closest('a[href^="#"]')
 
-      // Toggle active class
-      question.classList.toggle("active")
-      answer.classList.toggle("active")
-
-      // Toggle icon
-      if (answer.classList.contains("active")) {
-        icon.classList.remove("fa-plus")
-        icon.classList.add("fa-minus")
-      } else {
-        icon.classList.remove("fa-minus")
-        icon.classList.add("fa-plus")
-      }
-    })
-  })
-
-  // Smooth scrolling for anchor links
-  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-    anchor.addEventListener("click", function (e) {
-      e.preventDefault()
-
-      const targetId = this.getAttribute("href")
+    if (anchor) {
+      const targetId = anchor.getAttribute("href")
       if (targetId === "#") return
 
       const targetElement = document.querySelector(targetId)
       if (targetElement) {
+        e.preventDefault()
+
         // Close mobile menu if open
-        if (menuToggle && menuToggle.classList.contains("active")) {
-          menuToggle.classList.remove("active")
-          mainNav.classList.remove("active")
+        if (DOM.menuToggle && DOM.menuToggle.classList.contains("active")) {
+          DOM.menuToggle.classList.remove("active")
+          DOM.mainNav.classList.remove("active")
         }
 
         window.scrollTo({
@@ -65,135 +188,31 @@ document.addEventListener("DOMContentLoaded", () => {
           behavior: "smooth",
         })
       }
-    })
+    }
   })
 
-  // Add animation classes on scroll
-  //const animatedElements = document.querySelectorAll(".animate-on-scroll")
+  // Initialize lazy loading for images
+  initResponsiveImages()
 
-  //const checkIfInView = () => {
-  //  const windowHeight = window.innerHeight
-  //  const windowTopPosition = window.scrollY
-  //  const windowBottomPosition = windowTopPosition + windowHeight
+  // Initialize animation on scroll with IntersectionObserver
+  initAnimateOnScroll()
 
-  //  animatedElements.forEach((element) => {
-  //    const elementHeight = element.offsetHeight
-  //    const elementTopPosition = element.offsetTop
-  //    const elementBottomPosition = elementTopPosition + elementHeight
-
-  //    // Check if element is in viewport
-  //    if (elementBottomPosition >= windowTopPosition && elementTopPosition <= windowBottomPosition) {
-  //      element.classList.add("fade-in")
-  //    }
-  //  })
-  //}
-
-  //window.addEventListener("scroll", checkIfInView)
-  //window.addEventListener("resize", checkIfInView)
-  //window.addEventListener("load", checkIfInView)
-
-  // Initialize tooltips
-  const tooltipIcons = document.querySelectorAll(".tooltip-icon")
-
-  tooltipIcons.forEach((icon) => {
-    const tooltip = icon.querySelector(".tooltip")
-
-    icon.addEventListener("mouseenter", () => {
-      tooltip.style.opacity = "1"
-      tooltip.style.visibility = "visible"
-    })
-
-    icon.addEventListener("mouseleave", () => {
-      tooltip.style.opacity = "0"
-      tooltip.style.visibility = "hidden"
-    })
-  })
-
-  // Current year for copyright
-  const yearElement = document.querySelector(".current-year")
-  if (yearElement) {
-    yearElement.textContent = new Date().getFullYear()
-  }
-
-  // Add Font Awesome for icons
+  // Add Font Awesome for icons - load asynchronously
   const fontAwesome = document.createElement("link")
   fontAwesome.rel = "stylesheet"
   fontAwesome.href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+  fontAwesome.media = "print"
+  fontAwesome.onload = function () {
+    this.media = "all"
+  }
   document.head.appendChild(fontAwesome)
 
-  // Logo fallback - try to load the logo with JavaScript as a fallback
-  window.addEventListener("load", () => {
-    const logoImg = document.querySelector(".logo-wrapper img")
-    if (logoImg) {
-      // Create a new image element
-      const newImg = new Image()
-      newImg.onload = function () {
-        // If it loads successfully, replace the existing image
-        logoImg.src = this.src
-        logoImg.style.display = "block"
-      }
-      newImg.onerror = () => {
-        // If it fails to load, use the background image fallback
-        logoImg.style.display = "none"
-      }
-      // Try loading the image
-      newImg.src =
-        "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Untitled%20design%20%2824%29-CM5D0lI7FMWRManB7DbdGfokTyocQg.png"
-    }
-  })
-
-  // Initialize animation on scroll for all pages
-  initAnimateOnScroll()
-
-  // Initialize accessible focus handling
+  // Initialize accessibility features
   initAccessibilityFeatures()
 
-  // Initialize responsive image loading
-  initResponsiveImages()
-
-  // Initialize consistent form validation
+  // Initialize form validation with performance optimization
   initFormValidation()
 })
-
-// Animation on scroll
-function initAnimateOnScroll() {
-  const animatedElements = document.querySelectorAll(".animate-on-scroll")
-
-  if (animatedElements.length === 0) return
-
-  const checkIfInView = () => {
-    const windowHeight = window.innerHeight
-    const windowTopPosition = window.scrollY
-    const windowBottomPosition = windowTopPosition + windowHeight
-
-    animatedElements.forEach((element) => {
-      const elementHeight = element.offsetHeight
-      const elementTopPosition = element.offsetTop
-      const elementBottomPosition = elementTopPosition + elementHeight
-
-      // Check if element is in viewport
-      if (elementBottomPosition >= windowTopPosition && elementTopPosition <= windowBottomPosition) {
-        element.classList.add("fade-in")
-      }
-    })
-  }
-
-  // Add animate-on-scroll class to common elements if not already present
-  const elementsToAnimate = document.querySelectorAll(
-    "section > .container > h2, .benefit-card, .team-member, .value-card, .certification, .faq-item",
-  )
-  elementsToAnimate.forEach((element) => {
-    if (!element.classList.contains("animate-on-scroll")) {
-      element.classList.add("animate-on-scroll")
-    }
-  })
-
-  window.addEventListener("scroll", checkIfInView)
-  window.addEventListener("resize", checkIfInView)
-
-  // Initial check
-  setTimeout(checkIfInView, 100)
-}
 
 // Accessibility features
 function initAccessibilityFeatures() {
@@ -225,23 +244,6 @@ function initAccessibilityFeatures() {
   images.forEach((img) => {
     img.setAttribute("alt", "")
   })
-}
-
-// Responsive image loading
-function initResponsiveImages() {
-  // Lazy load images that are not in the viewport
-  if ("loading" in HTMLImageElement.prototype) {
-    const images = document.querySelectorAll("img[data-src]")
-    images.forEach((img) => {
-      img.src = img.dataset.src
-      img.removeAttribute("data-src")
-    })
-  } else {
-    // Fallback for browsers that don't support lazy loading
-    const script = document.createElement("script")
-    script.src = "https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js"
-    document.body.appendChild(script)
-  }
 }
 
 // Form validation
