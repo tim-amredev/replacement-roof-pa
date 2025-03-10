@@ -17,7 +17,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const selectCards = document.querySelectorAll(".select-card")
     const materialCards = document.querySelectorAll(".material-card")
     const qualityOptions = document.querySelectorAll(".quality-option")
-    const regionMarkers = document.querySelectorAll(".region-marker")
 
     // Current step
     let currentStep = 1
@@ -25,18 +24,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Material base prices per square foot (2025 PA market rates - updated for accuracy)
     const materialBasePrices = {
-      "3-tab": { min: 3.75, max: 5.75 },
-      architectural: { min: 4.75, max: 7.75 },
-      "premium-architectural": { min: 6.25, max: 10.5 },
-      "metal-shingles": { min: 7.5, max: 12.5 },
-      "standing-seam": { min: 9.5, max: 15.75 },
+      asphalt: { min: 3.75, max: 5.75 },
+      metal: { min: 9.5, max: 15.75 },
       "cedar-shake": { min: 8.5, max: 14.5 },
-      "synthetic-slate": { min: 10.5, max: 18.5 },
-      "natural-slate": { min: 16.0, max: 32.0 },
-      "clay-tile": { min: 12.5, max: 26.0 },
-      "concrete-tile": { min: 10.5, max: 21.0 },
-      "tpo-membrane": { min: 5.75, max: 8.75 },
-      "epdm-rubber": { min: 5.25, max: 9.75 },
+      slate: { min: 16.0, max: 32.0 },
     }
 
     // Quality multipliers
@@ -154,6 +145,9 @@ document.addEventListener("DOMContentLoaded", () => {
       })
     })
 
+    // Remove the regionMarkers initialization and event listeners
+    const regionMarkers = document.querySelectorAll(".region-marker")
+
     // Initialize region markers
     regionMarkers.forEach((marker) => {
       marker.addEventListener("click", () => {
@@ -264,11 +258,8 @@ document.addEventListener("DOMContentLoaded", () => {
             isValid = false
           }
 
-          // Validate location
-          if (!document.getElementById("location").value) {
-            alert("Please select a Pennsylvania region to continue.")
-            isValid = false
-          }
+          // Set a default location for Pennsylvania
+          document.getElementById("location").value = "pennsylvania"
           break
       }
 
@@ -329,7 +320,9 @@ document.addEventListener("DOMContentLoaded", () => {
       const materialQuality = document.getElementById("material-quality").value
       const removalType = document.getElementById("old-roof-removal").value
       const deckRepair = document.getElementById("roof-deck-repair").value
-      const location = document.getElementById("location").value
+
+      // Set a standard location for all of PA
+      const location = "pennsylvania"
 
       // Get additional components
       const additionalComponents = {
@@ -356,8 +349,8 @@ document.addEventListener("DOMContentLoaded", () => {
       // Apply story multiplier
       const storyMultiplier = storyMultipliers[stories] || { min: 1.0, max: 1.0 }
 
-      // Apply regional multiplier
-      const regionMultiplier = regionMultipliers[location] || { min: 1.0, max: 1.0 }
+      // Use a standard regional multiplier for all of PA
+      const regionMultiplier = { min: 1.0, max: 1.0 }
 
       // Calculate material cost per square foot with all multipliers
       const materialCostPerSqFt = {
@@ -453,39 +446,39 @@ document.addEventListener("DOMContentLoaded", () => {
       if (materialsElement) {
         materialsElement.textContent = `$${Math.round(materialsCost.min).toLocaleString()} - $${Math.round(materialsCost.max).toLocaleString()}`
       }
-      
+
       if (laborElement) {
         laborElement.textContent = `$${Math.round(laborCost.min).toLocaleString()} - $${Math.round(laborCost.max).toLocaleString()}`
       }
-      
+
       if (removalElement) {
         removalElement.textContent = `$${Math.round(removalCost.min + deckRepairCost.min).toLocaleString()} - $${Math.round(removalCost.max + deckRepairCost.max).toLocaleString()}`
       }
-      
+
       if (componentsElement) {
         componentsElement.textContent = `$${Math.round(componentsTotal.min).toLocaleString()} - $${Math.round(componentsTotal.max).toLocaleString()}`
       }
 
       // Update chart segments if they exist
       const totalMin = materialsCost.min + laborCost.min + removalCost.min + deckRepairCost.min + componentsTotal.min
-      
+
       const materialsSegment = document.getElementById("materials-segment")
       const laborSegment = document.getElementById("labor-segment")
       const removalSegment = document.getElementById("removal-segment")
       const componentsSegment = document.getElementById("components-segment")
-      
+
       if (materialsSegment) {
         materialsSegment.style.width = `${(materialsCost.min / totalMin) * 100}%`
       }
-      
+
       if (laborSegment) {
         laborSegment.style.width = `${(laborCost.min / totalMin) * 100}%`
       }
-      
+
       if (removalSegment) {
         removalSegment.style.width = `${((removalCost.min + deckRepairCost.min) / totalMin) * 100}%`
       }
-      
+
       if (componentsSegment) {
         componentsSegment.style.width = `${(componentsTotal.min / totalMin) * 100}%`
       }
@@ -526,16 +519,10 @@ document.addEventListener("DOMContentLoaded", () => {
         materialsSummary.textContent = `${materialText}, ${qualityText} quality`
       }
 
-      let locationText = ""
-      regionMarkers.forEach((marker) => {
-        if (marker.getAttribute("data-region") === location) {
-          locationText = marker.querySelector(".marker-label").textContent
-        }
-      })
-      
+      // Set location summary to Pennsylvania
       const locationSummary = document.getElementById("location-summary")
       if (locationSummary) {
-        locationSummary.textContent = locationText
+        locationSummary.textContent = "Pennsylvania"
       }
 
       // Update hidden form fields for lead form
@@ -543,13 +530,14 @@ document.addEventListener("DOMContentLoaded", () => {
       const formRoofSize = document.getElementById("form-roof-size")
       const formMaterial = document.getElementById("form-material")
       const formEstimate = document.getElementById("form-estimate")
-      
+
       if (formRoofType) formRoofType.value = roofTypeText
       if (formRoofSize) formRoofSize.value = roofSqFt
       if (formMaterial) formMaterial.value = materialText
-      if (formEstimate) formEstimate.value = `$${roundedTotalCost.min.toLocaleString()} - $${roundedTotalCost.max.toLocaleString()}`
+      if (formEstimate)
+        formEstimate.value = `$${roundedTotalCost.min.toLocaleString()} - $${roundedTotalCost.max.toLocaleString()}`
 
-      console.log("Calculation complete. Total cost:", roundedTotalCost);
+      console.log("Calculation complete. Total cost:", roundedTotalCost)
     }
 
     // Reset calculator
@@ -627,3 +615,4 @@ document.addEventListener("DOMContentLoaded", () => {
   // Call this function when the page loads
   hideMaterialPrices()
 })
+
