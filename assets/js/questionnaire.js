@@ -10,35 +10,35 @@ document.addEventListener("DOMContentLoaded", () => {
     stories: "",
   }
 
-  // Price ranges per square foot (in USD)
+  // Price ranges per square foot (in USD) - updated for 2025 accuracy
   const pricingData = {
     asphalt: {
-      simple: { min: 3.5, max: 5.5 },
-      moderate: { min: 4.5, max: 6.5 },
-      complex: { min: 5.5, max: 7.5 },
+      simple: { min: 3.75, max: 5.75 },
+      moderate: { min: 4.75, max: 6.75 },
+      complex: { min: 5.75, max: 7.75 },
     },
     metal: {
-      simple: { min: 8.0, max: 12.0 },
-      moderate: { min: 10.0, max: 14.0 },
-      complex: { min: 12.0, max: 16.0 },
+      simple: { min: 8.5, max: 12.5 },
+      moderate: { min: 10.5, max: 14.5 },
+      complex: { min: 12.5, max: 16.5 },
     },
     tile: {
-      simple: { min: 10.0, max: 15.0 },
-      moderate: { min: 12.0, max: 18.0 },
-      complex: { min: 15.0, max: 22.0 },
+      simple: { min: 10.5, max: 15.5 },
+      moderate: { min: 12.5, max: 18.5 },
+      complex: { min: 15.5, max: 22.5 },
     },
     slate: {
-      simple: { min: 15.0, max: 25.0 },
-      moderate: { min: 18.0, max: 30.0 },
-      complex: { min: 22.0, max: 35.0 },
+      simple: { min: 16.0, max: 26.0 },
+      moderate: { min: 19.0, max: 31.0 },
+      complex: { min: 23.0, max: 36.0 },
     },
   }
 
   // Story multipliers
   const storyMultiplier = {
     1: 1,
-    2: 1.2,
-    3: 1.4,
+    2: 1.25,
+    3: 1.45,
   }
 
   // Roof type to pitch mapping
