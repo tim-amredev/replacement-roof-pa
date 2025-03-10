@@ -1,88 +1,91 @@
 ---
 layout: default
-title: Roof Questionnaire - Get Your Personalized Estimate
-description: Answer a few questions about your roof project to receive a customized estimate.
+title: Roof Remodeling Questionnaire
 ---
 
 <div class="questionnaire-container">
-  <div class="progress-tracker">
-    <div class="progress-line"></div>
+  <h1>Roof Remodeling Questionnaire</h1>
+  <p class="subtitle">Answer a few questions to get personalized recommendations and pricing</p>
+  
+  <div class="progress-container">
+    <div class="progress-bar"></div>
     <div class="progress-steps">
-      <div class="progress-step active">
-        <div class="step-number">1</div>
-        <div class="step-label">Basic Info</div>
+      <div class="step active">
+        <div class="step-circle">1</div>
+        <p>Basic Info</p>
       </div>
-      <div class="progress-step">
-        <div class="step-number">2</div>
-        <div class="step-label">Roof Details</div>
+      <div class="step">
+        <div class="step-circle">2</div>
+        <p>Roof Details</p>
       </div>
-      <div class="progress-step">
-        <div class="step-number">3</div>
-        <div class="step-label">Project Specifics</div>
+      <div class="step">
+        <div class="step-circle">3</div>
+        <p>Project Specifics</p>
       </div>
-      <div class="progress-step">
-        <div class="step-number">4</div>
-        <div class="step-label">Contact Info</div>
+      <div class="step">
+        <div class="step-circle">4</div>
+        <p>Contact Info</p>
       </div>
     </div>
   </div>
 
-  <div class="questionnaire-content">
-    <div class="section-icon">
-      <i class="fas fa-info-circle"></i>
-    </div>
-    <h1>Basic Information</h1>
-    <p class="section-subtitle">Tell us about your current roof and project goals</p>
-
-    <form id="roofQuestionnaireForm" class="questionnaire-form">
-      <div class="form-section">
-        <h2>1. What is your primary reason for considering a roof remodel?</h2>
-        <div class="options-grid">
-          <label class="option-card">
-            <input type="radio" name="primary_reason" value="repair_damage" class="sr-only">
-            <div class="card-content">
-              <div class="card-icon">
-                <i class="fas fa-tools"></i>
-              </div>
-              <h3>Repair damage</h3>
-            </div>
-          </label>
-
-          <label class="option-card">
-            <input type="radio" name="primary_reason" value="replace_aging" class="sr-only">
-            <div class="card-content">
-              <div class="card-icon">
-                <i class="fas fa-clock"></i>
-              </div>
-              <h3>Replace aging roof</h3>
-            </div>
-          </label>
-
-          <label class="option-card">
-            <input type="radio" name="primary_reason" value="improve_appearance" class="sr-only">
-            <div class="card-content">
-              <div class="card-icon">
-                <i class="fas fa-home"></i>
-              </div>
-              <h3>Improve home appearance</h3>
-            </div>
-          </label>
-
-          <label class="option-card">
-            <input type="radio" name="primary_reason" value="increase_efficiency" class="sr-only">
-            <div class="card-content">
-              <div class="card-icon">
-                <i class="fas fa-leaf"></i>
-              </div>
-              <h3>Increase energy efficiency</h3>
-            </div>
-          </label>
-        </div>
-      </div>
-
-      <div class="form-navigation">
-        <button type="button" class="btn btn-primary btn-large next-step">Continue to Roof Details</button>
-      </div>
-    </form>
+  <div class="section-indicator">
+    <i class="fas fa-info-circle"></i>
   </div>
+  
+  <h2>Basic Information</h2>
+  <p class="section-description">Tell us about your current roof and project goals</p>
+
+  <form id="roofQuestionnaireForm">
+    <div class="question-section">
+      <h3>1. What is your primary reason for considering a roof remodel?</h3>
+      
+      <div class="options-grid">
+        <label class="option-card">
+          <input type="radio" name="primary_reason" value="repair_damage" class="hidden-radio">
+          <div class="card-inner">
+            <div class="icon-container">
+              <i class="fas fa-tools"></i>
+            </div>
+            <p>Repair damage</p>
+          </div>
+        </label>
+        
+        <label class="option-card">
+          <input type="radio" name="primary_reason" value="replace_aging" class="hidden-radio">
+          <div class="card-inner">
+            <div class="icon-container">
+              <i class="fas fa-clock"></i>
+            </div>
+            <p>Replace aging roof</p>
+          </div>
+        </label>
+        
+        <label class="option-card">
+          <input type="radio" name="primary_reason" value="improve_appearance" class="hidden-radio">
+          <div class="card-inner">
+            <div class="icon-container">
+              <i class="fas fa-home"></i>
+            </div>
+            <p>Improve home appearance</p>
+          </div>
+        </label>
+        
+        <label class="option-card">
+          <input type="radio" name="primary_reason" value="increase_efficiency" class="hidden-radio">
+          <div class="card-inner">
+            <div class="icon-container">
+              <i class="fas fa-leaf"></i>
+            </div>
+            <p>Increase energy efficiency</p>
+          </div>
+        </label>
+      </div>
+    </div>
+    
+    <div class="form-navigation">
+      <button type="button" class="next-button">Continue to Roof Details</button>
+    </div>
+  </form>
 </div>
+
