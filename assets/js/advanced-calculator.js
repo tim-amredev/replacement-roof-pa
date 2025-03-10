@@ -1,4 +1,14 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // This will add smooth scrolling to the calculator section
+  const scrollToCalculatorBtn = document.querySelector(".scroll-to-calculator")
+  if (scrollToCalculatorBtn) {
+    scrollToCalculatorBtn.addEventListener("click", (e) => {
+      e.preventDefault()
+      const calculatorSection = document.getElementById("calculator-wizard")
+      calculatorSection.scrollIntoView({ behavior: "smooth" })
+    })
+  }
+
   // Initialize the calculator wizard
   // initCalculatorWizard()
   // initFAQs()
@@ -213,8 +223,118 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("roof-details-summary").textContent =
         `${roofTypeText}, ${roofSqFt} sq ft, ${roofPitchText} pitch, ${complexityText} complexity`
       document.getElementById("materials-summary").textContent = `${materialText}, ${qualityText} quality`
+
+      // Enhance the chart animation
+      function enhanceChartAnimation() {
+        // Add animation to chart segments
+        setTimeout(() => {
+          const materialsSegment = document.getElementById("materials-segment")
+          const laborSegment = document.getElementById("labor-segment")
+          const removalSegment = document.getElementById("removal-segment")
+          const componentsSegment = document.getElementById("components-segment")
+
+          if (materialsSegment) materialsSegment.style.width = "0%"
+          if (laborSegment) laborSegment.style.width = "0%"
+          if (removalSegment) removalSegment.style.width = "0%"
+          if (componentsSegment) componentsSegment.style.width = "0%"
+
+          setTimeout(() => {
+            const totalMin =
+              window.materialsCost?.min +
+                window.laborCost?.min +
+                window.removalCost?.min +
+                window.deckRepairCost?.min +
+                window.componentsTotal?.min || 100
+
+            if (materialsSegment)
+              materialsSegment.style.width = `${(window.materialsCost?.min / totalMin) * 100 || 40}%`
+            if (laborSegment) laborSegment.style.width = `${(window.laborCost?.min / totalMin) * 100 || 30}%`
+            if (removalSegment)
+              removalSegment.style.width = `${((window.removalCost?.min + window.deckRepairCost?.min) / totalMin) * 100 || 20}%`
+            if (componentsSegment)
+              componentsSegment.style.width = `${(window.componentsTotal?.min / totalMin) * 100 || 10}%`
+          }, 500)
+        }, 300)
+      }
     }
   }
+
+  // Add animations to the calculator elements
+  function addAnimations() {
+    // Animate the select cards when they appear
+    const selectCards = document.querySelectorAll(".select-card")
+    selectCards.forEach((card, index) => {
+      setTimeout(() => {
+        card.style.opacity = "0"
+        card.style.transform = "translateY(20px)"
+
+        setTimeout(
+          () => {
+            card.style.transition = "opacity 0.5s ease, transform 0.5s ease"
+            card.style.opacity = "1"
+            card.style.transform = "translateY(0)"
+          },
+          100 + index * 100,
+        )
+      }, 0)
+    })
+
+    // Animate the material cards when they appear
+    const materialCards = document.querySelectorAll(".material-card")
+    materialCards.forEach((materialCard, index) => {
+      setTimeout(() => {
+        materialCard.style.opacity = "0"
+        materialCard.style.transform = "translateY(20px)"
+
+        setTimeout(
+          () => {
+            materialCard.style.transition = "opacity 0.5s ease, transform 0.5s ease"
+            materialCard.style.opacity = "1"
+            materialCard.style.transform = "translateY(0)"
+          },
+          100 + index * 100,
+        )
+      }, 0)
+    })
+
+    // Animate the quality options when they appear
+    const qualityOptions = document.querySelectorAll(".quality-option")
+    qualityOptions.forEach((option, index) => {
+      setTimeout(() => {
+        option.style.opacity = "0"
+        option.style.transform = "translateY(20px)"
+
+        setTimeout(
+          () => {
+            option.style.transition = "opacity 0.5s ease, transform 0.5s ease"
+            option.style.opacity = "1"
+            option.style.transform = "translateY(0)"
+          },
+          100 + index * 100,
+        )
+      }, 0)
+    })
+  }
+
+  // Enhance the goToStep function to add animations
+  function enhanceGoToStep() {
+    // Find the original goToStep function
+    const originalGoToStep = window.goToStep
+
+    // If it exists, enhance it
+    if (typeof originalGoToStep === "function") {
+      window.goToStep = (step) => {
+        // Call the original function
+        originalGoToStep(step)
+
+        // Add animations
+        addAnimations()
+      }
+    }
+  }
+
+  // Try to enhance the goToStep function
+  enhanceGoToStep()
 
   // Hide material prices in the UI
   function hideMaterialPrices() {
@@ -268,5 +388,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Call this function when the page loads
   hideMaterialPrices()
+
+  // Call animations on page load
+  addAnimations()
 })
 
