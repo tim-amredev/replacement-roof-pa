@@ -53,7 +53,7 @@ description: Use our interactive roof replacement calculator to get accurate, up
 </div>
 </section>
 
-<section class="calculator-section">
+<section id="calculator-wizard" class="calculator-section">
   <div class="calculator-wizard-container">
   <div class="calculator-header">
     <div class="calculator-header-icon">
@@ -235,5 +235,6 @@ description: Use our interactive roof replacement calculator to get accurate, up
   </div>
 </section>
 
-<script src="{{ '/assets/js/advanced-calculator.js' | relative_url }}"></script>
+<!-- Load calculator script with defer attribute -->
+<script src="{{ '/assets/js/advanced-calculator.js' | relative_url }}" defer></script>
 
