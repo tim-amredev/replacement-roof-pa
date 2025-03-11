@@ -375,6 +375,7 @@ description: Complete our detailed roof remodeling questionnaire to receive a pe
             </div>
           </div>
           
+          <!-- Replace the roof type grid section in question #6 with this updated version -->
           <div class="form-group">
             <label>6. What is your roof structure type?</label>
             <div class="roof-type-grid">
@@ -412,42 +413,6 @@ description: Complete our detailed roof remodeling questionnaire to receive a pe
                     <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/victorian-with-mansard-roof-yocQXlJXm8vkHR53jc5RfUJJd78UD9.webp" alt="Mansard Roof">
                   </div>
                   <div class="roof-type-name">Mansard</div>
-                </label>
-              </div>
-              <div class="roof-type-card">
-                <input type="radio" id="type-gambrel" name="roof_structure" value="Gambrel">
-                <label for="type-gambrel">
-                  <div class="roof-type-image">
-                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/gambrel.jpg-52gx1PMLuRUcowaOyzg0LnArSDhF79.jpeg" alt="Gambrel Roof">
-                  </div>
-                  <div class="roof-type-name">Gambrel</div>
-                </label>
-              </div>
-              <div class="roof-type-card">
-                <input type="radio" id="type-aframe" name="roof_structure" value="A-frame">
-                <label for="type-aframe">
-                  <div class="roof-type-image">
-                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/aframe.jpg-52gx1PMLuRUcowaOyzg0LnArSDhF79.jpeg" alt="A-frame Roof">
-                  </div>
-                  <div class="roof-type-name">A-frame</div>
-                </label>
-              </div>
-              <div class="roof-type-card">
-                <input type="radio" id="type-shed" name="roof_structure" value="Shed">
-                <label for="type-shed">
-                  <div class="roof-type-image">
-                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/shed.jpg-52gx1PMLuRUcowaOyzg0LnArSDhF79.jpeg" alt="Shed Roof">
-                  </div>
-                  <div class="roof-type-name">Shed</div>
-                </label>
-              </div>
-              <div class="roof-type-card">
-                <input type="radio" id="type-combination" name="roof_structure" value="Combination of styles">
-                <label for="type-combination">
-                  <div class="roof-type-image">
-                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/combination.jpg-52gx1PMLuRUcowaOyzg0LnArSDhF79.jpeg" alt="Combination Roof">
-                  </div>
-                  <div class="roof-type-name">Combination</div>
                 </label>
               </div>
               <div class="roof-type-card">
@@ -1692,6 +1657,15 @@ textarea:focus {
   display: flex;
   align-items: flex-start;
   gap: 0.75rem;
+.other-container label {
+  margin-bottom: 0.5rem;
+}
+
+/* Privacy Consent */
+.privacy-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
   margin-bottom: 1.5rem;
 }
 
@@ -1757,7 +1731,7 @@ textarea:focus {
 
 /* Update the Roof Type Image styling */
 .roof-type-image {
-  height: 120px;
+  height: 150px;
   width: 100%;
   display: flex;
   align-items: center;
@@ -1771,6 +1745,17 @@ textarea:focus {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.roof-type-image i {
+  font-size: 4rem;
+  color: var(--teal-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background-color: var(--teal-highlight);
 }
 
 /* Add this to ensure consistent card heights */
