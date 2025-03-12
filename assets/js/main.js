@@ -10,14 +10,24 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   })
 
-  // Mobile menu toggle
+  // Mobile menu toggle with improved behavior
   const menuToggle = document.querySelector(".mobile-menu-toggle")
   const mainNav = document.querySelector(".main-nav")
+  const navLinks = document.querySelectorAll(".nav-links a")
 
   if (menuToggle && mainNav) {
-    menuToggle.addEventListener("click", () => {
+    menuToggle.addEventListener("click", (e) => {
+      e.stopPropagation() // Prevent document click from immediately closing menu
       menuToggle.classList.toggle("active")
       mainNav.classList.toggle("active")
+    })
+
+    // Close menu when a link is clicked
+    navLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        menuToggle.classList.remove("active")
+        mainNav.classList.remove("active")
+      })
     })
   }
 
@@ -33,6 +43,13 @@ document.addEventListener("DOMContentLoaded", () => {
       menuToggle.classList.remove("active")
     }
   })
+
+  // Prevent propagation from menu to document
+  if (mainNav) {
+    mainNav.addEventListener("click", (e) => {
+      e.stopPropagation()
+    })
+  }
 
   // FAQ accordion
   const faqQuestions = document.querySelectorAll(".faq-question")
@@ -166,6 +183,43 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Initialize consistent form validation
   initFormValidation()
+
+  // Improve form field focus on mobile
+  const formFields = document.querySelectorAll("input, select, textarea")
+  formFields.forEach((field) => {
+    field.addEventListener("focus", function () {
+      // Add a small delay to ensure the field is properly in view
+      setTimeout(() => {
+        // Get the field's position relative to the viewport
+        const rect = this.getBoundingClientRect()
+
+        // If the field is not fully visible, scroll it into view
+        if (rect.top < 0 || rect.bottom > window.innerHeight) {
+          this.scrollIntoView({ behavior: "smooth", block: "center" })
+        }
+      }, 300)
+    })
+  })
+
+  // Improve touch feedback for buttons
+  const buttons = document.querySelectorAll(".btn")
+  buttons.forEach((button) => {
+    button.addEventListener(
+      "touchstart",
+      function () {
+        this.style.transform = "scale(0.98)"
+      },
+      { passive: true },
+    )
+
+    button.addEventListener(
+      "touchend",
+      function () {
+        this.style.transform = "scale(1)"
+      },
+      { passive: true },
+    )
+  })
 })
 
 // Animation on scroll
