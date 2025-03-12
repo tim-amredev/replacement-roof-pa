@@ -1657,15 +1657,6 @@ textarea:focus {
   display: flex;
   align-items: flex-start;
   gap: 0.75rem;
-.other-container label {
-  margin-bottom: 0.5rem;
-}
-
-/* Privacy Consent */
-.privacy-consent {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.75rem;
   margin-bottom: 1.5rem;
 }
 
@@ -1798,5 +1789,343 @@ textarea:focus {
   height: 100%;
   background-color: var(--teal-highlight);
 }
+
+/* Mobile-optimized questionnaire styles */
+@media (max-width: 576px) {
+  .questionnaire-section {
+    padding: 3rem 0;
+  }
+  
+  .questionnaire-container {
+    border-radius: 8px;
+  }
+  
+  /* Improve progress indicator for mobile */
+  .progress-steps {
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+  }
+  
+  .progress-step {
+    width: auto;
+  }
+  
+  .progress-step:not(:last-child):after {
+    display: none;
+  }
+  
+  /* Improve form elements for touch */
+  .radio-card label,
+  .material-option label,
+  .new-material-card label,
+  .roof-type-card label,
+  .timeframe-option label,
+  .budget-option label,
+  .contact-method-option label {
+    padding: 1rem;
+  }
+  
+  .radio-card-icon,
+  .material-icon,
+  .timeframe-icon,
+  .contact-icon {
+    margin-bottom: 0.75rem;
+  }
+  
+  /* Improve image containers */
+  .new-material-image,
+  .roof-type-image {
+    height: 120px;
+  }
+  
+  /* Better spacing for mobile */
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  .step-header {
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Improve checkbox layout */
+  .checkbox-grid {
+    gap: 0.5rem;
+  }
+  
+  .checkbox-item {
+    padding: 0.5rem 0;
+  }
+  
+  /* Better navigation buttons */
+  .form-navigation {
+    margin-top: 2rem;
+  }
+  
+  .form-navigation button {
+    width: 100%;
+    padding: 0.85rem 1rem;
+  }
+  
+  /* Fix input fields for iOS */
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  select,
+  textarea {
+    font-size: 16px;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+}
 </style>
+
+<script>
+// Add this to the existing script to improve mobile questionnaire experience
+document.addEventListener("DOMContentLoaded", function() {
+  // Initialize the multi-step form
+  const form = document.getElementById('roof-questionnaire-form');
+  const steps = document.querySelectorAll('.form-step');
+  const progressFill = document.getElementById('progress-fill');
+  const progressSteps = document.querySelectorAll('.progress-step');
+  const nextButtons = document.querySelectorAll('.next-step');
+  const prevButtons = document.querySelectorAll('.prev-step');
+  
+  let currentStep = 1;
+  const totalSteps = steps.length;
+  
+  // Update progress bar
+  function updateProgress(step) {
+    progressFill.style.width = `${(step / totalSteps) * 100}%`;
+    
+    // Update step indicators
+    progressSteps.forEach(stepEl => {
+      const stepNum = parseInt(stepEl.getAttribute('data-step'));
+      if (stepNum < step) {
+        stepEl.classList.add('completed');
+        stepEl.classList.remove('active');
+      } else if (stepNum === step) {
+        stepEl.classList.add('active');
+        stepEl.classList.remove('completed');
+      } else {
+        stepEl.classList.remove('active', 'completed');
+      }
+    });
+  }
+  
+  // Go to specific step
+  function goToStep(step) {
+    // Hide all steps
+    steps.forEach(s => s.style.display = 'none');
+    
+    // Show the current step
+    steps[step - 1].style.display = 'block';
+    
+    // Update current step
+    currentStep = step;
+    
+    // Update progress
+    updateProgress(step);
+    
+    // Scroll to top of form
+    document.querySelector('.questionnaire-container').scrollIntoView({ behavior: 'smooth' });
+  }
+  
+  // Validate current step
+  function validateStep(step) {
+    const currentStepEl = steps[step - 1];
+    let isValid = true;
+    
+    // Check required fields
+    const requiredFields = currentStepEl.querySelectorAll('[required]');
+    requiredFields.forEach(field => {
+      if (field.type === 'radio') {
+        // For radio buttons, check if any in the group is checked
+        const name = field.name;
+        const checked = currentStepEl.querySelector(`input[name="${name}"]:checked`);
+        if (!checked) {
+          isValid = false;
+          // Find the label for this radio group
+          const label = currentStepEl.querySelector(`label[for="${field.id}"]`).closest('.form-group').querySelector('label');
+          alert(`Please select an option for: ${label.textContent}`);
+          return;
+        }
+      } else if (!field.value.trim()) {
+        isValid = false;
+        field.classList.add('invalid');
+        alert(`Please fill in the field: ${field.previousElementSibling.textContent}`);
+        return;
+      } else {
+        field.classList.remove('invalid');
+      }
+    });
+    
+    return isValid;
+  }
+  
+  // Next button click
+  nextButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      if (validateStep(currentStep)) {
+        goToStep(currentStep + 1);
+      }
+    });
+  });
+  
+  // Previous button click
+  prevButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      goToStep(currentStep - 1);
+    });
+  });
+  
+  // Handle "Other" options
+  document.getElementById('reason-other').addEventListener('change', function() {
+    document.querySelector('.other-reason-container').style.display = this.checked ? 'block' : 'none';
+  });
+  
+  document.getElementById('current-other').addEventListener('change', function() {
+    document.getElementById('other-current-material-container').style.display = this.checked ? 'block' : 'none';
+  });
+  
+  document.getElementById('new-other').addEventListener('change', function() {
+    document.getElementById('other-new-material-container').style.display = this.checked ? 'block' : 'none';
+  });
+  
+  document.getElementById('issue-other').addEventListener('change', function() {
+    document.getElementById('other-issue-container').style.display = this.checked ? 'block' : 'none';
+  });
+  
+  document.getElementById('feature-other').addEventListener('change', function() {
+    document.getElementById('other-feature-container').style.display = this.checked ? 'block' : 'none';
+  });
+  
+  // Handle referral source "Other" option
+  const referralSelect = document.querySelector('select[name="referral_source"]');
+  referralSelect.addEventListener('change', function() {
+    document.getElementById('other-referral-container').style.display = this.value === 'Other' ? 'block' : 'none';
+  });
+  
+  // Form submission
+  form.addEventListener('submit', function(e) {
+    if (!validateStep(currentStep)) {
+      e.preventDefault();
+      return false;
+    }
+    return true;
+  });
+  
+  // Initialize the form
+  goToStep(1);
+});
+</script>
+
+<script>
+// Add this to the existing script to improve mobile questionnaire experience
+document.addEventListener("DOMContentLoaded", function() {
+  // Existing questionnaire initialization code...
+  
+  // Add smooth scrolling when changing steps
+  function goToStep(step) {
+    // Hide all steps
+    document.querySelectorAll('.form-step').forEach(s => {
+      s.style.display = 'none';
+    });
+    
+    // Show requested step
+    document.getElementById(`step-${step}`).style.display = 'block';
+    
+    // Update current step
+    currentStep = step;
+    
+    // Update progress bar
+    updateProgress(step);
+    
+    // Scroll to top of questionnaire with a small delay to ensure rendering
+    setTimeout(() => {
+      const container = document.querySelector('.questionnaire-container');
+      if (container) {
+        // On mobile, scroll with a slight offset to account for sticky header
+        if (window.innerWidth <= 768) {
+          window.scrollTo({
+            top: container.offsetTop - 70,
+            behavior: 'smooth'
+          });
+        } else {
+          container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    }, 100);
+  }
+  
+  // Improve form validation feedback
+  function validateStep(step) {
+    const currentStepEl = document.getElementById(`step-${step}`);
+    let isValid = true;
+    
+    // Remove any existing error messages
+    const existingErrors = currentStepEl.querySelectorAll('.error-message');
+    existingErrors.forEach(error => error.remove());
+    
+    // Check required fields
+    const requiredFields = currentStepEl.querySelectorAll('[required]');
+    requiredFields.forEach(field => {
+      field.classList.remove('invalid');
+      
+      if (field.type === 'radio') {
+        // For radio buttons, check if any in the group is checked
+        const name = field.name;
+        const checked = currentStepEl.querySelector(`input[name="${name}"]:checked`);
+        if (!checked) {
+          isValid = false;
+          
+          // Find the form group containing this radio
+          const formGroup = field.closest('.form-group');
+          if (formGroup && !formGroup.querySelector('.error-message')) {
+            const errorMsg = document.createElement('div');
+            errorMsg.className = 'error-message';
+            errorMsg.textContent = 'Please select an option';
+            errorMsg.style.color = '#e74c3c';
+            errorMsg.style.fontSize = '0.85rem';
+            errorMsg.style.marginTop = '0.5rem';
+            formGroup.appendChild(errorMsg);
+          }
+        }
+      } else if (!field.value.trim()) {
+        isValid = false;
+        field.classList.add('invalid');
+        
+        // Add error message after the field
+        const errorMsg = document.createElement('div');
+        errorMsg.className = 'error-message';
+        errorMsg.textContent = 'This field is required';
+        errorMsg.style.color = '#e74c3c';
+        errorMsg.style.fontSize = '0.85rem';
+        errorMsg.style.marginTop = '0.25rem';
+        field.parentNode.insertBefore(errorMsg, field.nextSibling);
+        
+        // Focus the first invalid field
+        if (!currentStepEl.querySelector(':focus')) {
+          field.focus();
+        }
+      }
+    });
+    
+    return isValid;
+  }
+  
+  // Improve touch feedback for form elements
+  const touchElements = document.querySelectorAll('.radio-card label, .material-option label, .new-material-card label, .roof-type-card label, .timeframe-option label, .budget-option label, .contact-method-option label');
+  
+  touchElements.forEach(element => {
+    element.addEventListener('touchstart', function() {
+      this.style.transform = 'scale(0.98)';
+      this.style.transition = 'transform 0.1s ease';
+    }, { passive: true });
+    
+    element.addEventListener('touchend', function() {
+      this.style.transform = 'scale(1)';
+    }, { passive: true });
+  });
+});
+</script>
 
