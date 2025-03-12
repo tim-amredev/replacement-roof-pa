@@ -235,13 +235,17 @@
     transform: translateY(-50%);
     z-index: 101;
     padding: 10px;
+    width: 45px;
+    height: 45px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
   }
   
   .mobile-menu-toggle span {
     display: block;
     width: 25px;
     height: 3px;
-    margin: 5px 0;
+    margin: 5px auto;
     background-color: white;
     transition: all 0.3s ease;
   }
@@ -263,6 +267,10 @@
     width: 100%;
     order: 3;
     margin-top: 1rem;
+    background-color: rgba(11, 77, 79, 0.95);
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   }
   
   .main-nav.active {
@@ -296,35 +304,37 @@
 document.addEventListener('DOMContentLoaded', function() {
   const menuToggle = document.querySelector('.mobile-menu-toggle');
   const mainNav = document.querySelector('.main-nav');
-  const navLinks = document.querySelectorAll('.nav-links a');
   
   if (menuToggle && mainNav) {
-    menuToggle.addEventListener('click', function() {
-      menuToggle.classList.toggle('active');
-      mainNav.classList.toggle('active');
+    // Add a more direct click handler with logging
+    menuToggle.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      console.log('Mobile menu toggle clicked');
+      
+      // Force toggle the active classes
+      if (mainNav.classList.contains('active')) {
+        mainNav.classList.remove('active');
+        menuToggle.classList.remove('active');
+      } else {
+        mainNav.classList.add('active');
+        menuToggle.classList.add('active');
+      }
     });
     
     // Close menu when a link is clicked
+    const navLinks = document.querySelectorAll('.nav-links a');
     navLinks.forEach(link => {
       link.addEventListener('click', function() {
-        menuToggle.classList.remove('active');
         mainNav.classList.remove('active');
+        menuToggle.classList.remove('active');
       });
-    });
-    
-    // Close menu when clicking outside
-    document.addEventListener('click', function(e) {
-      if (mainNav.classList.contains('active') && 
-          !mainNav.contains(e.target) && 
-          !menuToggle.contains(e.target)) {
-        menuToggle.classList.remove('active');
-        mainNav.classList.remove('active');
-      }
     });
   }
   
   // Add active class to current page link
   const currentPath = window.location.pathname;
+  const navLinks = document.querySelectorAll('.nav-links a');
   navLinks.forEach(link => {
     const linkPath = link.getAttribute('href');
     if (currentPath === linkPath || 
