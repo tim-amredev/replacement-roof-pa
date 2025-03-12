@@ -13,20 +13,30 @@ document.addEventListener("DOMContentLoaded", () => {
   // Mobile menu toggle with improved behavior
   const menuToggle = document.querySelector(".mobile-menu-toggle")
   const mainNav = document.querySelector(".main-nav")
-  const navLinks = document.querySelectorAll(".nav-links a")
 
   if (menuToggle && mainNav) {
+    // Add a more direct click handler
     menuToggle.addEventListener("click", (e) => {
-      e.stopPropagation() // Prevent document click from immediately closing menu
-      menuToggle.classList.toggle("active")
-      mainNav.classList.toggle("active")
+      e.preventDefault()
+      e.stopPropagation()
+      console.log("Mobile menu toggle clicked from main.js")
+
+      // Force toggle the active classes
+      if (mainNav.classList.contains("active")) {
+        mainNav.classList.remove("active")
+        menuToggle.classList.remove("active")
+      } else {
+        mainNav.classList.add("active")
+        menuToggle.classList.add("active")
+      }
     })
 
     // Close menu when a link is clicked
+    const navLinks = document.querySelectorAll(".nav-links a")
     navLinks.forEach((link) => {
       link.addEventListener("click", () => {
-        menuToggle.classList.remove("active")
         mainNav.classList.remove("active")
+        menuToggle.classList.remove("active")
       })
     })
   }
