@@ -62,6 +62,31 @@
      <script src="{{ site.baseurl }}/assets/js/{{ js_file }}.js"></script>
    {% endfor %}
  {% endif %}
+
+ <!-- Mobile menu fix script -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Ensure mobile menu toggle works
+    const menuToggle = document.querySelector('.mobile-menu-toggle');
+    const mainNav = document.querySelector('.main-nav');
+    
+    if (menuToggle && mainNav) {
+      menuToggle.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        // Force toggle the active classes
+        if (mainNav.classList.contains('active')) {
+          mainNav.classList.remove('active');
+          menuToggle.classList.remove('active');
+        } else {
+          mainNav.classList.add('active');
+          menuToggle.classList.add('active');
+        }
+      });
+    }
+  });
+</script>
 </body>
 </html>
 
