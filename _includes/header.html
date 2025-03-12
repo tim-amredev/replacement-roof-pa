@@ -44,7 +44,7 @@
     <div class="header-contact">
       <a href="{{ site.baseurl }}/roof-questionnaire" class="btn btn-primary">Free Estimate</a>
     </div>
-    <!-- Add this mobile menu toggle button to the header-content div -->
+    <!-- Improve the mobile menu toggle button -->
     <div class="mobile-menu-toggle">
       <span></span>
       <span></span>
@@ -291,18 +291,47 @@
 }
 </style>
 
-<!-- Add this JavaScript at the end of the file -->
+<!-- Add this JavaScript at the end of the file to improve mobile menu behavior -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   const menuToggle = document.querySelector('.mobile-menu-toggle');
   const mainNav = document.querySelector('.main-nav');
+  const navLinks = document.querySelectorAll('.nav-links a');
   
   if (menuToggle && mainNav) {
     menuToggle.addEventListener('click', function() {
       menuToggle.classList.toggle('active');
       mainNav.classList.toggle('active');
     });
+    
+    // Close menu when a link is clicked
+    navLinks.forEach(link => {
+      link.addEventListener('click', function() {
+        menuToggle.classList.remove('active');
+        mainNav.classList.remove('active');
+      });
+    });
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', function(e) {
+      if (mainNav.classList.contains('active') && 
+          !mainNav.contains(e.target) && 
+          !menuToggle.contains(e.target)) {
+        menuToggle.classList.remove('active');
+        mainNav.classList.remove('active');
+      }
+    });
   }
+  
+  // Add active class to current page link
+  const currentPath = window.location.pathname;
+  navLinks.forEach(link => {
+    const linkPath = link.getAttribute('href');
+    if (currentPath === linkPath || 
+        (linkPath !== '/' && currentPath.startsWith(linkPath))) {
+      link.classList.add('active');
+    }
+  });
 });
 </script>
 
