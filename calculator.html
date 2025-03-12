@@ -235,6 +235,166 @@ description: Use our interactive roof replacement calculator to get accurate, up
   </div>
 </section>
 
+<!-- Improve the calculator for mobile devices -->
+<style>
+/* Mobile-optimized calculator styles */
+@media (max-width: 576px) {
+  .calculator-section {
+    padding: 3rem 0;
+  }
+  
+  .calculator-wizard-container {
+    border-radius: 8px;
+  }
+  
+  .calculator-header {
+    padding: 1.5rem;
+  }
+  
+  .calculator-header-icon {
+    margin-bottom: 1rem;
+  }
+  
+  .calculator-form {
+    padding: 1.25rem;
+  }
+  
+  /* Improve form elements for touch */
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 0.85rem 1rem;
+    font-size: 16px;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  
+  .checkbox-group {
+    grid-template-columns: 1fr;
+  }
+  
+  .checkbox-item {
+    padding: 0.5rem 0;
+  }
+  
+  /* Better spacing for mobile */
+  .form-group {
+    margin-bottom: 1.25rem;
+  }
+  
+  /* Improve results display */
+  #results-container {
+    padding: 1.25rem;
+  }
+  
+  .price-display {
+    padding: 1.5rem;
+  }
+  
+  .price-range {
+    font-size: 1.75rem;
+  }
+  
+  .results-breakdown {
+    padding: 1.25rem;
+  }
+  
+  .breakdown-item {
+    padding: 0.5rem 0;
+  }
+  
+  /* Better button */
+  #calculate-button {
+    padding: 0.85rem 1rem;
+  }
+}
+</style>
+
+<script>
+// Add this to improve mobile calculator experience
+document.addEventListener('DOMContentLoaded', function() {
+  // Improve form field focus on mobile
+  const formFields = document.querySelectorAll('#calculator-form input, #calculator-form select');
+  formFields.forEach(field => {
+    field.addEventListener('focus', function() {
+      // Add a small delay to ensure the field is properly in view
+      setTimeout(() => {
+        // Get the field's position relative to the viewport
+        const rect = this.getBoundingClientRect();
+        
+        // If the field is not fully visible, scroll it into view
+        if (rect.top < 0 || rect.bottom > window.innerHeight) {
+          this.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }, 300);
+    });
+  });
+  
+  // Improve validation feedback
+  const calculateButton = document.getElementById('calculate-button');
+  if (calculateButton) {
+    calculateButton.addEventListener('click', function() {
+      // Remove any existing error messages
+      const existingErrors = document.querySelectorAll('.error-message');
+      existingErrors.forEach(error => error.remove());
+      
+      // Check required fields
+      const requiredFields = document.querySelectorAll('#calculator-form [required]');
+      let isValid = true;
+      
+      requiredFields.forEach(field => {
+        field.classList.remove('invalid');
+        
+        if (!field.value) {
+          isValid = false;
+          field.classList.add('invalid');
+          
+          // Add error message after the field
+          const errorMsg = document.createElement('div');
+          errorMsg.className = 'error-message';
+          errorMsg.textContent = 'This field is required';
+          errorMsg.style.color = '#e74c3c';
+          errorMsg.style.fontSize = '0.85rem';
+          errorMsg.style.marginTop = '0.25rem';
+          field.parentNode.insertBefore(errorMsg, field.nextSibling);
+          
+          // Focus the first invalid field
+          if (!document.querySelector(':focus')) {
+            field.focus();
+          }
+        }
+      });
+      
+      if (isValid) {
+        // If valid, ensure results are visible on mobile
+        const resultsContainer = document.getElementById('results-container');
+        if (resultsContainer) {
+          resultsContainer.style.display = 'block';
+          
+          // Scroll to results with a slight delay to ensure rendering
+          setTimeout(() => {
+            resultsContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 100);
+        }
+      }
+    });
+  }
+  
+  // Improve touch feedback for buttons
+  const button = document.getElementById('calculate-button');
+  if (button) {
+    button.addEventListener('touchstart', function() {
+      this.style.transform = 'scale(0.98)';
+      this.style.transition = 'transform 0.1s ease';
+    }, { passive: true });
+    
+    button.addEventListener('touchend', function() {
+      this.style.transform = 'scale(1)';
+    }, { passive: true });
+  }
+});
+</script>
+
 <!-- Load calculator script with defer attribute -->
 <script src="{{ '/assets/js/advanced-calculator.js' | relative_url }}" defer></script>
 
