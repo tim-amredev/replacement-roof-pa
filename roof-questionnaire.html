@@ -300,7 +300,7 @@ description: Complete our detailed roof remodeling questionnaire to receive a pe
                 <input type="radio" id="new-asphalt" name="new_material" value="Asphalt shingles" required>
                 <label for="new-asphalt">
                   <div class="new-material-image">
-                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/asphalt.jpg-Cxswa5bT2cdjlGb8K59lxHupaRAZtr.jpeg" alt="Asphalt Shingles">
+                    <img src="/placeholder.svg?height=180&width=320" alt="Asphalt Shingles" loading="lazy">
                   </div>
                   <div class="new-material-content">
                     <h4>Asphalt Shingles</h4>
@@ -312,7 +312,7 @@ description: Complete our detailed roof remodeling questionnaire to receive a pe
                 <input type="radio" id="new-metal" name="new_material" value="Metal roofing">
                 <label for="new-metal">
                   <div class="new-material-image">
-                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/metal.jpg-ZKqyANws0RcXueIMWWAn5VwQAG8UaK.jpeg" alt="Metal Roofing">
+                    <img src="/placeholder.svg?height=180&width=320" alt="Metal Roofing" loading="lazy">
                   </div>
                   <div class="new-material-content">
                     <h4>Metal Roofing</h4>
@@ -324,7 +324,7 @@ description: Complete our detailed roof remodeling questionnaire to receive a pe
                 <input type="radio" id="new-wood" name="new_material" value="Wood shingles or shakes">
                 <label for="new-wood">
                   <div class="new-material-image">
-                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/wood.jpg-GpNaqkBCASl7gKKgl7Fq0ItAu8PLBB.jpeg" alt="Cedar/Wood">
+                    <img src="/placeholder.svg?height=180&width=320" alt="Cedar/Wood" loading="lazy">
                   </div>
                   <div class="new-material-content">
                     <h4>Cedar/Wood</h4>
@@ -336,7 +336,7 @@ description: Complete our detailed roof remodeling questionnaire to receive a pe
                 <input type="radio" id="new-slate" name="new_material" value="Slate">
                 <label for="new-slate">
                   <div class="new-material-image">
-                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/slate.jpg-QSha914hybf8CW4YYtwBA8lR2MDGpq.jpeg" alt="Slate">
+                    <img src="/placeholder.svg?height=180&width=320" alt="Slate" loading="lazy">
                   </div>
                   <div class="new-material-content">
                     <h4>Slate</h4>
@@ -383,7 +383,7 @@ description: Complete our detailed roof remodeling questionnaire to receive a pe
                 <input type="radio" id="type-gabled" name="roof_structure" value="Gabled" required>
                 <label for="type-gabled">
                   <div class="roof-type-image">
-                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/gable.jpg-C5SsrZ9pdinWDm14AiBrcDQDkW9Tpg.jpeg" alt="Gabled Roof">
+                    <img src="/placeholder.svg?height=150&width=200" alt="Gabled Roof" loading="lazy">
                   </div>
                   <div class="roof-type-name">Gabled</div>
                 </label>
@@ -392,7 +392,7 @@ description: Complete our detailed roof remodeling questionnaire to receive a pe
                 <input type="radio" id="type-hip" name="roof_structure" value="Hip">
                 <label for="type-hip">
                   <div class="roof-type-image">
-                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/hip.jpg-92dnOI6TA9eFmSq60owrGplfhXlaFG.jpeg" alt="Hip Roof">
+                    <img src="/placeholder.svg?height=150&width=200" alt="Hip Roof" loading="lazy">
                   </div>
                   <div class="roof-type-name">Hip</div>
                 </label>
@@ -401,7 +401,7 @@ description: Complete our detailed roof remodeling questionnaire to receive a pe
                 <input type="radio" id="type-flat" name="roof_structure" value="Flat/low slope">
                 <label for="type-flat">
                   <div class="roof-type-image">
-                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/flat.jpg-o7yWtaOgFKAn8uq7X4Rqv5c7UdfGiO.jpeg" alt="Flat Roof">
+                    <img src="/placeholder.svg?height=150&width=200" alt="Flat Roof" loading="lazy">
                   </div>
                   <div class="roof-type-name">Flat/Low Slope</div>
                 </label>
@@ -410,7 +410,7 @@ description: Complete our detailed roof remodeling questionnaire to receive a pe
                 <input type="radio" id="type-mansard" name="roof_structure" value="Mansard">
                 <label for="type-mansard">
                   <div class="roof-type-image">
-                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/victorian-with-mansard-roof-yocQXlJXm8vkHR53jc5RfUJJd78UD9.webp" alt="Mansard Roof">
+                    <img src="/placeholder.svg?height=150&width=200" alt="Mansard Roof" loading="lazy">
                   </div>
                   <div class="roof-type-name">Mansard</div>
                 </label>
@@ -1287,14 +1287,6 @@ document.addEventListener("DOMContentLoaded", function() {
   position: relative;
 }
 
-.new-material-card input[type  1fr));
-  gap: 1.5rem;
-}
-
-.new-material-card {
-  position: relative;
-}
-
 .new-material-card input[type="radio"] {
   position: absolute;
   opacity: 0;
@@ -2128,4 +2120,631 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 });
 </script>
+
+<style>
+/* Questionnaire Styles */
+.questionnaire-page-header {
+  background-color: var(--teal-medium);
+  background-image: linear-gradient(135deg, var(--teal-medium) 0%, var(--teal-accent) 100%);
+  padding: 4rem 0;
+  color: white;
+  text-align: center;
+}
+
+.questionnaire-section {
+  padding: 5rem 0;
+  background-color: var(--teal-highlight);
+  background-image: linear-gradient(135deg, rgba(224, 242, 241, 0.8) 0%, rgba(255, 255, 255, 0.8) 100%);
+}
+
+.questionnaire-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+  padding: 2rem;
+}
+
+/* Progress Bar */
+.progress-container {
+  margin-bottom: 2rem;
+}
+
+.progress-bar {
+  height: 8px;
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  margin-bottom: 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-fill {
+  position: absolute;
+  height: 100%;
+  background-color: var(--teal-accent);
+  background-image: linear-gradient(90deg, var(--teal-accent), var(--teal-accent-light));
+  width: 25%; /* Start at 25% for first step */
+  transition: width 0.5s ease;
+  border-radius: 4px;
+}
+
+.progress-steps {
+  display: flex;
+  justify-content: space-between;
+}
+
+.progress-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  width: 25%;
+}
+
+.progress-step:not(:last-child):after {
+  content: "";
+  position: absolute;
+  top: 15px;
+  left: 60%;
+  width: 80%;
+  height: 2px;
+  background-color: #e0e0e0;
+  z-index: 0;
+}
+
+.progress-step.active:not(:last-child):after {
+  background-color: var(--teal-accent);
+}
+
+.step-number {
+  width: 30px;
+  height: 30px;
+  background-color: #e0e0e0;
+  color: #666;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s ease;
+}
+
+.progress-step.active .step-number {
+  background-color: var(--teal-accent);
+  color: white;
+  box-shadow: 0 0 0 3px rgba(50, 160, 168, 0.2);
+}
+
+.progress-step.completed .step-number {
+  background-color: #2ecc71;
+  color: white;
+}
+
+.step-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #666;
+  transition: color 0.3s ease;
+}
+
+.progress-step.active .step-label {
+  color: var(--teal-accent);
+}
+
+/* Form Steps */
+.form-step {
+  display: none;
+}
+
+.form-step.active {
+  display: block;
+}
+
+.step-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.step-icon {
+  font-size: 2rem;
+  color: var(--teal-accent);
+  margin-bottom: 1rem;
+  display: inline-block;
+  background-color: var(--teal-highlight);
+  width: 70px;
+  height: 70px;
+  line-height: 70px;
+  border-radius: 50%;
+}
+
+.step-header h2 {
+  margin-bottom: 0.5rem;
+  color: var(--teal-medium);
+}
+
+.step-header p {
+  margin-bottom: 0;
+  color: var(--secondary-color);
+}
+
+.form-section h3 {
+  margin: 2rem 0 1.5rem;
+  color: var(--teal-medium);
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.75rem;
+}
+
+/* Form Elements */
+.form-group {
+  margin-bottom: 2rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  color: var(--teal-medium);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Radio Cards */
+.radio-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.radio-card {
+  position: relative;
+}
+
+.radio-card input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.radio-card label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 0;
+  height: 100%;
+}
+
+.radio-card input[type="radio"]:checked + label {
+  border-color: var(--teal-accent);
+  background-color: rgba(50, 160, 168, 0.05);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+.radio-card-icon {
+  font-size: 2rem;
+  color: var(--teal-accent);
+  margin-bottom: 1rem;
+}
+
+.radio-card-text {
+  text-align: center;
+  font-weight: 600;
+  color: var(--teal-medium);
+}
+
+/* Select Group */
+.select-group {
+  position: relative;
+}
+
+.select-group select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 1rem;
+  appearance: none;
+  background-color: white;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.select-group select:focus {
+  outline: none;
+  border-color: var(--teal-accent);
+  box-shadow: 0 0 0 3px rgba(50, 160, 168, 0.2);
+}
+
+.select-icon {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: var(--teal-accent);
+}
+
+/* Material Options */
+.material-options {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .material-options {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.material-option {
+  position: relative;
+}
+
+.material-option input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.material-option label {
+  display: flex;
+  align-items: center;
+  padding: 1.25rem;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 0;
+  background-color: white;
+}
+
+.material-option input[type="radio"]:checked + label {
+  border-color: var(--teal-accent);
+  background-color: rgba(50, 160, 168, 0.05);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+.material-icon {
+  font-size: 1.5rem;
+  color: var(--teal-accent);
+  margin-right: 1rem;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--teal-highlight);
+  border-radius: 50%;
+}
+
+.material-info {
+  flex: 1;
+}
+
+.material-name {
+  font-weight: 600;
+  color: var(--teal-medium);
+  margin-bottom: 0.25rem;
+}
+
+.material-desc {
+  font-size: 0.85rem;
+  color: var(--secondary-color);
+}
+
+/* New Material Grid */
+.new-material-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.new-material-card {
+  position: relative;
+}
+
+.new-material-card input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.new-material-card label {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 0;
+  background-color: white;
+  overflow: hidden;
+  height: 100%;
+}
+
+.new-material-card input[type="radio"]:checked + label {
+  border-color: var(--teal-accent);
+  background-color: rgba(50, 160, 168, 0.05);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+.new-material-image {
+  height: 150px;
+  overflow: hidden;
+}
+
+.new-material-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.new-material-image i {
+  font-size: 4rem;
+  color: var(--teal-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background-color: var(--teal-highlight);
+}
+
+.new-material-card:hover .new-material-image img {
+  transform: scale(1.05);
+}
+
+.new-material-content {
+  padding: 1.25rem;
+}
+
+.new-material-content h4 {
+  margin-bottom: 0.5rem;
+  color: var(--teal-medium);
+  font-size: 1.1rem;
+}
+
+.new-material-content p {
+  margin-bottom: 0;
+  font-size: 0.9rem;
+  color: var(--secondary-color);
+}
+
+/* Roof Type Grid */
+.roof-type-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 1.5rem;
+}
+
+.roof-type-card {
+  position: relative;
+}
+
+.roof-type-card input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.roof-type-card label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 0;
+  background-color: white;
+}
+
+.roof-type-card input[type="radio"]:checked + label {
+  border-color: var(--teal-accent);
+  background-color: rgba(50, 160, 168, 0.05);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+.roof-type-image {
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.roof-type-image img {
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.roof-type-image i {
+  font-size: 3rem;
+  color: var(--teal-accent);
+}
+
+.roof-type-name {
+  text-align: center;
+  font-weight: 600;
+  color: var(--teal-medium);
+}
+
+/* Checkbox Grid */
+.checkbox-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
+
+@media (min-width: 576px) {
+  .checkbox-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 992px) {
+  .checkbox-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.checkbox-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.checkbox-item input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--teal-accent);
+}
+
+.checkbox-item label {
+  margin-bottom: 0;
+  font-weight: normal;
+}
+
+/* Timeframe Options */
+.timeframe-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1rem;
+}
+
+.timeframe-option {
+  position: relative;
+}
+
+.timeframe-option input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.timeframe-option label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 0;
+  background-color: white;
+}
+
+.timeframe-option input[type="radio"]:checked + label {
+  border-color: var(--teal-accent);
+  background-color: rgba(50, 160, 168, 0.05);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+.timeframe-icon {
+  font-size: 2rem;
+  color: var(--teal-accent);
+  margin-bottom: 1rem;
+}
+
+.timeframe-text {
+  text-align: center;
+  font-weight: 600;
+  color: var(--teal-medium);
+}
+
+/* Budget Options */
+.budget-options {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .budget-options {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.budget-option {
+  position: relative;
+}
+
+.budget-option input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.budget-option label {
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 0;
+  background-color: white;
+}
+
+.budget-option input[type="radio"]:checked + label {
+  border-color: var(--teal-accent);
+  background-color: rgba(50, 160, 168, 0.05);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+.budget-amount {
+  font-weight: 700;
+  color: var(--teal-medium);
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.budget-desc {
+  font-size: 0.85rem;
+  color: var(--secondary-color);
+}
+
+/* Contact Method Options */
+.contact-method-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
+.contact-method-option {
+  position: relative;
+}
+
+.contact-method-option input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height:
 
